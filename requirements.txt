@@ -1,0 +1,6 @@
+stim>=1.15
+pymatching>=2.2
+sinter>=1.15
+numpy
+matplotlib
+torch  # only needed for decoder.py / train.py
