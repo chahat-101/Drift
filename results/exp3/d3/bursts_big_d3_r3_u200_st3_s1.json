@@ -1,0 +1,166 @@
+{
+  "regime": "bursts_big",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 3,
+  "frozen_fingerprint": false,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_nominal_s1.pt",
+    "decoder_static_d3_nominal_fixed_s1.pt",
+    "decoder_static_d3_wide_s1.pt",
+    "decoder_adaptive_d3_wide_s1.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 36,
+    "onset": 9,
+    "later": 27,
+    "after": 9,
+    "nominal": 114
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 72000,
+    "onset": 18000,
+    "later": 54000,
+    "after": 18000,
+    "nominal": 228000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 29035,
+        "drift": 27520,
+        "onset": 6932,
+        "later": 20588,
+        "after": 114,
+        "nominal": 1515
+      },
+      "ler": {
+        "all": 0.09678333333333333,
+        "drift": 0.38222222222222224,
+        "onset": 0.3851111111111111,
+        "later": 0.38125925925925924,
+        "after": 0.006333333333333333,
+        "nominal": 0.006644736842105263
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 29727,
+        "drift": 23911,
+        "onset": 5970,
+        "later": 17941,
+        "after": 1026,
+        "nominal": 5816
+      },
+      "ler": {
+        "all": 0.09909,
+        "drift": 0.3320972222222222,
+        "onset": 0.33166666666666667,
+        "later": 0.3322407407407407,
+        "after": 0.057,
+        "nominal": 0.02550877192982456
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 16717,
+        "drift": 15202,
+        "onset": 3748,
+        "later": 11454,
+        "after": 114,
+        "nominal": 1515
+      },
+      "ler": {
+        "all": 0.05572333333333333,
+        "drift": 0.21113888888888888,
+        "onset": 0.20822222222222223,
+        "later": 0.2121111111111111,
+        "after": 0.006333333333333333,
+        "nominal": 0.006644736842105263
+      }
+    },
+    "decoder_static_d3_nominal_s1": {
+      "errors": {
+        "all": 26862,
+        "drift": 25622,
+        "onset": 6387,
+        "later": 19235,
+        "after": 81,
+        "nominal": 1240
+      },
+      "ler": {
+        "all": 0.08954,
+        "drift": 0.35586111111111113,
+        "onset": 0.35483333333333333,
+        "later": 0.3562037037037037,
+        "after": 0.0045,
+        "nominal": 0.00543859649122807
+      }
+    },
+    "decoder_static_d3_nominal_fixed_s1": {
+      "errors": {
+        "all": 27065,
+        "drift": 25820,
+        "onset": 6407,
+        "later": 19413,
+        "after": 92,
+        "nominal": 1245
+      },
+      "ler": {
+        "all": 0.09021666666666667,
+        "drift": 0.3586111111111111,
+        "onset": 0.35594444444444445,
+        "later": 0.3595,
+        "after": 0.005111111111111111,
+        "nominal": 0.005460526315789474
+      }
+    },
+    "decoder_static_d3_wide_s1": {
+      "errors": {
+        "all": 20405,
+        "drift": 18982,
+        "onset": 4675,
+        "later": 14307,
+        "after": 97,
+        "nominal": 1423
+      },
+      "ler": {
+        "all": 0.06801666666666667,
+        "drift": 0.26363888888888887,
+        "onset": 0.25972222222222224,
+        "later": 0.2649444444444444,
+        "after": 0.005388888888888889,
+        "nominal": 0.006241228070175439
+      }
+    },
+    "decoder_adaptive_d3_wide_s1": {
+      "errors": {
+        "all": 17443,
+        "drift": 15866,
+        "onset": 4412,
+        "later": 11454,
+        "after": 408,
+        "nominal": 1577
+      },
+      "ler": {
+        "all": 0.05814333333333333,
+        "drift": 0.22036111111111112,
+        "onset": 0.2451111111111111,
+        "later": 0.2121111111111111,
+        "after": 0.02266666666666667,
+        "nominal": 0.0069166666666666664
+      }
+    }
+  }
+}

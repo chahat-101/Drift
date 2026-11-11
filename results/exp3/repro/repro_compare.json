@@ -1,0 +1,119 @@
+[
+  {
+    "decoder": "static",
+    "shots": 300000,
+    "errors_report2": 10460,
+    "errors_vm": 10460,
+    "shots_differing": 0,
+    "ler_report2": 0.034866666666666664,
+    "ler_vm": 0.034866666666666664
+  },
+  {
+    "decoder": "window_500",
+    "shots": 300000,
+    "errors_report2": 9533,
+    "errors_vm": 9533,
+    "shots_differing": 0,
+    "ler_report2": 0.03177666666666667,
+    "ler_vm": 0.03177666666666667
+  },
+  {
+    "decoder": "window_1000",
+    "shots": 300000,
+    "errors_report2": 7827,
+    "errors_vm": 7827,
+    "shots_differing": 0,
+    "ler_report2": 0.02609,
+    "ler_vm": 0.02609
+  },
+  {
+    "decoder": "window_2000",
+    "shots": 300000,
+    "errors_report2": 6802,
+    "errors_vm": 6802,
+    "shots_differing": 0,
+    "ler_report2": 0.022673333333333334,
+    "ler_vm": 0.022673333333333334
+  },
+  {
+    "decoder": "window_5000",
+    "shots": 300000,
+    "errors_report2": 7231,
+    "errors_vm": 7231,
+    "shots_differing": 0,
+    "ler_report2": 0.024103333333333334,
+    "ler_vm": 0.024103333333333334
+  },
+  {
+    "decoder": "window_10000",
+    "shots": 300000,
+    "errors_report2": 8560,
+    "errors_vm": 8560,
+    "shots_differing": 0,
+    "ler_report2": 0.028533333333333334,
+    "ler_vm": 0.028533333333333334
+  },
+  {
+    "decoder": "oracle",
+    "shots": 300000,
+    "errors_report2": 4948,
+    "errors_vm": 4948,
+    "shots_differing": 0,
+    "ler_report2": 0.016493333333333332,
+    "ler_vm": 0.016493333333333332
+  },
+  {
+    "decoder": "decoder_static_d3_wide_s0",
+    "shots": 300000,
+    "errors_report2": 6488,
+    "errors_vm": 6488,
+    "shots_differing": 0,
+    "ler_report2": 0.021626666666666666,
+    "ler_vm": 0.021626666666666666
+  },
+  {
+    "decoder": "decoder_static_d3_nominal_s0",
+    "shots": 300000,
+    "errors_report2": 8304,
+    "errors_vm": 8304,
+    "shots_differing": 0,
+    "ler_report2": 0.02768,
+    "ler_vm": 0.02768
+  },
+  {
+    "decoder": "decoder_adaptive_d3_wide_s0",
+    "shots": 300000,
+    "errors_report2": 4838,
+    "errors_vm": 4838,
+    "shots_differing": 0,
+    "ler_report2": 0.016126666666666668,
+    "ler_vm": 0.016126666666666668
+  },
+  {
+    "decoder": "decoder_adaptive_d3_wide_s0_frozen",
+    "shots": 300000,
+    "errors_report2": 7586,
+    "errors_vm": 7586,
+    "shots_differing": 0,
+    "ler_report2": 0.025286666666666666,
+    "ler_vm": 0.025286666666666666
+  },
+  {
+    "decoder": "decoder_adaptive_d3_stale_s0",
+    "shots": 300000,
+    "errors_report2": 4860,
+    "errors_vm": 4860,
+    "shots_differing": 0,
+    "ler_report2": 0.0162,
+    "ler_vm": 0.0162
+  },
+  {
+    "decoder": "decoder_adaptive_d3_stale_s0_frozen",
+    "shots": 300000,
+    "errors_report2": 6781,
+    "errors_vm": 6781,
+    "shots_differing": 0,
+    "ler_report2": 0.022603333333333333,
+    "ler_vm": 0.022603333333333333
+  }
+]

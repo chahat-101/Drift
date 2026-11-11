@@ -1,19 +1,16 @@
-"""Neural decoder.
+"""3D CNN decoder.
 
-Detection events are laid out on a 3D grid (time x X x Y) using the detector
-coordinates Stim provides, then read by a small 3D CNN that outputs one logit:
-"did the logical observable flip?".
+Detection events are laid out on a (time, X, Y) grid from the detector coordinates.
+The network outputs one logit: whether the logical observable flipped.
 
 Two modes:
-  static   : input channel 0 = this shot's detection events
-  adaptive : channel 1 = the fingerprint, i.e. each detector's firing rate over
-             the last `window` shots. The decoder never sees the true noise; it
-             only sees statistics of its own recent syndromes. This is the core
-             idea of the project: calibration-free adaptation.
+  static    one input channel, the shot's detection events.
+  adaptive  a second channel holds the fingerprint, the firing rate of each detector
+            over the last `window` shots. The model never sees the true noise.
 
-This is a deliberately simple starting point. Swap the CNN for a transformer
-or GNN later; keep the interface (decode / observe) so eval.py still works.
+NeuralDecoder wraps a trained model in the interface of baselines.py.
 """
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -36,7 +33,7 @@ class DetectorGrid:
         self.n = n
 
     def to_grid(self, det):
-        """det: (B, n) bool/float array -> (B, T, X, Y) float32 tensor."""
+        """(B, n) bool or float array -> (B, T, X, Y) float32 tensor."""
         det = np.asarray(det, dtype=np.float32)
         out = np.zeros((len(det), int(np.prod(self.shape))), dtype=np.float32)
         out[:, self.flat] = det
@@ -59,12 +56,12 @@ class ConvDecoder(nn.Module):
 
 
 def build_input(grid, det, fingerprint=None):
-    """Stack detection events (and optionally the fingerprint) into model input."""
+    """Stack detection events and, if given, the fingerprint into model input."""
     x = grid.to_grid(det).unsqueeze(1)
     if fingerprint is None:
         return x
     f = grid.to_grid(fingerprint[None, :]).unsqueeze(1).expand(len(det), -1, -1, -1, -1)
-    # scale rates up so they sit on a similar range to the 0/1 events
+    # rates are scaled up to the range of the 0/1 events
     return torch.cat([x, f * 10.0], dim=1)
 
 
@@ -82,10 +79,9 @@ def load_checkpoint(path, map_location="cpu"):
 
 
 class NeuralDecoder:
-    """Wraps a trained model in the same interface as the baselines.
+    """A trained model behind the decode/observe interface.
 
-    frozen_fingerprint: for adaptive models, a fixed fingerprint used for every
-    shot; observe() then does nothing (a control for "how much is adaptation").
+    If frozen_fingerprint is given, an adaptive model uses it for every shot and observe() does nothing.
     """
 
     def __init__(self, path, nominal_circuit, name=None, device="cpu", batch=4096, frozen_fingerprint=None):
@@ -111,7 +107,7 @@ class NeuralDecoder:
         fp = self.fingerprint() if self.adaptive else None
         preds = []
         for i in range(0, len(det), self.batch):
-            x = build_input(self.grid, det[i:i + self.batch], fp).to(self.device)
+            x = build_input(self.grid, det[i : i + self.batch], fp).to(self.device)
             preds.append((self.model(x) > 0).cpu().numpy())
         return np.concatenate(preds)[:, None]
 

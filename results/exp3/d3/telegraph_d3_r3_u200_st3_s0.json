@@ -1,0 +1,166 @@
+{
+  "regime": "telegraph",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 3,
+  "frozen_fingerprint": false,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_nominal_s0.pt",
+    "decoder_static_d3_nominal_fixed_s0.pt",
+    "decoder_static_d3_wide_s0.pt",
+    "decoder_adaptive_d3_wide_s0.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 49,
+    "onset": 3,
+    "later": 46,
+    "after": 3,
+    "nominal": 101
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 98000,
+    "onset": 6000,
+    "later": 92000,
+    "after": 6000,
+    "nominal": 202000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 3567,
+        "drift": 2277,
+        "onset": 133,
+        "later": 2144,
+        "after": 46,
+        "nominal": 1290
+      },
+      "ler": {
+        "all": 0.01189,
+        "drift": 0.023234693877551022,
+        "onset": 0.022166666666666668,
+        "later": 0.023304347826086955,
+        "after": 0.007666666666666666,
+        "nominal": 0.006386138613861386
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 3545,
+        "drift": 2241,
+        "onset": 129,
+        "later": 2112,
+        "after": 49,
+        "nominal": 1304
+      },
+      "ler": {
+        "all": 0.011816666666666666,
+        "drift": 0.02286734693877551,
+        "onset": 0.0215,
+        "later": 0.022956521739130435,
+        "after": 0.008166666666666666,
+        "nominal": 0.006455445544554455
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 3567,
+        "drift": 2277,
+        "onset": 133,
+        "later": 2144,
+        "after": 46,
+        "nominal": 1290
+      },
+      "ler": {
+        "all": 0.01189,
+        "drift": 0.023234693877551022,
+        "onset": 0.022166666666666668,
+        "later": 0.023304347826086955,
+        "after": 0.007666666666666666,
+        "nominal": 0.006386138613861386
+      }
+    },
+    "decoder_static_d3_nominal_s0": {
+      "errors": {
+        "all": 3182,
+        "drift": 2059,
+        "onset": 119,
+        "later": 1940,
+        "after": 46,
+        "nominal": 1123
+      },
+      "ler": {
+        "all": 0.010606666666666667,
+        "drift": 0.021010204081632653,
+        "onset": 0.019833333333333335,
+        "later": 0.02108695652173913,
+        "after": 0.007666666666666666,
+        "nominal": 0.005559405940594059
+      }
+    },
+    "decoder_static_d3_nominal_fixed_s0": {
+      "errors": {
+        "all": 3202,
+        "drift": 2080,
+        "onset": 121,
+        "later": 1959,
+        "after": 43,
+        "nominal": 1122
+      },
+      "ler": {
+        "all": 0.010673333333333333,
+        "drift": 0.02122448979591837,
+        "onset": 0.020166666666666666,
+        "later": 0.021293478260869567,
+        "after": 0.007166666666666667,
+        "nominal": 0.005554455445544554
+      }
+    },
+    "decoder_static_d3_wide_s0": {
+      "errors": {
+        "all": 3484,
+        "drift": 2251,
+        "onset": 127,
+        "later": 2124,
+        "after": 42,
+        "nominal": 1233
+      },
+      "ler": {
+        "all": 0.011613333333333333,
+        "drift": 0.02296938775510204,
+        "onset": 0.021166666666666667,
+        "later": 0.02308695652173913,
+        "after": 0.007,
+        "nominal": 0.006103960396039604
+      }
+    },
+    "decoder_adaptive_d3_wide_s0": {
+      "errors": {
+        "all": 3146,
+        "drift": 2032,
+        "onset": 113,
+        "later": 1919,
+        "after": 44,
+        "nominal": 1114
+      },
+      "ler": {
+        "all": 0.010486666666666667,
+        "drift": 0.02073469387755102,
+        "onset": 0.018833333333333334,
+        "later": 0.020858695652173912,
+        "after": 0.007333333333333333,
+        "nominal": 0.0055148514851485145
+      }
+    }
+  }
+}

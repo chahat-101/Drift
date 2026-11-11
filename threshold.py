@@ -1,16 +1,18 @@
-"""Week-1 sanity check: reproduce the surface-code threshold plot.
+"""Reproduce the surface-code threshold plot with Sinter and PyMatching.
 
-Logical error rate per shot vs physical error rate, for several distances,
-decoded with PyMatching. Below threshold (~0.6-0.7% for this noise model) the
-larger codes win; above it they lose. If your curves cross, your setup works.
+Logical error rate per shot against physical error rate for several distances.
+Below threshold (about 0.6-0.7% for this noise model) larger codes do better, so the
+curves cross. This checks the installation.
 
     python threshold.py                     # d = 3, 5, 7
     python threshold.py --max-shots 200000  # tighter error bars, slower
 """
+
 import argparse
 import os
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import sinter
@@ -29,7 +31,8 @@ def main():
 
     tasks = [
         sinter.Task(circuit=make_circuit(d, d, p), json_metadata={"d": d, "p": p})
-        for d in args.distances for p in args.ps
+        for d in args.distances
+        for p in args.ps
     ]
     stats = sinter.collect(
         num_workers=os.cpu_count() or 2,
@@ -43,8 +46,9 @@ def main():
         print(f"d={m['d']} p={m['p']:.3f}  shots={s.shots:>7}  errors={s.errors:>4}  LER={s.errors / s.shots:.5f}")
 
     fig, ax = plt.subplots(figsize=(7, 5))
-    sinter.plot_error_rate(ax=ax, stats=stats, x_func=lambda s: s.json_metadata["p"],
-                           group_func=lambda s: f"d={s.json_metadata['d']}")
+    sinter.plot_error_rate(
+        ax=ax, stats=stats, x_func=lambda s: s.json_metadata["p"], group_func=lambda s: f"d={s.json_metadata['d']}"
+    )
     ax.set_xlabel("physical error rate p")
     ax.set_ylabel("logical error rate per shot (rounds = d)")
     ax.set_xscale("log")

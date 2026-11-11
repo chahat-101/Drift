@@ -1,0 +1,130 @@
+{
+  "regime": "bursts",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "data": "data/d3_r3_p0.003_s0",
+  "manifest_sha256": "c9b42a75fc30a20fb88465db0fba124ed0bf3d5b23613525b0e29cd85f548775",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_wide_s0.pt",
+    "decoder_adaptive_d3_wide_s0.pt",
+    "decoder_adaptive_d3_stale_s0.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 28,
+    "onset": 7,
+    "later": 21,
+    "after": 7
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 56000,
+    "onset": 14000,
+    "later": 42000,
+    "after": 14000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 10460,
+        "drift": 8815,
+        "onset": 2246,
+        "later": 6569,
+        "after": 96
+      },
+      "ler": {
+        "all": 0.034866666666666664,
+        "drift": 0.1574107142857143,
+        "onset": 0.16042857142857142,
+        "later": 0.1564047619047619,
+        "after": 0.006857142857142857
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 8560,
+        "drift": 5621,
+        "onset": 1914,
+        "later": 3707,
+        "after": 508
+      },
+      "ler": {
+        "all": 0.028533333333333334,
+        "drift": 0.100375,
+        "onset": 0.1367142857142857,
+        "later": 0.08826190476190476,
+        "after": 0.03628571428571428
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 4948,
+        "drift": 3303,
+        "onset": 861,
+        "later": 2442,
+        "after": 96
+      },
+      "ler": {
+        "all": 0.016493333333333332,
+        "drift": 0.05898214285714286,
+        "onset": 0.0615,
+        "later": 0.05814285714285714,
+        "after": 0.006857142857142857
+      }
+    },
+    "decoder_static_d3_wide_s0": {
+      "errors": {
+        "all": 6488,
+        "drift": 4984,
+        "onset": 1252,
+        "later": 3732,
+        "after": 89
+      },
+      "ler": {
+        "all": 0.021626666666666666,
+        "drift": 0.089,
+        "onset": 0.08942857142857143,
+        "later": 0.08885714285714286,
+        "after": 0.006357142857142857
+      }
+    },
+    "decoder_adaptive_d3_wide_s0": {
+      "errors": {
+        "all": 4839,
+        "drift": 3437,
+        "onset": 1206,
+        "later": 2231,
+        "after": 176
+      },
+      "ler": {
+        "all": 0.01613,
+        "drift": 0.061375,
+        "onset": 0.08614285714285715,
+        "later": 0.05311904761904762,
+        "after": 0.012571428571428572
+      }
+    },
+    "decoder_adaptive_d3_stale_s0": {
+      "errors": {
+        "all": 4858,
+        "drift": 3464,
+        "onset": 1105,
+        "later": 2359,
+        "after": 99
+      },
+      "ler": {
+        "all": 0.016193333333333334,
+        "drift": 0.06185714285714286,
+        "onset": 0.07892857142857143,
+        "later": 0.05616666666666666,
+        "after": 0.007071428571428571
+      }
+    }
+  }
+}

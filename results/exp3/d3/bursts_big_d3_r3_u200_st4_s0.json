@@ -1,0 +1,166 @@
+{
+  "regime": "bursts_big",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 4,
+  "frozen_fingerprint": false,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_nominal_s0.pt",
+    "decoder_static_d3_nominal_fixed_s0.pt",
+    "decoder_static_d3_wide_s0.pt",
+    "decoder_adaptive_d3_wide_s0.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 24,
+    "onset": 6,
+    "later": 18,
+    "after": 6,
+    "nominal": 126
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 48000,
+    "onset": 12000,
+    "later": 36000,
+    "after": 12000,
+    "nominal": 252000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 19207,
+        "drift": 17595,
+        "onset": 4430,
+        "later": 13165,
+        "after": 83,
+        "nominal": 1612
+      },
+      "ler": {
+        "all": 0.06402333333333333,
+        "drift": 0.3665625,
+        "onset": 0.36916666666666664,
+        "later": 0.36569444444444443,
+        "after": 0.0069166666666666664,
+        "nominal": 0.006396825396825396
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 19237,
+        "drift": 14818,
+        "onset": 3689,
+        "later": 11129,
+        "after": 642,
+        "nominal": 4419
+      },
+      "ler": {
+        "all": 0.06412333333333334,
+        "drift": 0.3087083333333333,
+        "onset": 0.30741666666666667,
+        "later": 0.3091388888888889,
+        "after": 0.0535,
+        "nominal": 0.017535714285714286
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 9311,
+        "drift": 7699,
+        "onset": 1943,
+        "later": 5756,
+        "after": 83,
+        "nominal": 1612
+      },
+      "ler": {
+        "all": 0.031036666666666667,
+        "drift": 0.16039583333333332,
+        "onset": 0.16191666666666665,
+        "later": 0.15988888888888889,
+        "after": 0.0069166666666666664,
+        "nominal": 0.006396825396825396
+      }
+    },
+    "decoder_static_d3_nominal_s0": {
+      "errors": {
+        "all": 17435,
+        "drift": 16081,
+        "onset": 3998,
+        "later": 12083,
+        "after": 72,
+        "nominal": 1354
+      },
+      "ler": {
+        "all": 0.058116666666666664,
+        "drift": 0.3350208333333333,
+        "onset": 0.33316666666666667,
+        "later": 0.3356388888888889,
+        "after": 0.006,
+        "nominal": 0.005373015873015873
+      }
+    },
+    "decoder_static_d3_nominal_fixed_s0": {
+      "errors": {
+        "all": 17003,
+        "drift": 15673,
+        "onset": 3891,
+        "later": 11782,
+        "after": 70,
+        "nominal": 1330
+      },
+      "ler": {
+        "all": 0.05667666666666667,
+        "drift": 0.3265208333333333,
+        "onset": 0.32425,
+        "later": 0.3272777777777778,
+        "after": 0.005833333333333334,
+        "nominal": 0.005277777777777778
+      }
+    },
+    "decoder_static_d3_wide_s0": {
+      "errors": {
+        "all": 12373,
+        "drift": 10914,
+        "onset": 2741,
+        "later": 8173,
+        "after": 75,
+        "nominal": 1459
+      },
+      "ler": {
+        "all": 0.04124333333333333,
+        "drift": 0.227375,
+        "onset": 0.22841666666666666,
+        "later": 0.22702777777777777,
+        "after": 0.00625,
+        "nominal": 0.00578968253968254
+      }
+    },
+    "decoder_adaptive_d3_wide_s0": {
+      "errors": {
+        "all": 10039,
+        "drift": 8451,
+        "onset": 2509,
+        "later": 5942,
+        "after": 310,
+        "nominal": 1588
+      },
+      "ler": {
+        "all": 0.03346333333333333,
+        "drift": 0.1760625,
+        "onset": 0.20908333333333334,
+        "later": 0.16505555555555557,
+        "after": 0.025833333333333333,
+        "nominal": 0.006301587301587302
+      }
+    }
+  }
+}

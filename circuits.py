@@ -1,11 +1,5 @@
-"""Surface-code circuits with controllable (drifting) noise.
+"""Surface-code circuits with uniform depolarizing noise and optional extra noise on hot qubits."""
 
-Everything else in the repo builds circuits through `make_circuit`, so the
-noise model lives in one place. Noise is SI-style uniform depolarizing noise
-at strength `p`, plus optional extra depolarizing noise on a set of "hot"
-qubits after every TICK (a qubit whose coherence suddenly got worse, e.g.
-a TLS defect drifting into resonance, or a radiation burst).
-"""
 from functools import lru_cache
 
 import numpy as np
@@ -14,13 +8,15 @@ import stim
 
 
 def make_circuit(distance, rounds, p, hot_qubits=(), hot_p=0.0, basis="z"):
-    """Rotated surface-code memory experiment.
+    """Build a rotated surface-code memory experiment.
 
-    distance, rounds : code distance and number of syndrome rounds
-    p                : uniform physical error rate
-    hot_qubits       : qubit indices that get extra noise
-    hot_p            : extra DEPOLARIZE1 strength on hot qubits, per TICK
-    basis            : "z" or "x" memory experiment
+    Args:
+        distance: code distance.
+        rounds: number of syndrome rounds.
+        p: uniform physical error rate.
+        hot_qubits: qubit indices that get extra noise.
+        hot_p: strength of the extra DEPOLARIZE1 applied to hot qubits after every TICK.
+        basis: "z" or "x" memory experiment.
     """
     c = stim.Circuit.generated(
         f"surface_code:rotated_memory_{basis}",
@@ -66,4 +62,5 @@ def matcher_from_circuit(circuit):
 
 @lru_cache(maxsize=512)
 def cached_circuit(distance, rounds, p, hot_qubits=(), hot_p=0.0, basis="z"):
+    """make_circuit with an LRU cache."""
     return make_circuit(distance, rounds, p, hot_qubits, hot_p, basis)

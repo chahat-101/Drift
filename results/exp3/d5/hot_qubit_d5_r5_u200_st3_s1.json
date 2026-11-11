@@ -1,0 +1,274 @@
+{
+  "regime": "hot_qubit",
+  "distance": 5,
+  "rounds": 5,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "500,1000,2000,5000,10000",
+  "data": "data/d5_wide",
+  "stream_seed": 3,
+  "frozen_fingerprint": true,
+  "manifest_sha256": "a213c1881ec26ec4ca98d49cb58418c34a400ba134414749d48aa8d328058b2c",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d5_wide_s1.pt",
+    "decoder_static_d5_nominal_fixed_s1.pt",
+    "decoder_adaptive_d5_wide_s1.pt",
+    "decoder_adaptive_d5_stale_s1.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 100,
+    "onset": 1,
+    "later": 99,
+    "after": 0,
+    "nominal": 50
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 200000,
+    "onset": 2000,
+    "later": 198000,
+    "after": 0,
+    "nominal": 100000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 4045,
+        "drift": 3690,
+        "onset": 39,
+        "later": 3651,
+        "after": 0,
+        "nominal": 355
+      },
+      "ler": {
+        "all": 0.013483333333333333,
+        "drift": 0.01845,
+        "onset": 0.0195,
+        "later": 0.01843939393939394,
+        "after": null,
+        "nominal": 0.00355
+      }
+    },
+    "window_500": {
+      "errors": {
+        "all": 6697,
+        "drift": 5831,
+        "onset": 52,
+        "later": 5779,
+        "after": 0,
+        "nominal": 866
+      },
+      "ler": {
+        "all": 0.022323333333333334,
+        "drift": 0.029155,
+        "onset": 0.026,
+        "later": 0.029186868686868688,
+        "after": null,
+        "nominal": 0.00866
+      }
+    },
+    "window_1000": {
+      "errors": {
+        "all": 4894,
+        "drift": 4315,
+        "onset": 40,
+        "later": 4275,
+        "after": 0,
+        "nominal": 579
+      },
+      "ler": {
+        "all": 0.016313333333333332,
+        "drift": 0.021575,
+        "onset": 0.02,
+        "later": 0.02159090909090909,
+        "after": null,
+        "nominal": 0.00579
+      }
+    },
+    "window_2000": {
+      "errors": {
+        "all": 3727,
+        "drift": 3299,
+        "onset": 29,
+        "later": 3270,
+        "after": 0,
+        "nominal": 428
+      },
+      "ler": {
+        "all": 0.012423333333333333,
+        "drift": 0.016495,
+        "onset": 0.0145,
+        "later": 0.016515151515151514,
+        "after": null,
+        "nominal": 0.00428
+      }
+    },
+    "window_5000": {
+      "errors": {
+        "all": 2836,
+        "drift": 2470,
+        "onset": 22,
+        "later": 2448,
+        "after": 0,
+        "nominal": 366
+      },
+      "ler": {
+        "all": 0.009453333333333333,
+        "drift": 0.01235,
+        "onset": 0.011,
+        "later": 0.012363636363636363,
+        "after": null,
+        "nominal": 0.00366
+      }
+    },
+    "window_10000": {
+      "errors": {
+        "all": 2564,
+        "drift": 2223,
+        "onset": 31,
+        "later": 2192,
+        "after": 0,
+        "nominal": 341
+      },
+      "ler": {
+        "all": 0.008546666666666666,
+        "drift": 0.011115,
+        "onset": 0.0155,
+        "later": 0.011070707070707071,
+        "after": null,
+        "nominal": 0.00341
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 2460,
+        "drift": 2105,
+        "onset": 23,
+        "later": 2082,
+        "after": 0,
+        "nominal": 355
+      },
+      "ler": {
+        "all": 0.0082,
+        "drift": 0.010525,
+        "onset": 0.0115,
+        "later": 0.010515151515151516,
+        "after": null,
+        "nominal": 0.00355
+      }
+    },
+    "decoder_static_d5_wide_s1": {
+      "errors": {
+        "all": 3094,
+        "drift": 2843,
+        "onset": 20,
+        "later": 2823,
+        "after": 0,
+        "nominal": 251
+      },
+      "ler": {
+        "all": 0.010313333333333334,
+        "drift": 0.014215,
+        "onset": 0.01,
+        "later": 0.014257575757575757,
+        "after": null,
+        "nominal": 0.00251
+      }
+    },
+    "decoder_static_d5_nominal_fixed_s1": {
+      "errors": {
+        "all": 6435,
+        "drift": 6047,
+        "onset": 61,
+        "later": 5986,
+        "after": 0,
+        "nominal": 388
+      },
+      "ler": {
+        "all": 0.02145,
+        "drift": 0.030235,
+        "onset": 0.0305,
+        "later": 0.030232323232323232,
+        "after": null,
+        "nominal": 0.00388
+      }
+    },
+    "decoder_adaptive_d5_wide_s1": {
+      "errors": {
+        "all": 2553,
+        "drift": 2299,
+        "onset": 19,
+        "later": 2280,
+        "after": 0,
+        "nominal": 254
+      },
+      "ler": {
+        "all": 0.00851,
+        "drift": 0.011495,
+        "onset": 0.0095,
+        "later": 0.011515151515151515,
+        "after": null,
+        "nominal": 0.00254
+      }
+    },
+    "decoder_adaptive_d5_wide_s1_frozen": {
+      "errors": {
+        "all": 3119,
+        "drift": 2884,
+        "onset": 17,
+        "later": 2867,
+        "after": 0,
+        "nominal": 235
+      },
+      "ler": {
+        "all": 0.010396666666666667,
+        "drift": 0.01442,
+        "onset": 0.0085,
+        "later": 0.01447979797979798,
+        "after": null,
+        "nominal": 0.00235
+      }
+    },
+    "decoder_adaptive_d5_stale_s1": {
+      "errors": {
+        "all": 2564,
+        "drift": 2297,
+        "onset": 19,
+        "later": 2278,
+        "after": 0,
+        "nominal": 267
+      },
+      "ler": {
+        "all": 0.008546666666666666,
+        "drift": 0.011485,
+        "onset": 0.0095,
+        "later": 0.011505050505050504,
+        "after": null,
+        "nominal": 0.00267
+      }
+    },
+    "decoder_adaptive_d5_stale_s1_frozen": {
+      "errors": {
+        "all": 3008,
+        "drift": 2764,
+        "onset": 19,
+        "later": 2745,
+        "after": 0,
+        "nominal": 244
+      },
+      "ler": {
+        "all": 0.010026666666666666,
+        "drift": 0.01382,
+        "onset": 0.0095,
+        "later": 0.013863636363636364,
+        "after": null,
+        "nominal": 0.00244
+      }
+    }
+  }
+}

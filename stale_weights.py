@@ -1,22 +1,22 @@
-"""Stale weights experiment: how much does matching suffer when noise drifts?
+"""How much does matching suffer when noise drifts?
 
-Three decoders, all PyMatching, all decoding the SAME drifted syndromes:
-  blind  - weights from the nominal noise model (what a static decoder has)
-  aware  - weights from the true drifted noise (oracle upper bound)
-Also reports the clean case (no drift) as a floor.
+Three cases, all decoded with PyMatching on the same drifted syndromes:
+  clean  no drift, nominal weights
+  blind  drifted noise, weights from the nominal noise model (a static decoder)
+  aware  drifted noise, weights from the true drifted noise
 
-If blind is clearly worse than aware, drift hurts and there is something
-for an adaptive decoder to win back. That gap is the headroom of the project.
+The ratio blind/aware is the headroom for an adaptive decoder.
 """
-import numpy as np
-import stim
-import pymatching
 
-D = 5            # code distance
+import numpy as np
+import pymatching
+import stim
+
+D = 5  # code distance
 ROUNDS = 5
-P = 0.003        # nominal circuit-level depolarizing noise
-HOT_P = 0.03     # extra depolarizing noise on the drifted qubits, per round
-N_HOT = 2        # how many data qubits drift
+P = 0.003  # nominal circuit-level depolarizing noise
+HOT_P = 0.03  # extra depolarizing noise on the drifted qubits, per round
+N_HOT = 2  # number of drifted qubits
 SHOTS = 200_000
 SEED = 1
 
@@ -42,7 +42,7 @@ def make_circuit(hot_qubits=()):
 
 
 def pick_hot_qubits(circuit):
-    # data qubits sit on even/even... just take qubits nearest the patch centre
+    # the qubits nearest the patch centre
     coords = circuit.get_final_qubit_coordinates()
     cx = np.mean([v[0] for v in coords.values()])
     cy = np.mean([v[1] for v in coords.values()])
@@ -51,12 +51,10 @@ def pick_hot_qubits(circuit):
 
 
 def ler(circuit, decoder_circuit, shots):
-    """Sample `circuit`, decode with a matching graph built from `decoder_circuit`."""
+    """Logical error rate on shots from `circuit`, decoded with a matching graph built from `decoder_circuit`."""
     dem = decoder_circuit.detector_error_model(decompose_errors=True)
     matching = pymatching.Matching.from_detector_error_model(dem)
-    det, obs = circuit.compile_detector_sampler(seed=SEED).sample(
-        shots, separate_observables=True
-    )
+    det, obs = circuit.compile_detector_sampler(seed=SEED).sample(shots, separate_observables=True)
     pred = matching.decode_batch(det)
     return float(np.mean(np.any(pred != obs, axis=1)))
 

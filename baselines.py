@@ -1,21 +1,18 @@
-"""Classical decoders the neural decoder has to beat.
+"""Classical decoders.
 
-All decoders share one interface so eval.py can treat them the same:
+All decoders share one interface:
 
-    decoder.decode(det, state) -> predicted observable flips, shape (shots, n_obs)
-    decoder.observe(det)       -> feed shots *after* decoding them (causal: a
-                                  decoder may only learn from the past)
+    decode(det, state) -> predicted observable flips, shape (shots, n_obs)
+    observe(det)       -> feed shots after they are decoded, so a decoder only learns from the past
 
-`state` is the true NoiseState. Only the Oracle is allowed to look at it.
+`state` is the true NoiseState. Only Oracle reads it.
 
-Static      : PyMatching with the nominal noise model, never updated
-Oracle      : PyMatching rebuilt from the true noise every step (upper bound)
-WindowDEM   : PyMatching re-weighted from the last `window` shots, using the
-              pairwise detection-event correlation estimator used on Google's
-              hardware (each edge's error probability is estimated from how
-              often its two detectors fire together). This is the strongest
-              syndrome-only classical baseline and the one to worry about.
+Static     PyMatching with the nominal noise model, never updated.
+Oracle     PyMatching rebuilt from the true noise at every step.
+WindowDEM  PyMatching reweighted from the last `window` shots. Each edge probability
+           is estimated from how often its two detectors fire together.
 """
+
 from collections import deque
 
 import numpy as np
@@ -74,7 +71,7 @@ class ShotWindow:
     def array(self):
         if not self.chunks:
             return None
-        return np.concatenate(list(self.chunks))[-self.window:]
+        return np.concatenate(list(self.chunks))[-self.window :]
 
 
 class WindowDEM:
@@ -102,7 +99,7 @@ class WindowDEM:
             self.matching = self._reweighted(self.buf.array())
 
     def estimate(self, X):
-        """Edge and boundary error probabilities from detection events X (shots, n)."""
+        """Edge and boundary error probabilities from detection events X, shape (shots, n)."""
         X = X.astype(np.float64)
         mu = X.mean(axis=0)
         xx = (X.T @ X) / len(X)
@@ -111,7 +108,7 @@ class WindowDEM:
         den = 1.0 - 2.0 * mu_u - 2.0 * mu_v + 4.0 * xy
         inside = np.clip(1.0 - num / np.where(np.abs(den) < 1e-12, 1e-12, den), 0.0, 1.0)
         p_edge = np.clip(0.5 - 0.5 * np.sqrt(inside), P_MIN, P_MAX)
-        # A detector fires if an odd number of its edges flipped:
+        # A detector fires if an odd number of its edges flipped, so
         # 1 - 2*mu = prod(1 - 2*p) over all edges touching it, boundary included.
         prod = np.ones(self.n)
         np.multiply.at(prod, self.eu, 1 - 2 * p_edge)

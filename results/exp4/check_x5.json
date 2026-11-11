@@ -1,0 +1,40 @@
+{
+ "data/d5_wide_x5": {
+  "identical_files": 24,
+  "differing_files": [
+   "val.npz",
+   "stream_wander.npz"
+  ],
+  "extra_files": [],
+  "train_chunks": 150000,
+  "first_30000_train_chunks_identical": false,
+  "bytes": 2446493575
+ },
+ "data/d5_nominal_x5": {
+  "identical_files": 9,
+  "differing_files": [
+   "stream_wander.npz"
+  ],
+  "extra_files": [
+   "stream_bursts_big_seed1.npz",
+   "stream_bursts_big_seed2.npz",
+   "stream_bursts_big_seed3.npz",
+   "stream_bursts_big_seed4.npz",
+   "stream_bursts_seed1.npz",
+   "stream_bursts_seed2.npz",
+   "stream_bursts_seed3.npz",
+   "stream_bursts_seed4.npz",
+   "stream_hot_qubit_seed1.npz",
+   "stream_hot_qubit_seed2.npz",
+   "stream_hot_qubit_seed3.npz",
+   "stream_hot_qubit_seed4.npz",
+   "stream_telegraph_seed1.npz",
+   "stream_telegraph_seed2.npz",
+   "stream_telegraph_seed3.npz",
+   "stream_telegraph_seed4.npz"
+  ],
+  "train_chunks": 150000,
+  "first_30000_train_chunks_identical": true,
+  "bytes": 411045352
+ }
+}

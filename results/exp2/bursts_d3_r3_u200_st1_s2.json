@@ -1,0 +1,274 @@
+{
+  "regime": "bursts",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "500,1000,2000,5000,10000",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 1,
+  "frozen_fingerprint": true,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_wide_s2.pt",
+    "decoder_static_d3_nominal_s2.pt",
+    "decoder_adaptive_d3_wide_s2.pt",
+    "decoder_adaptive_d3_stale_s2.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 32,
+    "onset": 6,
+    "later": 26,
+    "after": 6,
+    "nominal": 118
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 64000,
+    "onset": 12000,
+    "later": 52000,
+    "after": 12000,
+    "nominal": 236000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 9804,
+        "drift": 8256,
+        "onset": 1571,
+        "later": 6685,
+        "after": 79,
+        "nominal": 1548
+      },
+      "ler": {
+        "all": 0.03268,
+        "drift": 0.129,
+        "onset": 0.13091666666666665,
+        "later": 0.12855769230769232,
+        "after": 0.006583333333333333,
+        "nominal": 0.006559322033898305
+      }
+    },
+    "window_500": {
+      "errors": {
+        "all": 10553,
+        "drift": 6719,
+        "onset": 1288,
+        "later": 5431,
+        "after": 263,
+        "nominal": 3834
+      },
+      "ler": {
+        "all": 0.03517666666666667,
+        "drift": 0.104984375,
+        "onset": 0.10733333333333334,
+        "later": 0.1044423076923077,
+        "after": 0.021916666666666668,
+        "nominal": 0.016245762711864408
+      }
+    },
+    "window_1000": {
+      "errors": {
+        "all": 8902,
+        "drift": 6188,
+        "onset": 1234,
+        "later": 4954,
+        "after": 305,
+        "nominal": 2714
+      },
+      "ler": {
+        "all": 0.029673333333333333,
+        "drift": 0.0966875,
+        "onset": 0.10283333333333333,
+        "later": 0.09526923076923077,
+        "after": 0.025416666666666667,
+        "nominal": 0.0115
+      }
+    },
+    "window_2000": {
+      "errors": {
+        "all": 8260,
+        "drift": 6011,
+        "onset": 1119,
+        "later": 4892,
+        "after": 419,
+        "nominal": 2249
+      },
+      "ler": {
+        "all": 0.027533333333333333,
+        "drift": 0.093921875,
+        "onset": 0.09325,
+        "later": 0.09407692307692307,
+        "after": 0.034916666666666665,
+        "nominal": 0.009529661016949152
+      }
+    },
+    "window_5000": {
+      "errors": {
+        "all": 9063,
+        "drift": 6705,
+        "onset": 1207,
+        "later": 5498,
+        "after": 435,
+        "nominal": 2358
+      },
+      "ler": {
+        "all": 0.03021,
+        "drift": 0.104765625,
+        "onset": 0.10058333333333333,
+        "later": 0.10573076923076923,
+        "after": 0.03625,
+        "nominal": 0.009991525423728814
+      }
+    },
+    "window_10000": {
+      "errors": {
+        "all": 10693,
+        "drift": 7989,
+        "onset": 1034,
+        "later": 6955,
+        "after": 354,
+        "nominal": 2704
+      },
+      "ler": {
+        "all": 0.03564333333333333,
+        "drift": 0.124828125,
+        "onset": 0.08616666666666667,
+        "later": 0.13375,
+        "after": 0.0295,
+        "nominal": 0.011457627118644068
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 5400,
+        "drift": 3852,
+        "onset": 738,
+        "later": 3114,
+        "after": 79,
+        "nominal": 1548
+      },
+      "ler": {
+        "all": 0.018,
+        "drift": 0.0601875,
+        "onset": 0.0615,
+        "later": 0.05988461538461538,
+        "after": 0.006583333333333333,
+        "nominal": 0.006559322033898305
+      }
+    },
+    "decoder_static_d3_wide_s2": {
+      "errors": {
+        "all": 7051,
+        "drift": 5614,
+        "onset": 1125,
+        "later": 4489,
+        "after": 71,
+        "nominal": 1437
+      },
+      "ler": {
+        "all": 0.023503333333333334,
+        "drift": 0.08771875,
+        "onset": 0.09375,
+        "later": 0.08632692307692308,
+        "after": 0.005916666666666666,
+        "nominal": 0.006088983050847457
+      }
+    },
+    "decoder_static_d3_nominal_s2": {
+      "errors": {
+        "all": 9123,
+        "drift": 7824,
+        "onset": 1474,
+        "later": 6350,
+        "after": 66,
+        "nominal": 1299
+      },
+      "ler": {
+        "all": 0.03041,
+        "drift": 0.12225,
+        "onset": 0.12283333333333334,
+        "later": 0.12211538461538461,
+        "after": 0.0055,
+        "nominal": 0.005504237288135593
+      }
+    },
+    "decoder_adaptive_d3_wide_s2": {
+      "errors": {
+        "all": 5663,
+        "drift": 4302,
+        "onset": 933,
+        "later": 3369,
+        "after": 144,
+        "nominal": 1361
+      },
+      "ler": {
+        "all": 0.018876666666666667,
+        "drift": 0.06721875,
+        "onset": 0.07775,
+        "later": 0.06478846153846154,
+        "after": 0.012,
+        "nominal": 0.005766949152542373
+      }
+    },
+    "decoder_adaptive_d3_wide_s2_frozen": {
+      "errors": {
+        "all": 8095,
+        "drift": 6816,
+        "onset": 1313,
+        "later": 5503,
+        "after": 67,
+        "nominal": 1279
+      },
+      "ler": {
+        "all": 0.026983333333333335,
+        "drift": 0.1065,
+        "onset": 0.10941666666666666,
+        "later": 0.10582692307692308,
+        "after": 0.005583333333333333,
+        "nominal": 0.005419491525423729
+      }
+    },
+    "decoder_adaptive_d3_stale_s2": {
+      "errors": {
+        "all": 5540,
+        "drift": 4216,
+        "onset": 930,
+        "later": 3286,
+        "after": 84,
+        "nominal": 1324
+      },
+      "ler": {
+        "all": 0.018466666666666666,
+        "drift": 0.065875,
+        "onset": 0.0775,
+        "later": 0.06319230769230769,
+        "after": 0.007,
+        "nominal": 0.005610169491525424
+      }
+    },
+    "decoder_adaptive_d3_stale_s2_frozen": {
+      "errors": {
+        "all": 7244,
+        "drift": 5936,
+        "onset": 1161,
+        "later": 4775,
+        "after": 70,
+        "nominal": 1308
+      },
+      "ler": {
+        "all": 0.024146666666666667,
+        "drift": 0.09275,
+        "onset": 0.09675,
+        "later": 0.09182692307692308,
+        "after": 0.005833333333333334,
+        "nominal": 0.005542372881355932
+      }
+    }
+  }
+}

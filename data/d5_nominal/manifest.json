@@ -1,0 +1,544 @@
+{
+  "format": 1,
+  "created": "2026-11-06T18:08:40+00:00",
+  "command": "make_dataset.py --distance 5 --rounds 5 --nominal-only --name d5_nominal --window 0",
+  "args": {
+    "distance": 5,
+    "rounds": 5,
+    "p": 0.003,
+    "seed": 0,
+    "out": "data",
+    "name": "d5_nominal",
+    "train_chunks": 30000,
+    "val_chunks": 1000,
+    "batch": 512,
+    "window": 0,
+    "test_shots": 200000,
+    "test_window": 2000,
+    "stream_steps": 150,
+    "shots_per_step": 2000,
+    "nominal_only": true,
+    "force": false,
+    "streams_only": false,
+    "stream_seeds": "",
+    "regimes": "static,wander,telegraph,hot_qubit,bursts,bursts_big"
+  },
+  "seeds": {
+    "train": 1550685491,
+    "val": 2998777024,
+    "test_nominal": 1747145259,
+    "test_scale_x2": 3888417408,
+    "test_2_hot_qubits": 1496010077,
+    "stream_static": 1726538140,
+    "stream_wander": 4283133608,
+    "stream_telegraph": 727546363,
+    "stream_hot_qubit": 2272135263,
+    "stream_bursts": 1410152411,
+    "stream_bursts_big": 2292752895
+  },
+  "versions": {
+    "stim": "1.16.0",
+    "pymatching": "2.4.0",
+    "numpy": "2.4.6",
+    "python": "3.11.17"
+  },
+  "num_detectors": 120,
+  "num_observables": 1,
+  "test_sets": {
+    "nominal": "test_nominal.npz",
+    "scale x2": "test_scale_x2.npz",
+    "2 hot qubits": "test_2_hot_qubits.npz"
+  },
+  "streams": {
+    "static": "stream_static.npz",
+    "wander": "stream_wander.npz",
+    "telegraph": "stream_telegraph.npz",
+    "hot_qubit": "stream_hot_qubit.npz",
+    "bursts": "stream_bursts.npz",
+    "bursts_big": "stream_bursts_big.npz"
+  },
+  "files": {
+    "train.npz": {
+      "sha256": "f2507cac5d6bf7d807c77b180db8424d3b1676c5b4396c5ec63fd3b026741bf4",
+      "bytes": 73572865,
+      "arrays": {
+        "det": {
+          "shape": [
+            30000,
+            512,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            30000,
+            64,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "window_det": {
+          "shape": [
+            30000,
+            0,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            30000
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            30000
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            30000,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "val.npz": {
+      "sha256": "615e18d1fdc8755d1dcc794a492ed834401f3b55f885f38bd2c96b84a973ee37",
+      "bytes": 2452967,
+      "arrays": {
+        "det": {
+          "shape": [
+            1000,
+            512,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            1000,
+            64,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "window_det": {
+          "shape": [
+            1000,
+            0,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            1000
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            1000
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            1000,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "test_nominal.npz": {
+      "sha256": "ab30fb45b493b58bfe2b86dfe7e7e00bc01fc76c8b1cd010a00098185979f5d9",
+      "bytes": 967836,
+      "arrays": {
+        "det": {
+          "shape": [
+            200000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            25000,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "window_det": {
+          "shape": [
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "test_scale_x2.npz": {
+      "sha256": "900d2362357c1efde6aaf1ccbb7b664fc2414e07c0cb6c7a22e540dd1ca9d6a9",
+      "bytes": 1482799,
+      "arrays": {
+        "det": {
+          "shape": [
+            200000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            25000,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "window_det": {
+          "shape": [
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            1,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "test_2_hot_qubits.npz": {
+      "sha256": "03521f37401d5f4502abccb3604f697e4af43ff66cae784d0d137773c9a02e83",
+      "bytes": 1283967,
+      "arrays": {
+        "det": {
+          "shape": [
+            200000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            25000,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "window_det": {
+          "shape": [
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_static.npz": {
+      "sha256": "0d6147e7d385903e38a979ed25ead5532ee458dd320cbc50e06c0c3370e91fdb",
+      "bytes": 1438550,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_wander.npz": {
+      "sha256": "ea21580c14052f1b70ceeea8bdc26b7aa5374df33f19edb5e12533b413185844",
+      "bytes": 1545700,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_telegraph.npz": {
+      "sha256": "301a4fb5cd028b66798eeb048ba36e3b26a5b25720d228428c2ca7f8baef2dc3",
+      "bytes": 1736321,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            1
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_hot_qubit.npz": {
+      "sha256": "7c4c878589aacf43d1920835e75e6c954f522640707d9793ee934c4f32c73bf6",
+      "bytes": 1750879,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            2
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_bursts.npz": {
+      "sha256": "0e7526b4ff6150a861ca36f6edda2571bd0152b98a692baf46c2d743d16afe7c",
+      "bytes": 1616231,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            5
+          ],
+          "dtype": "int32"
+        }
+      }
+    },
+    "stream_bursts_big.npz": {
+      "sha256": "ae3953796a972e08f4d2ad32a167d9ad0c957af89647bf45ff3ab7619fb1407c",
+      "bytes": 1686978,
+      "arrays": {
+        "det": {
+          "shape": [
+            150,
+            2000,
+            15
+          ],
+          "dtype": "uint8"
+        },
+        "obs": {
+          "shape": [
+            150,
+            250,
+            1
+          ],
+          "dtype": "uint8"
+        },
+        "scale": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_p": {
+          "shape": [
+            150
+          ],
+          "dtype": "float64"
+        },
+        "hot_qubits": {
+          "shape": [
+            150,
+            8
+          ],
+          "dtype": "int32"
+        }
+      }
+    }
+  }
+}

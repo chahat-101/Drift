@@ -1,0 +1,166 @@
+{
+  "regime": "telegraph",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 1,
+  "frozen_fingerprint": false,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_nominal_s2.pt",
+    "decoder_static_d3_nominal_fixed_s2.pt",
+    "decoder_static_d3_wide_s2.pt",
+    "decoder_adaptive_d3_wide_s2.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 60,
+    "onset": 6,
+    "later": 54,
+    "after": 5,
+    "nominal": 90
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 120000,
+    "onset": 12000,
+    "later": 108000,
+    "after": 10000,
+    "nominal": 180000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 4026,
+        "drift": 2876,
+        "onset": 294,
+        "later": 2582,
+        "after": 68,
+        "nominal": 1150
+      },
+      "ler": {
+        "all": 0.01342,
+        "drift": 0.023966666666666667,
+        "onset": 0.0245,
+        "later": 0.02390740740740741,
+        "after": 0.0068,
+        "nominal": 0.006388888888888889
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 3980,
+        "drift": 2838,
+        "onset": 298,
+        "later": 2540,
+        "after": 65,
+        "nominal": 1142
+      },
+      "ler": {
+        "all": 0.013266666666666666,
+        "drift": 0.02365,
+        "onset": 0.024833333333333332,
+        "later": 0.02351851851851852,
+        "after": 0.0065,
+        "nominal": 0.006344444444444444
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 4026,
+        "drift": 2876,
+        "onset": 294,
+        "later": 2582,
+        "after": 68,
+        "nominal": 1150
+      },
+      "ler": {
+        "all": 0.01342,
+        "drift": 0.023966666666666667,
+        "onset": 0.0245,
+        "later": 0.02390740740740741,
+        "after": 0.0068,
+        "nominal": 0.006388888888888889
+      }
+    },
+    "decoder_static_d3_nominal_s2": {
+      "errors": {
+        "all": 3536,
+        "drift": 2545,
+        "onset": 257,
+        "later": 2288,
+        "after": 59,
+        "nominal": 991
+      },
+      "ler": {
+        "all": 0.011786666666666668,
+        "drift": 0.021208333333333333,
+        "onset": 0.021416666666666667,
+        "later": 0.021185185185185185,
+        "after": 0.0059,
+        "nominal": 0.005505555555555555
+      }
+    },
+    "decoder_static_d3_nominal_fixed_s2": {
+      "errors": {
+        "all": 3542,
+        "drift": 2541,
+        "onset": 262,
+        "later": 2279,
+        "after": 55,
+        "nominal": 1001
+      },
+      "ler": {
+        "all": 0.011806666666666667,
+        "drift": 0.021175,
+        "onset": 0.021833333333333333,
+        "later": 0.02110185185185185,
+        "after": 0.0055,
+        "nominal": 0.005561111111111111
+      }
+    },
+    "decoder_static_d3_wide_s2": {
+      "errors": {
+        "all": 3911,
+        "drift": 2789,
+        "onset": 290,
+        "later": 2499,
+        "after": 66,
+        "nominal": 1122
+      },
+      "ler": {
+        "all": 0.013036666666666667,
+        "drift": 0.023241666666666667,
+        "onset": 0.024166666666666666,
+        "later": 0.02313888888888889,
+        "after": 0.0066,
+        "nominal": 0.006233333333333333
+      }
+    },
+    "decoder_adaptive_d3_wide_s2": {
+      "errors": {
+        "all": 3471,
+        "drift": 2468,
+        "onset": 248,
+        "later": 2220,
+        "after": 58,
+        "nominal": 1003
+      },
+      "ler": {
+        "all": 0.01157,
+        "drift": 0.020566666666666667,
+        "onset": 0.020666666666666667,
+        "later": 0.020555555555555556,
+        "after": 0.0058,
+        "nominal": 0.005572222222222222
+      }
+    }
+  }
+}

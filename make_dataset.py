@@ -2,27 +2,33 @@
 
     python make_dataset.py --distance 3 --rounds 3
     python make_dataset.py --distance 5 --name d5_big --train-chunks 60000
-    python make_dataset.py --streams-only --name d3_r3_p0.003_s0   # add new regimes' streams
+    python make_dataset.py --nominal-only --name d3_nominal --window 0
+    python make_dataset.py --distance 5 --name d5_wide_x5 --train-chunks 150000 --workers 8
+    python make_dataset.py --streams-only --name d3_r3_p0.003_s0
     python make_dataset.py --streams-only --name d3_r3_p0.003_s0 --stream-seeds 1,2,3,4 \
-        --regimes hot_qubit,bursts,bursts_big,telegraph              # extra independent streams
+        --regimes hot_qubit,bursts,bursts_big,telegraph
 
-Writes data/<name>/ (layout in dataset.py) and a manifest.json with the
-generation args, library versions, array shapes and a SHA-256 of every file.
-Every split (train, val, each test state, each drift stream) gets its own seed
-derived from --seed, so the splits are independent samples.
+Writes data/<name>/ (layout in dataset.py) and a manifest.json with the generation
+args, library versions, array shapes and a SHA-256 of every file. Every split (train,
+val, each test state, each drift stream) gets its own seed derived from --seed, so the
+splits are independent samples.
 
---streams-only adds a stream for every regime in drift.REGIMES that an existing
-dataset lacks, using the settings and seed in its manifest. Existing files are
-not touched; the manifest gains the new files, their hashes and an `updates` entry.
-With --stream-seeds it also adds extra independent streams stream_<regime>_seed<N>.npz
-for each regime in --regimes (listed under `stream_seeds` in the manifest). Stream
-seed 0 is the original stream_<regime>.npz.
+--nominal-only draws every train and val chunk from nominal noise. Test sets and
+streams are unchanged, so with the same --seed they are byte-identical to those of a
+normal dataset. --window 0 skips the fingerprint shots, which a static model never uses.
 
-Stim only promises identical samples for a seed on the same Stim version and
-machine. That is why the data is saved instead of being regenerated.
+--streams-only adds streams to an existing dataset without touching its other files.
+It adds the main stream of every regime in drift.REGIMES that the dataset lacks, using
+the settings and seed in its manifest. With --stream-seeds it also adds extra
+independent streams stream_<regime>_seed<N>.npz for each regime in --regimes.
+
+Stim only guarantees identical samples for a seed on the same Stim version and
+machine, so the data is saved instead of regenerated.
 """
+
 import argparse
 import json
+import multiprocessing as mp
 import os
 import sys
 import time
@@ -34,11 +40,11 @@ import pymatching
 import stim
 
 from dataset import FORMAT, pack_det, pack_obs, sha256_file, states_to_arrays
-from drift import REGIMES, DriftStream, sample_chunk, sample_stream, test_states
+from drift import REGIMES, DriftStream, NoiseState, random_state, sample_stream, test_states
 
 
 def split_seed(seed, name):
-    """Seed for one split, derived from the main seed and the split's name."""
+    """Seed for one split, derived from the main seed and the split name."""
     return int(np.random.SeedSequence([seed, zlib.crc32(name.encode())]).generate_state(1)[0])
 
 
@@ -46,20 +52,47 @@ def slug(name):
     return "".join(c if c.isalnum() else "_" for c in name.lower())
 
 
-def make_chunks(stream, rng, n, batch, window, label):
-    """n training chunks as packed arrays: det, obs, window_det, plus their NoiseStates."""
-    out, states, t0 = {}, [], time.time()
-    for i in range(n):
-        state, det, obs, wdet = sample_chunk(stream, rng, batch, window)
-        parts = {"det": pack_det(det), "obs": pack_obs(obs), "window_det": pack_det(wdet)}
+def chunk_plan(stream, rng, n, nominal=False):
+    """The NoiseState and Stim seed of each of n chunks, drawn from rng as sample_chunk does."""
+    plan = []
+    for _ in range(n):
+        state = NoiseState() if nominal else random_state(rng, stream.nominal())
+        plan.append((state, int(rng.integers(2**31))))
+    return plan
+
+
+_job = {}  # stream, batch and window for pool workers, set before fork
+
+
+def _sample_packed(item):
+    """Sample and pack one planned chunk (runs in a pool worker)."""
+    state, seed = item
+    b, w = _job["batch"], _job["window"]
+    det, obs = _job["stream"].sample(state, b + w, seed)
+    return pack_det(det[:b]), pack_obs(obs[:b]), pack_det(det[b:])
+
+
+def make_chunks(stream, rng, n, batch, window, label, nominal=False, workers=1):
+    """n training chunks as packed arrays det, obs and window_det, plus their NoiseStates.
+
+    States and seeds are drawn first, so any number of workers gives the same chunks.
+    """
+    plan, t0 = chunk_plan(stream, rng, n, nominal), time.time()
+    _job.update(stream=stream, batch=batch, window=window)
+    pool = mp.get_context("fork").Pool(workers) if workers > 1 else None
+    results = pool.imap(_sample_packed, plan, chunksize=64) if pool else map(_sample_packed, plan)
+    out = {}
+    for i, parts in enumerate(results):
+        parts = dict(zip(("det", "obs", "window_det"), parts))
         if not out:
             out = {k: np.empty((n, *v.shape), v.dtype) for k, v in parts.items()}
         for k, v in parts.items():
             out[k][i] = v
-        states.append(state)
-        if (i + 1) % 1000 == 0 or i + 1 == n:
+        if (i + 1) % 5000 == 0 or i + 1 == n:
             print(f"  {label}: {i + 1}/{n} chunks  {time.time() - t0:.0f}s", flush=True)
-    return {**out, **states_to_arrays(states)}
+    if pool:
+        pool.close()
+    return {**out, **states_to_arrays([s for s, _ in plan])}
 
 
 def save_npz(folder, stem, files, **arrays):
@@ -67,9 +100,11 @@ def save_npz(folder, stem, files, **arrays):
     filename = f"{stem}.npz"
     path = os.path.join(folder, filename)
     np.savez_compressed(path, **arrays)
-    files[filename] = {"sha256": sha256_file(path), "bytes": os.path.getsize(path),
-                       "arrays": {k: {"shape": list(v.shape), "dtype": str(v.dtype)}
-                                  for k, v in arrays.items()}}
+    files[filename] = {
+        "sha256": sha256_file(path),
+        "bytes": os.path.getsize(path),
+        "arrays": {k: {"shape": list(v.shape), "dtype": str(v.dtype)} for k, v in arrays.items()},
+    }
     print(f"wrote {path}  {files[filename]['bytes'] / 1e6:.1f} MB", flush=True)
     return filename
 
@@ -77,7 +112,7 @@ def save_npz(folder, stem, files, **arrays):
 def save_streams(folder, stream, regimes, seed, steps, shots, files, stream_seed=0):
     """Sample and save one drift stream per regime. Returns ({regime: filename}, {stem: seed}).
 
-    stream_seed 0 is the dataset's main stream; other values give independent extra streams.
+    stream_seed 0 is the main stream; other values give independent extra streams.
     """
     out, seeds = {}, {}
     for regime in regimes:
@@ -85,29 +120,30 @@ def save_streams(folder, stream, regimes, seed, steps, shots, files, stream_seed
         seeds[stem] = split_seed(seed, stem)
         rng = np.random.default_rng(seeds[stem])
         states, det, obs = zip(*sample_stream(stream, regime, steps, shots, rng))
-        out[regime] = save_npz(folder, stem, files, det=pack_det(np.stack(det)),
-                               obs=pack_obs(np.stack(obs)), **states_to_arrays(states))
+        out[regime] = save_npz(
+            folder, stem, files, det=pack_det(np.stack(det)), obs=pack_obs(np.stack(obs)), **states_to_arrays(states)
+        )
     return out, seeds
 
 
 def versions():
-    return {"stim": stim.__version__, "pymatching": pymatching.__version__,
-            "numpy": np.__version__, "python": sys.version.split()[0]}
+    return {
+        "stim": stim.__version__,
+        "pymatching": pymatching.__version__,
+        "numpy": np.__version__,
+        "python": sys.version.split()[0],
+    }
 
 
 def write_manifest(path, manifest):
-    """Write via a temporary file so an interrupted write never leaves a half manifest."""
+    """Write through a temporary file so an interrupted write never leaves a partial manifest."""
     with open(path + ".tmp", "w") as f:
         json.dump(manifest, f, indent=2)
     os.replace(path + ".tmp", path)
 
 
 def add_streams(folder, stream_seeds=(), regimes=REGIMES):
-    """Add the streams the dataset in `folder` lacks; leave existing files untouched.
-
-    That is: the main stream of any regime in drift.REGIMES, plus stream seed N of
-    each regime in `regimes` for each N in `stream_seeds`.
-    """
+    """Add missing streams to the dataset in `folder`: the main stream of each regime, and stream seed N of each regime in `regimes` for N in `stream_seeds`."""
     manifest_path = os.path.join(folder, "manifest.json")
     if not os.path.exists(manifest_path):
         raise SystemExit(f"no manifest.json in {folder}")
@@ -126,17 +162,23 @@ def add_streams(folder, stream_seeds=(), regimes=REGIMES):
     files, seeds = manifest["files"], manifest["seeds"]
     added = []
     for regime, n in todo:
-        new_files, new_seeds = save_streams(folder, stream, [regime], a["seed"], a["stream_steps"],
-                                            a["shots_per_step"], files, stream_seed=n)
+        new_files, new_seeds = save_streams(
+            folder, stream, [regime], a["seed"], a["stream_steps"], a["shots_per_step"], files, stream_seed=n
+        )
         if n == 0:
             manifest["streams"].update(new_files)
         else:
             extra.setdefault(regime, {})[str(n)] = new_files[regime]
         seeds.update(new_seeds)
         added.append(new_files[regime])
-    manifest.setdefault("updates", []).append({
-        "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "command": " ".join(sys.argv), "added": added, "versions": versions()})
+    manifest.setdefault("updates", []).append(
+        {
+            "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "command": " ".join(sys.argv),
+            "added": added,
+            "versions": versions(),
+        }
+    )
     write_manifest(manifest_path, manifest)
     print(f"updated {manifest_path}: added {', '.join(added)}")
 
@@ -157,14 +199,22 @@ def main():
     ap.add_argument("--test-window", type=int, default=2000, help="fingerprint shots per test state")
     ap.add_argument("--stream-steps", type=int, default=150)
     ap.add_argument("--shots-per-step", type=int, default=2000)
+    ap.add_argument("--nominal-only", action="store_true", help="train/val chunks from nominal noise only")
+    ap.add_argument("--workers", type=int, default=1, help="processes sampling train/val chunks")
     ap.add_argument("--force", action="store_true", help="overwrite an existing dataset")
-    ap.add_argument("--streams-only", action="store_true",
-                    help="only add missing streams to the existing dataset --name "
-                         "(all other settings come from its manifest)")
-    ap.add_argument("--stream-seeds", default="",
-                    help="with --streams-only: extra stream seeds to add, e.g. 1,2,3,4 (0 = main stream)")
-    ap.add_argument("--regimes", default=",".join(REGIMES),
-                    help="regimes that get the extra --stream-seeds (comma-separated)")
+    ap.add_argument(
+        "--streams-only",
+        action="store_true",
+        help="only add missing streams to the existing dataset --name (all other settings come from its manifest)",
+    )
+    ap.add_argument(
+        "--stream-seeds",
+        default="",
+        help="with --streams-only: extra stream seeds to add, e.g. 1,2,3,4 (0 = main stream)",
+    )
+    ap.add_argument(
+        "--regimes", default=",".join(REGIMES), help="regimes that get the extra --stream-seeds (comma-separated)"
+    )
     args = ap.parse_args()
     stream_seeds = [int(s) for s in args.stream_seeds.split(",") if s]
     regimes = [r for r in args.regimes.split(",") if r]
@@ -175,6 +225,8 @@ def main():
     if stream_seeds and not args.streams_only:
         raise SystemExit("--stream-seeds needs --streams-only (generate the dataset first)")
     if args.streams_only:
+        if args.nominal_only:
+            raise SystemExit("--nominal-only applies to a new dataset, not --streams-only")
         if not args.name:
             raise SystemExit("--streams-only needs --name of an existing dataset")
         return add_streams(os.path.join(args.out, args.name), stream_seeds, regimes)
@@ -197,11 +249,10 @@ def main():
     files = {}
     save = lambda stem, **arrays: save_npz(folder, stem, files, **arrays)
 
-    print(f"generating {folder}: d={args.distance} r={args.rounds} p={args.p} "
-          f"detectors={nominal.num_detectors}")
+    print(f"generating {folder}: d={args.distance} r={args.rounds} p={args.p} detectors={nominal.num_detectors}")
     for split, n in (("train", args.train_chunks), ("val", args.val_chunks)):
         rng = np.random.default_rng(seeds[split])
-        save(split, **make_chunks(stream, rng, n, args.batch, args.window, split))
+        save(split, **make_chunks(stream, rng, n, args.batch, args.window, split, args.nominal_only, args.workers))
 
     test_files = {}
     for name, state in tests.items():
@@ -209,11 +260,13 @@ def main():
         rng = np.random.default_rng(seeds[stem])
         det, obs = stream.sample(state, args.test_shots, rng.integers(2**31))
         wdet, _ = stream.sample(state, args.test_window, rng.integers(2**31))
-        test_files[name] = save(stem, det=pack_det(det), obs=pack_obs(obs),
-                                window_det=pack_det(wdet), **states_to_arrays([state]))
+        test_files[name] = save(
+            stem, det=pack_det(det), obs=pack_obs(obs), window_det=pack_det(wdet), **states_to_arrays([state])
+        )
 
-    stream_files, stream_seeds = save_streams(folder, stream, REGIMES, args.seed,
-                                              args.stream_steps, args.shots_per_step, files)
+    stream_files, stream_seeds = save_streams(
+        folder, stream, REGIMES, args.seed, args.stream_steps, args.shots_per_step, files
+    )
     seeds.update(stream_seeds)
 
     manifest = {

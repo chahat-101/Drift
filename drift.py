@@ -1,23 +1,19 @@
-"""Drift simulator: noise that changes over time.
+"""Drifting noise regimes and syndrome-stream sampling.
 
-Time is split into steps. Within a step the noise is fixed and we sample
-`shots_per_step` memory experiments; between steps the noise moves according
-to one of the regimes below. Real hardware drifts continuously, but stepping
-it lets us reuse Stim's fast samplers.
+Time is split into steps. The noise is fixed within a step and changes between
+steps according to a regime:
 
-Regimes
--------
-static     : no drift (control)
-wander     : slow random walk of the global noise scale (Ornstein-Uhlenbeck in log space)
-telegraph  : the noise scale jumps between a low and a high level at random times
-hot_qubit  : a few qubits suddenly get much worse partway through and stay bad
-bursts     : short correlated bursts on a random cluster of neighbouring qubits
-bursts_big : held-out test regime: like bursts, but 8-qubit clusters at hot_p 0.1,
-             outside every training range
+    static      no drift
+    wander      mean-reverting random walk of the global noise scale (log space)
+    telegraph   global noise scale jumps between two levels at random times
+    hot_qubit   a few qubits get much worse partway through and stay bad
+    bursts      short bursts on a cluster of neighbouring qubits
+    bursts_big  like bursts, with 8-qubit clusters at hot_p 0.1 (outside the training range)
 
-The noise at a step is a `NoiseState`: a multiplier on the nominal p, plus
-an optional set of hot qubits with extra noise.
+The noise at a step is a NoiseState: a multiplier on the nominal p plus an
+optional set of hot qubits with extra noise.
 """
+
 from dataclasses import dataclass
 
 import numpy as np
@@ -29,9 +25,9 @@ SCALE_QUANTUM = 0.05  # scales are rounded to this so circuits can be cached
 
 @dataclass(frozen=True)
 class NoiseState:
-    scale: float = 1.0       # physical error rate = scale * nominal p
-    hot_qubits: tuple = ()   # qubits with extra noise
-    hot_p: float = 0.0       # extra depolarizing strength on hot qubits
+    scale: float = 1.0  # physical error rate = scale * nominal p
+    hot_qubits: tuple = ()
+    hot_p: float = 0.0
 
     def quantized(self):
         s = round(round(self.scale / SCALE_QUANTUM) * SCALE_QUANTUM, 4)
@@ -70,7 +66,7 @@ def hot_qubit(steps, nominal_circuit, n_hot=2, hot_p=0.03, start=None):
 
 
 def bursts(steps, rng, nominal_circuit, burst_prob=0.04, burst_len=4, size=5, hot_p=0.05):
-    """Radiation-like events: a cluster of neighbouring qubits is hit for a few steps."""
+    """A cluster of neighbouring qubits is hit for burst_len steps; bursts start with probability burst_prob."""
     coords = list(nominal_circuit.get_final_qubit_coordinates().values())
     out, left, cluster = [], 0, ()
     for _ in range(steps):
@@ -87,6 +83,7 @@ def bursts(steps, rng, nominal_circuit, burst_prob=0.04, burst_len=4, size=5, ho
 
 
 def make_schedule(regime, steps, rng, nominal_circuit):
+    """The list of NoiseStates for a regime."""
     if regime == "static":
         return static(steps)
     if regime == "wander":
@@ -106,7 +103,7 @@ REGIMES = ["static", "wander", "telegraph", "hot_qubit", "bursts", "bursts_big"]
 
 
 def random_state(rng, nominal, max_scale=2.5, hot_prob=0.5):
-    """Random training noise: a global scale, and sometimes a cluster of 1-6 hot qubits (hot_p <= 0.08)."""
+    """Random training noise: a global scale, and with probability hot_prob a cluster of 1-6 hot qubits."""
     scale = float(np.exp(rng.uniform(np.log(0.5), np.log(max_scale))))
     if rng.random() < hot_prob:
         coords = list(nominal.get_final_qubit_coordinates().values())
@@ -134,22 +131,21 @@ class DriftStream:
 
     def circuit(self, state=NoiseState()):
         s = state.quantized()
-        return cached_circuit(self.distance, self.rounds, round(self.p * s.scale, 8),
-                              s.hot_qubits, s.hot_p, self.basis)
+        return cached_circuit(self.distance, self.rounds, round(self.p * s.scale, 8), s.hot_qubits, s.hot_p, self.basis)
 
     def nominal(self):
         return self.circuit(NoiseState())
 
     def sample(self, state, shots, seed):
-        det, obs = self.circuit(state).compile_detector_sampler(seed=int(seed)).sample(
-            shots, separate_observables=True)
+        det, obs = self.circuit(state).compile_detector_sampler(seed=int(seed)).sample(shots, separate_observables=True)
         return det, obs
 
 
 def sample_chunk(stream, rng, batch, window, nominal=False):
-    """One training chunk: a random NoiseState, `batch` shots and `window` fingerprint shots from it.
+    """One training chunk: (state, det, obs, window_det).
 
-    With nominal=True the state is always NoiseState() (no drift). Returns (state, det, obs, window_det).
+    The chunk has `batch` shots and `window` fingerprint shots from one random NoiseState,
+    or from NoiseState() if nominal.
     """
     state = NoiseState() if nominal else random_state(rng, stream.nominal())
     det, obs = stream.sample(state, batch + window, rng.integers(2**31))

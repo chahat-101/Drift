@@ -1,0 +1,274 @@
+{
+  "regime": "hot_qubit",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "500,1000,2000,5000,10000",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 1,
+  "frozen_fingerprint": true,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_wide_s1.pt",
+    "decoder_static_d3_nominal_s1.pt",
+    "decoder_adaptive_d3_wide_s1.pt",
+    "decoder_adaptive_d3_stale_s1.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 100,
+    "onset": 1,
+    "later": 99,
+    "after": 0,
+    "nominal": 50
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 200000,
+    "onset": 2000,
+    "later": 198000,
+    "after": 0,
+    "nominal": 100000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 12436,
+        "drift": 11771,
+        "onset": 110,
+        "later": 11661,
+        "after": 0,
+        "nominal": 665
+      },
+      "ler": {
+        "all": 0.041453333333333335,
+        "drift": 0.058855,
+        "onset": 0.055,
+        "later": 0.058893939393939394,
+        "after": null,
+        "nominal": 0.00665
+      }
+    },
+    "window_500": {
+      "errors": {
+        "all": 10184,
+        "drift": 8628,
+        "onset": 108,
+        "later": 8520,
+        "after": 0,
+        "nominal": 1556
+      },
+      "ler": {
+        "all": 0.03394666666666667,
+        "drift": 0.04314,
+        "onset": 0.054,
+        "later": 0.04303030303030303,
+        "after": null,
+        "nominal": 0.01556
+      }
+    },
+    "window_1000": {
+      "errors": {
+        "all": 8586,
+        "drift": 7518,
+        "onset": 83,
+        "later": 7435,
+        "after": 0,
+        "nominal": 1068
+      },
+      "ler": {
+        "all": 0.02862,
+        "drift": 0.03759,
+        "onset": 0.0415,
+        "later": 0.03755050505050505,
+        "after": null,
+        "nominal": 0.01068
+      }
+    },
+    "window_2000": {
+      "errors": {
+        "all": 7197,
+        "drift": 6404,
+        "onset": 56,
+        "later": 6348,
+        "after": 0,
+        "nominal": 793
+      },
+      "ler": {
+        "all": 0.02399,
+        "drift": 0.03202,
+        "onset": 0.028,
+        "later": 0.03206060606060606,
+        "after": null,
+        "nominal": 0.00793
+      }
+    },
+    "window_5000": {
+      "errors": {
+        "all": 6113,
+        "drift": 5420,
+        "onset": 66,
+        "later": 5354,
+        "after": 0,
+        "nominal": 693
+      },
+      "ler": {
+        "all": 0.020376666666666668,
+        "drift": 0.0271,
+        "onset": 0.033,
+        "later": 0.027040404040404042,
+        "after": null,
+        "nominal": 0.00693
+      }
+    },
+    "window_10000": {
+      "errors": {
+        "all": 5589,
+        "drift": 4922,
+        "onset": 79,
+        "later": 4843,
+        "after": 0,
+        "nominal": 667
+      },
+      "ler": {
+        "all": 0.01863,
+        "drift": 0.02461,
+        "onset": 0.0395,
+        "later": 0.02445959595959596,
+        "after": null,
+        "nominal": 0.00667
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 5107,
+        "drift": 4442,
+        "onset": 41,
+        "later": 4401,
+        "after": 0,
+        "nominal": 665
+      },
+      "ler": {
+        "all": 0.017023333333333335,
+        "drift": 0.02221,
+        "onset": 0.0205,
+        "later": 0.022227272727272727,
+        "after": null,
+        "nominal": 0.00665
+      }
+    },
+    "decoder_static_d3_wide_s1": {
+      "errors": {
+        "all": 6209,
+        "drift": 5581,
+        "onset": 50,
+        "later": 5531,
+        "after": 0,
+        "nominal": 628
+      },
+      "ler": {
+        "all": 0.020696666666666665,
+        "drift": 0.027905,
+        "onset": 0.025,
+        "later": 0.027934343434343433,
+        "after": null,
+        "nominal": 0.00628
+      }
+    },
+    "decoder_static_d3_nominal_s1": {
+      "errors": {
+        "all": 8691,
+        "drift": 8143,
+        "onset": 74,
+        "later": 8069,
+        "after": 0,
+        "nominal": 548
+      },
+      "ler": {
+        "all": 0.02897,
+        "drift": 0.040715,
+        "onset": 0.037,
+        "later": 0.040752525252525255,
+        "after": null,
+        "nominal": 0.00548
+      }
+    },
+    "decoder_adaptive_d3_wide_s1": {
+      "errors": {
+        "all": 4539,
+        "drift": 3993,
+        "onset": 48,
+        "later": 3945,
+        "after": 0,
+        "nominal": 546
+      },
+      "ler": {
+        "all": 0.01513,
+        "drift": 0.019965,
+        "onset": 0.024,
+        "later": 0.019924242424242424,
+        "after": null,
+        "nominal": 0.00546
+      }
+    },
+    "decoder_adaptive_d3_wide_s1_frozen": {
+      "errors": {
+        "all": 8327,
+        "drift": 7792,
+        "onset": 67,
+        "later": 7725,
+        "after": 0,
+        "nominal": 535
+      },
+      "ler": {
+        "all": 0.027756666666666666,
+        "drift": 0.03896,
+        "onset": 0.0335,
+        "later": 0.03901515151515152,
+        "after": null,
+        "nominal": 0.00535
+      }
+    },
+    "decoder_adaptive_d3_stale_s1": {
+      "errors": {
+        "all": 4881,
+        "drift": 4310,
+        "onset": 41,
+        "later": 4269,
+        "after": 0,
+        "nominal": 571
+      },
+      "ler": {
+        "all": 0.01627,
+        "drift": 0.02155,
+        "onset": 0.0205,
+        "later": 0.02156060606060606,
+        "after": null,
+        "nominal": 0.00571
+      }
+    },
+    "decoder_adaptive_d3_stale_s1_frozen": {
+      "errors": {
+        "all": 7008,
+        "drift": 6432,
+        "onset": 60,
+        "later": 6372,
+        "after": 0,
+        "nominal": 576
+      },
+      "ler": {
+        "all": 0.02336,
+        "drift": 0.03216,
+        "onset": 0.03,
+        "later": 0.03218181818181818,
+        "after": null,
+        "nominal": 0.00576
+      }
+    }
+  }
+}

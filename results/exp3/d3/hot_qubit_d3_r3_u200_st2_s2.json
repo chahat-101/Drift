@@ -1,0 +1,166 @@
+{
+  "regime": "hot_qubit",
+  "distance": 3,
+  "rounds": 3,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "",
+  "data": "data/d3_r3_p0.003_s0",
+  "stream_seed": 2,
+  "frozen_fingerprint": false,
+  "manifest_sha256": "698e5a7606150499c8f4656181bc78909fb6ead5329b5fcaef4737557491b948",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d3_nominal_s2.pt",
+    "decoder_static_d3_nominal_fixed_s2.pt",
+    "decoder_static_d3_wide_s2.pt",
+    "decoder_adaptive_d3_wide_s2.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 100,
+    "onset": 1,
+    "later": 99,
+    "after": 0,
+    "nominal": 50
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 200000,
+    "onset": 2000,
+    "later": 198000,
+    "after": 0,
+    "nominal": 100000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 12501,
+        "drift": 11824,
+        "onset": 112,
+        "later": 11712,
+        "after": 0,
+        "nominal": 677
+      },
+      "ler": {
+        "all": 0.04167,
+        "drift": 0.05912,
+        "onset": 0.056,
+        "later": 0.05915151515151515,
+        "after": null,
+        "nominal": 0.00677
+      }
+    },
+    "window": {
+      "errors": {
+        "all": 5816,
+        "drift": 5153,
+        "onset": 63,
+        "later": 5090,
+        "after": 0,
+        "nominal": 663
+      },
+      "ler": {
+        "all": 0.019386666666666667,
+        "drift": 0.025765,
+        "onset": 0.0315,
+        "later": 0.025707070707070706,
+        "after": null,
+        "nominal": 0.00663
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 5371,
+        "drift": 4694,
+        "onset": 39,
+        "later": 4655,
+        "after": 0,
+        "nominal": 677
+      },
+      "ler": {
+        "all": 0.017903333333333334,
+        "drift": 0.02347,
+        "onset": 0.0195,
+        "later": 0.02351010101010101,
+        "after": null,
+        "nominal": 0.00677
+      }
+    },
+    "decoder_static_d3_nominal_s2": {
+      "errors": {
+        "all": 8938,
+        "drift": 8383,
+        "onset": 83,
+        "later": 8300,
+        "after": 0,
+        "nominal": 555
+      },
+      "ler": {
+        "all": 0.029793333333333335,
+        "drift": 0.041915,
+        "onset": 0.0415,
+        "later": 0.04191919191919192,
+        "after": null,
+        "nominal": 0.00555
+      }
+    },
+    "decoder_static_d3_nominal_fixed_s2": {
+      "errors": {
+        "all": 8453,
+        "drift": 7888,
+        "onset": 84,
+        "later": 7804,
+        "after": 0,
+        "nominal": 565
+      },
+      "ler": {
+        "all": 0.028176666666666666,
+        "drift": 0.03944,
+        "onset": 0.042,
+        "later": 0.039414141414141415,
+        "after": null,
+        "nominal": 0.00565
+      }
+    },
+    "decoder_static_d3_wide_s2": {
+      "errors": {
+        "all": 5877,
+        "drift": 5263,
+        "onset": 46,
+        "later": 5217,
+        "after": 0,
+        "nominal": 614
+      },
+      "ler": {
+        "all": 0.01959,
+        "drift": 0.026315,
+        "onset": 0.023,
+        "later": 0.026348484848484847,
+        "after": null,
+        "nominal": 0.00614
+      }
+    },
+    "decoder_adaptive_d3_wide_s2": {
+      "errors": {
+        "all": 4672,
+        "drift": 4108,
+        "onset": 53,
+        "later": 4055,
+        "after": 0,
+        "nominal": 564
+      },
+      "ler": {
+        "all": 0.015573333333333333,
+        "drift": 0.02054,
+        "onset": 0.0265,
+        "later": 0.02047979797979798,
+        "after": null,
+        "nominal": 0.00564
+      }
+    }
+  }
+}

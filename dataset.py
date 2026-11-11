@@ -1,19 +1,18 @@
-"""Read and write the fixed datasets made by make_dataset.py.
+"""Fixed datasets written by make_dataset.py.
 
-A dataset is a folder data/<name>/ holding a manifest.json and these files:
+A dataset is a folder data/<name>/ with a manifest.json and these files:
 
-    train.npz, val.npz    training chunks. Each chunk has one NoiseState,
-                          `batch` shots with observables, and `window`
-                          fingerprint shots from the same noise.
-    test_<state>.npz      one fixed test set per state in drift.test_states()
-    stream_<regime>.npz   one drifting stream per regime in drift.REGIMES
-    stream_<regime>_seed<N>.npz   optional extra independent streams (stream seed N)
+    train.npz, val.npz            training chunks: one NoiseState, `batch` shots with
+                                  observables and `window` fingerprint shots from that noise
+    test_<state>.npz              one fixed test set per state in drift.test_states()
+    stream_<regime>.npz           one drifting stream per regime in drift.REGIMES
+    stream_<regime>_seed<N>.npz   extra independent streams (stream seed N)
 
-Detection events are bit-packed along the detector axis and observables along
-the shot axis. NoiseStates are stored as arrays `scale`, `hot_p` and
-`hot_qubits` (padded with -1). Before a file is used, it is checked against
-the SHA-256 recorded for it in the manifest.
+Detection events are bit-packed along the detector axis and observables along the
+shot axis. NoiseStates are stored as arrays `scale`, `hot_p` and `hot_qubits`
+(padded with -1). Each file is checked against the SHA-256 in the manifest before use.
 """
+
 import hashlib
 import json
 import math
@@ -49,10 +48,12 @@ def states_to_arrays(states):
     width = max([len(s.hot_qubits) for s in states] + [1])
     hot = np.full((len(states), width), -1, dtype=np.int32)
     for i, s in enumerate(states):
-        hot[i, :len(s.hot_qubits)] = s.hot_qubits
-    return {"scale": np.array([s.scale for s in states], dtype=np.float64),
-            "hot_p": np.array([s.hot_p for s in states], dtype=np.float64),
-            "hot_qubits": hot}
+        hot[i, : len(s.hot_qubits)] = s.hot_qubits
+    return {
+        "scale": np.array([s.scale for s in states], dtype=np.float64),
+        "hot_p": np.array([s.hot_p for s in states], dtype=np.float64),
+        "hot_qubits": hot,
+    }
 
 
 def state_at(arrays, i):
@@ -70,10 +71,7 @@ def sha256_file(path):
 
 
 class Chunks:
-    """Training chunks, kept bit-packed in memory and unpacked one at a time.
-
-    chunks[i] -> (state, det, obs, window_det)
-    """
+    """Training chunks, bit-packed in memory and unpacked one at a time. chunks[i] is (state, det, obs, window_det)."""
 
     def __init__(self, arrays, num_detectors):
         self.a, self.n_det = arrays, num_detectors
@@ -83,13 +81,20 @@ class Chunks:
         return len(self.a["scale"])
 
     def __getitem__(self, i):
-        return (state_at(self.a, i),
-                unpack_det(self.a["det"][i], self.n_det),
-                unpack_obs(self.a["obs"][i], self.batch),
-                unpack_det(self.a["window_det"][i], self.n_det))
+        return (
+            state_at(self.a, i),
+            unpack_det(self.a["det"][i], self.n_det),
+            unpack_obs(self.a["obs"][i], self.batch),
+            unpack_det(self.a["window_det"][i], self.n_det),
+        )
 
     def __iter__(self):
         return (self[i] for i in range(len(self)))
+
+    def drop_windows(self):
+        """Free the fingerprint windows (static models do not read them)."""
+        w = self.a["window_det"]
+        self.a["window_det"] = np.empty((w.shape[0], 0, w.shape[2]), w.dtype)
 
 
 class Dataset:
@@ -129,16 +134,21 @@ class Dataset:
         out = []
         for name, filename in self.manifest["test_sets"].items():
             a = self.load(filename)
-            out.append((name, state_at(a, 0),
-                        unpack_det(a["det"], self.n_det),
-                        unpack_obs(a["obs"], len(a["det"])),
-                        unpack_det(a["window_det"], self.n_det)))
+            out.append(
+                (
+                    name,
+                    state_at(a, 0),
+                    unpack_det(a["det"], self.n_det),
+                    unpack_obs(a["obs"], len(a["det"])),
+                    unpack_det(a["window_det"], self.n_det),
+                )
+            )
         return out
 
     def stream(self, regime, stream_seed=0):
         """[(state, det, obs)] for each step of the saved stream for `regime`.
 
-        stream_seed 0 is the main stream; N > 0 picks the extra stream stream_<regime>_seed<N>.
+        stream_seed 0 is the main stream; N > 0 is stream_<regime>_seed<N>.
         """
         if stream_seed == 0:
             filename = self.manifest["streams"].get(regime)
@@ -157,22 +167,23 @@ class Dataset:
         return unpack_det(a["window_det"], self.n_det).mean(axis=0).astype(np.float32)
 
     def fill_args(self, args, keys):
-        """Copy settings from the manifest into argparse `args`.
+        """Fill argparse `args` from the manifest.
 
-        keys maps argument name -> manifest arg name. Arguments left at None
-        take the dataset's value; an explicit value that disagrees is an error.
+        keys maps argument name to manifest arg name. Arguments left at None take the
+        dataset's value; an explicit value that disagrees is an error.
         """
         for arg, key in keys.items():
             given, value = getattr(args, arg), self.args[key]
             if given is not None and not math.isclose(given, value):
                 flag = "--" + arg.replace("_", "-")
-                raise SystemExit(f"{flag} {given} does not match {self.path} ({key}={value}); "
-                                 f"leave it out to use the dataset's value")
+                raise SystemExit(
+                    f"{flag} {given} does not match {self.path} ({key}={value}); "
+                    f"leave it out to use the dataset's value"
+                )
             setattr(args, arg, value)
 
     def check_model(self, cfg, source):
-        """Exit if a model was trained for a different distance, rounds or p than this dataset."""
+        """Exit if a model's distance, rounds or p differ from this dataset's."""
         for k in ("distance", "rounds", "p"):
             if not math.isclose(cfg[k], self.args[k]):
-                raise SystemExit(f"{source} was trained with {k}={cfg[k]}, "
-                                 f"but {self.path} has {k}={self.args[k]}")
+                raise SystemExit(f"{source} was trained with {k}={cfg[k]}, but {self.path} has {k}={self.args[k]}")

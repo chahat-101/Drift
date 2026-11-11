@@ -1,0 +1,274 @@
+{
+  "regime": "hot_qubit",
+  "distance": 5,
+  "rounds": 5,
+  "p": 0.003,
+  "steps": 150,
+  "shots_per_step": 2000,
+  "update_every": 200,
+  "window": 10000,
+  "window_sizes": "500,1000,2000,5000,10000",
+  "data": "data/d5_wide",
+  "stream_seed": 1,
+  "frozen_fingerprint": true,
+  "manifest_sha256": "a213c1881ec26ec4ca98d49cb58418c34a400ba134414749d48aa8d328058b2c",
+  "seed": null,
+  "checkpoints": [
+    "decoder_static_d5_wide_s2.pt",
+    "decoder_static_d5_nominal_fixed_s2.pt",
+    "decoder_adaptive_d5_wide_s2.pt",
+    "decoder_adaptive_d5_stale_s2.pt"
+  ],
+  "phase_steps": {
+    "all": 150,
+    "drift": 100,
+    "onset": 1,
+    "later": 99,
+    "after": 0,
+    "nominal": 50
+  },
+  "phase_shots": {
+    "all": 300000,
+    "drift": 200000,
+    "onset": 2000,
+    "later": 198000,
+    "after": 0,
+    "nominal": 100000
+  },
+  "decoders": {
+    "static": {
+      "errors": {
+        "all": 3928,
+        "drift": 3603,
+        "onset": 35,
+        "later": 3568,
+        "after": 0,
+        "nominal": 325
+      },
+      "ler": {
+        "all": 0.013093333333333334,
+        "drift": 0.018015,
+        "onset": 0.0175,
+        "later": 0.01802020202020202,
+        "after": null,
+        "nominal": 0.00325
+      }
+    },
+    "window_500": {
+      "errors": {
+        "all": 6521,
+        "drift": 5634,
+        "onset": 48,
+        "later": 5586,
+        "after": 0,
+        "nominal": 887
+      },
+      "ler": {
+        "all": 0.021736666666666668,
+        "drift": 0.02817,
+        "onset": 0.024,
+        "later": 0.028212121212121213,
+        "after": null,
+        "nominal": 0.00887
+      }
+    },
+    "window_1000": {
+      "errors": {
+        "all": 4756,
+        "drift": 4226,
+        "onset": 39,
+        "later": 4187,
+        "after": 0,
+        "nominal": 530
+      },
+      "ler": {
+        "all": 0.015853333333333334,
+        "drift": 0.02113,
+        "onset": 0.0195,
+        "later": 0.021146464646464646,
+        "after": null,
+        "nominal": 0.0053
+      }
+    },
+    "window_2000": {
+      "errors": {
+        "all": 3502,
+        "drift": 3127,
+        "onset": 29,
+        "later": 3098,
+        "after": 0,
+        "nominal": 375
+      },
+      "ler": {
+        "all": 0.011673333333333334,
+        "drift": 0.015635,
+        "onset": 0.0145,
+        "later": 0.015646464646464648,
+        "after": null,
+        "nominal": 0.00375
+      }
+    },
+    "window_5000": {
+      "errors": {
+        "all": 2753,
+        "drift": 2439,
+        "onset": 28,
+        "later": 2411,
+        "after": 0,
+        "nominal": 314
+      },
+      "ler": {
+        "all": 0.009176666666666666,
+        "drift": 0.012195,
+        "onset": 0.014,
+        "later": 0.012176767676767676,
+        "after": null,
+        "nominal": 0.00314
+      }
+    },
+    "window_10000": {
+      "errors": {
+        "all": 2468,
+        "drift": 2159,
+        "onset": 35,
+        "later": 2124,
+        "after": 0,
+        "nominal": 309
+      },
+      "ler": {
+        "all": 0.008226666666666667,
+        "drift": 0.010795,
+        "onset": 0.0175,
+        "later": 0.010727272727272728,
+        "after": null,
+        "nominal": 0.00309
+      }
+    },
+    "oracle": {
+      "errors": {
+        "all": 2357,
+        "drift": 2032,
+        "onset": 25,
+        "later": 2007,
+        "after": 0,
+        "nominal": 325
+      },
+      "ler": {
+        "all": 0.007856666666666666,
+        "drift": 0.01016,
+        "onset": 0.0125,
+        "later": 0.010136363636363636,
+        "after": null,
+        "nominal": 0.00325
+      }
+    },
+    "decoder_static_d5_wide_s2": {
+      "errors": {
+        "all": 3203,
+        "drift": 2901,
+        "onset": 30,
+        "later": 2871,
+        "after": 0,
+        "nominal": 302
+      },
+      "ler": {
+        "all": 0.010676666666666666,
+        "drift": 0.014505,
+        "onset": 0.015,
+        "later": 0.0145,
+        "after": null,
+        "nominal": 0.00302
+      }
+    },
+    "decoder_static_d5_nominal_fixed_s2": {
+      "errors": {
+        "all": 6068,
+        "drift": 5701,
+        "onset": 49,
+        "later": 5652,
+        "after": 0,
+        "nominal": 367
+      },
+      "ler": {
+        "all": 0.020226666666666667,
+        "drift": 0.028505,
+        "onset": 0.0245,
+        "later": 0.028545454545454544,
+        "after": null,
+        "nominal": 0.00367
+      }
+    },
+    "decoder_adaptive_d5_wide_s2": {
+      "errors": {
+        "all": 2651,
+        "drift": 2361,
+        "onset": 20,
+        "later": 2341,
+        "after": 0,
+        "nominal": 290
+      },
+      "ler": {
+        "all": 0.008836666666666666,
+        "drift": 0.011805,
+        "onset": 0.01,
+        "later": 0.011823232323232324,
+        "after": null,
+        "nominal": 0.0029
+      }
+    },
+    "decoder_adaptive_d5_wide_s2_frozen": {
+      "errors": {
+        "all": 3302,
+        "drift": 3027,
+        "onset": 24,
+        "later": 3003,
+        "after": 0,
+        "nominal": 275
+      },
+      "ler": {
+        "all": 0.011006666666666666,
+        "drift": 0.015135,
+        "onset": 0.012,
+        "later": 0.015166666666666667,
+        "after": null,
+        "nominal": 0.00275
+      }
+    },
+    "decoder_adaptive_d5_stale_s2": {
+      "errors": {
+        "all": 2442,
+        "drift": 2167,
+        "onset": 27,
+        "later": 2140,
+        "after": 0,
+        "nominal": 275
+      },
+      "ler": {
+        "all": 0.00814,
+        "drift": 0.010835,
+        "onset": 0.0135,
+        "later": 0.010808080808080808,
+        "after": null,
+        "nominal": 0.00275
+      }
+    },
+    "decoder_adaptive_d5_stale_s2_frozen": {
+      "errors": {
+        "all": 2881,
+        "drift": 2628,
+        "onset": 28,
+        "later": 2600,
+        "after": 0,
+        "nominal": 253
+      },
+      "ler": {
+        "all": 0.009603333333333334,
+        "drift": 0.01314,
+        "onset": 0.014,
+        "later": 0.013131313131313131,
+        "after": null,
+        "nominal": 0.00253
+      }
+    }
+  }
+}
