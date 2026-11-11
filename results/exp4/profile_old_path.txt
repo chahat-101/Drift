@@ -1,0 +1,2 @@
+adaptive {'unpack': '0.14 ms (1%)', 'build': '0.74 ms (5%)', 'h2d': '0.37 ms (2%)', 'gpu': '13.93 ms (92%)'} total 15.18 ms/step
+static {'unpack': '0.14 ms (1%)', 'build': '0.26 ms (2%)', 'h2d': '0.24 ms (2%)', 'gpu': '14.01 ms (96%)'} total 14.66 ms/step

@@ -1,0 +1,17 @@
+train.npz det identical
+train.npz obs identical
+train.npz window_det identical
+train.npz scale chunks differing 1408 of 30000 max rel diff 2.2e-16
+train.npz hot_p identical
+train.npz hot_qubits identical
+val.npz det identical
+val.npz obs identical
+val.npz window_det identical
+val.npz scale chunks differing 37 of 1000 max rel diff 2.2e-16
+val.npz hot_p identical
+val.npz hot_qubits identical
+stream_wander.npz det identical
+stream_wander.npz obs identical
+stream_wander.npz scale chunks differing 7 of 150 max rel diff 2.2e-16
+stream_wander.npz hot_p identical
+stream_wander.npz hot_qubits identical

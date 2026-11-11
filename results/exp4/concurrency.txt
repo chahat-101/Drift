@@ -1,0 +1,8 @@
+N=1 aggregate steps/s=71.4 util=79
+N=2 aggregate steps/s=65.2 util=92
+N=3 aggregate steps/s=64.9 util=95
+N=4 aggregate steps/s=65.4 util=97
+MPS N=1 aggregate steps/s=71.4 util=80
+MPS N=2 aggregate steps/s=65.9 util=90
+MPS N=3 aggregate steps/s=57.2 util=94
+MPS N=4 aggregate steps/s=59.6 util=96

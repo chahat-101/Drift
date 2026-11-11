@@ -1,0 +1,4 @@
+old --adaptive --cpu-data steps/s=57.7 util=79
+new --adaptive --compile steps/s=71.4 util=70
+oldS --cpu-data steps/s=60.0 util=80
+newS --compile steps/s=71.4 util=71
