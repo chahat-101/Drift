@@ -1,0 +1,32 @@
+# d=5 multiscale training (data/d5_wide_x5, batch 512, h48/l4, stale 0.3, --compile, val every 5000), 2026-11-12T14:25:46Z
+N=1 per-job steps/s: 78.7  total 78.7 steps/s  GPU mem before val: total 196 MiB, largest process 188 MiB; peak incl. val: total 7136 MiB, largest process 7172 MiB 
+    N=1 job 1: data on cuda: 5.89 GB
+    N=1 job 1: step   1000  loss 0.5094  24s
+    N=1 job 1: step   5000  loss 0.4451  val 0.4513  75s
+    N=1 job 1: step   5250  loss 0.4471  78s
+N=2 per-job steps/s: 36.6 36.3  total 72.9 steps/s  GPU mem before val: total 390 MiB, largest process 188 MiB; peak incl. val: total 14270 MiB, largest process 7128 MiB 
+    N=2 job 1: data on cuda: 5.89 GB
+    N=2 job 1: step   1000  loss 0.5094  29s
+    N=2 job 1: step   5000  loss 0.4451  val 0.4513  139s
+    N=2 job 1: step   5250  loss 0.4471  145s
+    N=2 job 2: data on cuda: 5.89 GB
+    N=2 job 2: step   1000  loss 0.5121  29s
+    N=2 job 2: step   5000  loss 0.4401  val 0.4540  139s
+    N=2 job 2: step   5250  loss 0.4457  146s
+N=3 per-job steps/s: 24.4 24.4 24.3  total 73.1 steps/s  GPU mem before val: total 583 MiB, largest process 188 MiB; peak incl. val: total 21407 MiB, largest process 7132 MiB 
+    N=3 job 1: data on cuda: 5.89 GB
+    N=3 job 1: step   1000  loss 0.5094  43s
+    N=3 job 1: step   5000  loss 0.4451  val 0.4513  207s
+    N=3 job 1: step   5250  loss 0.4471  217s
+    N=3 job 2: data on cuda: 5.89 GB
+    N=3 job 2: step   1000  loss 0.5121  43s
+    N=3 job 2: step   5000  loss 0.4401  val 0.4540  208s
+    N=3 job 2: step   5250  loss 0.4457  217s
+    N=3 job 3: data on cuda: 5.89 GB
+    N=3 job 3: step   1000  loss 0.5162  43s
+    N=3 job 3: step   5000  loss 0.4635  val 0.4538  208s
+    N=3 job 3: step   5250  loss 0.4651  218s
+# Note: the "GPU mem before val" column above is wrong (the script's grep for "val " matched the "1000 val chunks"
+# line, so it froze at the pre-load value; fixed in throughput8.sh afterwards, not re-measured). The peaks incl. val
+# are correct: ~7.1 GB per process (5.89 GB of it is the packed data), no val spike beyond that.
+# Decision: train one job at a time (N=1 has the highest total steps/s: 78.7 vs 72.9 / 73.1; N=3 peaks at 21.4 of 23 GB).

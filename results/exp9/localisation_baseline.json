@@ -1,0 +1,1085 @@
+{
+ "adjacency": {
+  "detectors_per_qubit": [
+   10,
+   9,
+   14,
+   14,
+   9,
+   14,
+   10,
+   16,
+   18,
+   20,
+   19,
+   20,
+   22,
+   20,
+   19,
+   16,
+   10,
+   10,
+   16,
+   24,
+   20,
+   22,
+   20,
+   24,
+   20,
+   18,
+   16,
+   16,
+   18,
+   20,
+   24,
+   20,
+   22,
+   20,
+   24,
+   16,
+   10,
+   10,
+   10,
+   19,
+   14,
+   22,
+   14,
+   19,
+   14,
+   18,
+   10,
+   9,
+   9
+  ],
+  "qubits": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   9,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   59,
+   63
+  ],
+  "is_data": [
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ "reference": {
+  "test-set window": {
+   "mean_rate": 0.04347083323945602
+  },
+  "analytic DEM": {
+   "mean_rate": 0.04279197792500137
+  }
+ },
+ "regimes": {
+  "bursts": {
+   "drift": {
+    "steps": 132,
+    "events": 33,
+    "baseline": {
+     "test-set window": 0.8287878787878786,
+     "analytic DEM": 0.8272727272727272
+    },
+    "models": {
+     "NF s0": {
+      "topk": 0.9818181818181818,
+      "test-set window": {
+       "mean_diff": -0.153030303030303,
+       "steps_better": 1,
+       "steps_worse": 79,
+       "steps_tie": 52,
+       "p_steps": 1.3400325923359048e-22,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.1545454545454545,
+       "steps_better": 1,
+       "steps_worse": 80,
+       "steps_tie": 51,
+       "p_steps": 6.782881022934827e-23,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "NF s1": {
+      "topk": 0.9787878787878787,
+      "test-set window": {
+       "mean_diff": -0.14999999999999994,
+       "steps_better": 1,
+       "steps_worse": 78,
+       "steps_tie": 53,
+       "p_steps": 2.6469779601696886e-22,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.15151515151515146,
+       "steps_better": 1,
+       "steps_worse": 79,
+       "steps_tie": 52,
+       "p_steps": 1.3400325923359048e-22,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "NF s2": {
+      "topk": 0.9803030303030303,
+      "test-set window": {
+       "mean_diff": -0.15151515151515146,
+       "steps_better": 1,
+       "steps_worse": 78,
+       "steps_tie": 53,
+       "p_steps": 2.6469779601696886e-22,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.153030303030303,
+       "steps_better": 1,
+       "steps_worse": 79,
+       "steps_tie": 52,
+       "p_steps": 1.3400325923359048e-22,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "N s0": {
+      "topk": 0.9651515151515152
+     },
+     "N s1": {
+      "topk": 0.9575757575757575
+     },
+     "N s2": {
+      "topk": 0.9757575757575758
+     }
+    }
+   },
+   "onset": {
+    "steps": 29,
+    "events": 29,
+    "baseline": {
+     "test-set window": 0.8413793103448277,
+     "analytic DEM": 0.8413793103448277
+    },
+    "models": {
+     "NF s0": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": -0.1586206896551724,
+       "steps_better": 0,
+       "steps_worse": 18,
+       "steps_tie": 11,
+       "p_steps": 7.62939453125e-06,
+       "events_better": 0,
+       "events_worse": 18,
+       "events_tie": 11,
+       "p_events": 7.62939453125e-06
+      },
+      "analytic DEM": {
+       "mean_diff": -0.1586206896551724,
+       "steps_better": 0,
+       "steps_worse": 18,
+       "steps_tie": 11,
+       "p_steps": 7.62939453125e-06,
+       "events_better": 0,
+       "events_worse": 18,
+       "events_tie": 11,
+       "p_events": 7.62939453125e-06
+      }
+     },
+     "NF s1": {
+      "topk": 0.993103448275862,
+      "test-set window": {
+       "mean_diff": -0.15172413793103445,
+       "steps_better": 0,
+       "steps_worse": 17,
+       "steps_tie": 12,
+       "p_steps": 1.52587890625e-05,
+       "events_better": 0,
+       "events_worse": 17,
+       "events_tie": 12,
+       "p_events": 1.52587890625e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.15172413793103445,
+       "steps_better": 0,
+       "steps_worse": 17,
+       "steps_tie": 12,
+       "p_steps": 1.52587890625e-05,
+       "events_better": 0,
+       "events_worse": 17,
+       "events_tie": 12,
+       "p_events": 1.52587890625e-05
+      }
+     },
+     "NF s2": {
+      "topk": 0.993103448275862,
+      "test-set window": {
+       "mean_diff": -0.15172413793103445,
+       "steps_better": 0,
+       "steps_worse": 17,
+       "steps_tie": 12,
+       "p_steps": 1.52587890625e-05,
+       "events_better": 0,
+       "events_worse": 17,
+       "events_tie": 12,
+       "p_events": 1.52587890625e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.15172413793103445,
+       "steps_better": 0,
+       "steps_worse": 17,
+       "steps_tie": 12,
+       "p_steps": 1.52587890625e-05,
+       "events_better": 0,
+       "events_worse": 17,
+       "events_tie": 12,
+       "p_events": 1.52587890625e-05
+      }
+     },
+     "N s0": {
+      "topk": 0.9655172413793104
+     },
+     "N s1": {
+      "topk": 0.9517241379310344
+     },
+     "N s2": {
+      "topk": 0.9724137931034482
+     }
+    }
+   },
+   "later": {
+    "steps": 103,
+    "events": 33,
+    "baseline": {
+     "test-set window": 0.8252427184466018,
+     "analytic DEM": 0.8233009708737863
+    },
+    "models": {
+     "NF s0": {
+      "topk": 0.9766990291262135,
+      "test-set window": {
+       "mean_diff": -0.15145631067961163,
+       "steps_better": 1,
+       "steps_worse": 61,
+       "steps_tie": 41,
+       "p_steps": 2.7321894746634712e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.15339805825242717,
+       "steps_better": 1,
+       "steps_worse": 62,
+       "steps_tie": 40,
+       "p_steps": 1.3877787807814457e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "NF s1": {
+      "topk": 0.9747572815533981,
+      "test-set window": {
+       "mean_diff": -0.1495145631067961,
+       "steps_better": 1,
+       "steps_worse": 61,
+       "steps_tie": 41,
+       "p_steps": 2.7321894746634712e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.1514563106796116,
+       "steps_better": 1,
+       "steps_worse": 62,
+       "steps_tie": 40,
+       "p_steps": 1.3877787807814457e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "NF s2": {
+      "topk": 0.9766990291262135,
+      "test-set window": {
+       "mean_diff": -0.15145631067961163,
+       "steps_better": 1,
+       "steps_worse": 61,
+       "steps_tie": 41,
+       "p_steps": 2.7321894746634712e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      },
+      "analytic DEM": {
+       "mean_diff": -0.15339805825242717,
+       "steps_better": 1,
+       "steps_worse": 62,
+       "steps_tie": 40,
+       "p_steps": 1.3877787807814457e-17,
+       "events_better": 1,
+       "events_worse": 20,
+       "events_tie": 12,
+       "p_events": 2.09808349609375e-05
+      }
+     },
+     "N s0": {
+      "topk": 0.9650485436893205
+     },
+     "N s1": {
+      "topk": 0.9592233009708737
+     },
+     "N s2": {
+      "topk": 0.9766990291262135
+     }
+    }
+   },
+   "false_picks_drift": {
+    "baseline": {
+     "total": 113,
+     "measure_qubits": 39,
+     "next_to_hot": 108
+    },
+    "NF s0": {
+     "total": 12,
+     "measure_qubits": 7,
+     "next_to_hot": 5
+    },
+    "NF s1": {
+     "total": 14,
+     "measure_qubits": 6,
+     "next_to_hot": 7
+    },
+    "NF s2": {
+     "total": 13,
+     "measure_qubits": 7,
+     "next_to_hot": 7
+    }
+   }
+  },
+  "bursts_big": {
+   "drift": {
+    "steps": 116,
+    "events": 29,
+    "baseline": {
+     "test-set window": 0.8459051724137931,
+     "analytic DEM": 0.8362068965517241
+    },
+    "models": {
+     "NF s0": {
+      "topk": 0.9353448275862069,
+      "test-set window": {
+       "mean_diff": -0.0894396551724138,
+       "steps_better": 27,
+       "steps_worse": 57,
+       "steps_tie": 32,
+       "p_steps": 0.001404494631113956,
+       "events_better": 10,
+       "events_worse": 15,
+       "events_tie": 4,
+       "p_events": 0.42435622215270996
+      },
+      "analytic DEM": {
+       "mean_diff": -0.09913793103448276,
+       "steps_better": 27,
+       "steps_worse": 57,
+       "steps_tie": 32,
+       "p_steps": 0.001404494631113956,
+       "events_better": 10,
+       "events_worse": 15,
+       "events_tie": 4,
+       "p_events": 0.42435622215270996
+      }
+     },
+     "NF s1": {
+      "topk": 0.9525862068965517,
+      "test-set window": {
+       "mean_diff": -0.10668103448275862,
+       "steps_better": 15,
+       "steps_worse": 56,
+       "steps_tie": 45,
+       "p_steps": 1.0414019304757919e-06,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      },
+      "analytic DEM": {
+       "mean_diff": -0.11637931034482758,
+       "steps_better": 15,
+       "steps_worse": 56,
+       "steps_tie": 45,
+       "p_steps": 1.0414019304757919e-06,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      }
+     },
+     "NF s2": {
+      "topk": 0.9127155172413793,
+      "test-set window": {
+       "mean_diff": -0.0668103448275862,
+       "steps_better": 36,
+       "steps_worse": 52,
+       "steps_tie": 28,
+       "p_steps": 0.10929542977731425,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      },
+      "analytic DEM": {
+       "mean_diff": -0.07650862068965517,
+       "steps_better": 36,
+       "steps_worse": 52,
+       "steps_tie": 28,
+       "p_steps": 0.10929542977731425,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      }
+     },
+     "N s0": {
+      "topk": 0.9428879310344828
+     },
+     "N s1": {
+      "topk": 0.9288793103448276
+     },
+     "N s2": {
+      "topk": 0.9224137931034483
+     }
+    }
+   },
+   "onset": {
+    "steps": 29,
+    "events": 29,
+    "baseline": {
+     "test-set window": 0.8491379310344828,
+     "analytic DEM": 0.8405172413793104
+    },
+    "models": {
+     "NF s0": {
+      "topk": 0.9310344827586207,
+      "test-set window": {
+       "mean_diff": -0.08189655172413793,
+       "steps_better": 10,
+       "steps_worse": 15,
+       "steps_tie": 4,
+       "p_steps": 0.42435622215270996,
+       "events_better": 10,
+       "events_worse": 15,
+       "events_tie": 4,
+       "p_events": 0.42435622215270996
+      },
+      "analytic DEM": {
+       "mean_diff": -0.09051724137931035,
+       "steps_better": 10,
+       "steps_worse": 15,
+       "steps_tie": 4,
+       "p_steps": 0.42435622215270996,
+       "events_better": 10,
+       "events_worse": 15,
+       "events_tie": 4,
+       "p_events": 0.42435622215270996
+      }
+     },
+     "NF s1": {
+      "topk": 0.9353448275862069,
+      "test-set window": {
+       "mean_diff": -0.08620689655172414,
+       "steps_better": 6,
+       "steps_worse": 14,
+       "steps_tie": 9,
+       "p_steps": 0.11531829833984375,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      },
+      "analytic DEM": {
+       "mean_diff": -0.09482758620689655,
+       "steps_better": 6,
+       "steps_worse": 14,
+       "steps_tie": 9,
+       "p_steps": 0.11531829833984375,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      }
+     },
+     "NF s2": {
+      "topk": 0.9051724137931034,
+      "test-set window": {
+       "mean_diff": -0.05603448275862069,
+       "steps_better": 9,
+       "steps_worse": 13,
+       "steps_tie": 7,
+       "p_steps": 0.5234670639038086,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      },
+      "analytic DEM": {
+       "mean_diff": -0.06465517241379311,
+       "steps_better": 9,
+       "steps_worse": 13,
+       "steps_tie": 7,
+       "p_steps": 0.5234670639038086,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      }
+     },
+     "N s0": {
+      "topk": 0.9655172413793104
+     },
+     "N s1": {
+      "topk": 0.9439655172413793
+     },
+     "N s2": {
+      "topk": 0.9525862068965517
+     }
+    }
+   },
+   "later": {
+    "steps": 87,
+    "events": 29,
+    "baseline": {
+     "test-set window": 0.8448275862068966,
+     "analytic DEM": 0.8347701149425287
+    },
+    "models": {
+     "NF s0": {
+      "topk": 0.9367816091954023,
+      "test-set window": {
+       "mean_diff": -0.09195402298850575,
+       "steps_better": 17,
+       "steps_worse": 42,
+       "steps_tie": 28,
+       "p_steps": 0.0015471669302425245,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      },
+      "analytic DEM": {
+       "mean_diff": -0.10201149425287356,
+       "steps_better": 17,
+       "steps_worse": 42,
+       "steps_tie": 28,
+       "p_steps": 0.0015471669302425245,
+       "events_better": 6,
+       "events_worse": 14,
+       "events_tie": 9,
+       "p_events": 0.11531829833984375
+      }
+     },
+     "NF s1": {
+      "topk": 0.9583333333333334,
+      "test-set window": {
+       "mean_diff": -0.11350574712643678,
+       "steps_better": 9,
+       "steps_worse": 42,
+       "steps_tie": 36,
+       "p_steps": 3.3888279489246997e-06,
+       "events_better": 3,
+       "events_worse": 14,
+       "events_tie": 12,
+       "p_events": 0.012725830078125
+      },
+      "analytic DEM": {
+       "mean_diff": -0.1235632183908046,
+       "steps_better": 9,
+       "steps_worse": 42,
+       "steps_tie": 36,
+       "p_steps": 3.3888279489246997e-06,
+       "events_better": 3,
+       "events_worse": 14,
+       "events_tie": 12,
+       "p_events": 0.012725830078125
+      }
+     },
+     "NF s2": {
+      "topk": 0.9152298850574713,
+      "test-set window": {
+       "mean_diff": -0.07040229885057471,
+       "steps_better": 27,
+       "steps_worse": 39,
+       "steps_tie": 21,
+       "p_steps": 0.1752857944430353,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      },
+      "analytic DEM": {
+       "mean_diff": -0.08045977011494253,
+       "steps_better": 27,
+       "steps_worse": 39,
+       "steps_tie": 21,
+       "p_steps": 0.1752857944430353,
+       "events_better": 9,
+       "events_worse": 13,
+       "events_tie": 7,
+       "p_events": 0.5234670639038086
+      }
+     },
+     "N s0": {
+      "topk": 0.9353448275862069
+     },
+     "N s1": {
+      "topk": 0.9238505747126436
+     },
+     "N s2": {
+      "topk": 0.9123563218390804
+     }
+    }
+   },
+   "false_picks_drift": {
+    "baseline": {
+     "total": 143,
+     "measure_qubits": 86,
+     "next_to_hot": 143
+    },
+    "NF s0": {
+     "total": 60,
+     "measure_qubits": 49,
+     "next_to_hot": 60
+    },
+    "NF s1": {
+     "total": 44,
+     "measure_qubits": 30,
+     "next_to_hot": 44
+    },
+    "NF s2": {
+     "total": 81,
+     "measure_qubits": 67,
+     "next_to_hot": 81
+    }
+   }
+  },
+  "hot_qubit": {
+   "drift": {
+    "steps": 500,
+    "events": 5,
+    "baseline": {
+     "test-set window": 1.0,
+     "analytic DEM": 1.0
+    },
+    "models": {
+     "NF s0": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s1": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s2": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 500,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "N s0": {
+      "topk": 1.0
+     },
+     "N s1": {
+      "topk": 1.0
+     },
+     "N s2": {
+      "topk": 1.0
+     }
+    }
+   },
+   "onset": {
+    "steps": 5,
+    "events": 5,
+    "baseline": {
+     "test-set window": 1.0,
+     "analytic DEM": 1.0
+    },
+    "models": {
+     "NF s0": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s1": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s2": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 5,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "N s0": {
+      "topk": 1.0
+     },
+     "N s1": {
+      "topk": 1.0
+     },
+     "N s2": {
+      "topk": 1.0
+     }
+    }
+   },
+   "later": {
+    "steps": 495,
+    "events": 5,
+    "baseline": {
+     "test-set window": 1.0,
+     "analytic DEM": 1.0
+    },
+    "models": {
+     "NF s0": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s1": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "NF s2": {
+      "topk": 1.0,
+      "test-set window": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      },
+      "analytic DEM": {
+       "mean_diff": 0.0,
+       "steps_better": 0,
+       "steps_worse": 0,
+       "steps_tie": 495,
+       "p_steps": 1.0,
+       "events_better": 0,
+       "events_worse": 0,
+       "events_tie": 5,
+       "p_events": 1.0
+      }
+     },
+     "N s0": {
+      "topk": 1.0
+     },
+     "N s1": {
+      "topk": 1.0
+     },
+     "N s2": {
+      "topk": 1.0
+     }
+    }
+   },
+   "false_picks_drift": {
+    "baseline": {
+     "total": 0,
+     "measure_qubits": 0,
+     "next_to_hot": 0
+    },
+    "NF s0": {
+     "total": 0,
+     "measure_qubits": 0,
+     "next_to_hot": 0
+    },
+    "NF s1": {
+     "total": 0,
+     "measure_qubits": 0,
+     "next_to_hot": 0
+    },
+    "NF s2": {
+     "total": 0,
+     "measure_qubits": 0,
+     "next_to_hot": 0
+    }
+   }
+  }
+ }
+}

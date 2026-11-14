@@ -15,4 +15,12 @@ results/**
 !results/**/*.txt
 !results/**/*.csv
 !results/**/*.json
+<<<<<<< HEAD
 data/*_x5/
+=======
+
+!results/**/*.py
+!results/**/*.sh
+
+>>>>>>> f999e87 (Add noise-map head, FiLM and localisation baseline (exp9))
+*.tgz

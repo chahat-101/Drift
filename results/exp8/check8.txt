@@ -1,0 +1,12 @@
+train chunk 17 (fp)               long 1.8e-07  short 1.9e-07  short-long 1.9e-07  OK
+train chunk 17 (input grid)       long 1.8e-07  short 1.9e-07  short-long 1.9e-07  OK
+                                  fingerprint identical over the batch: True
+stale mix k=1615 (other[:k] + own[k:])long 9.1e-08  short 1.9e-07  short-long 2.3e-07  OK
+eval buffer, start g=0            long 0.0e+00  short 0.0e+00  short-long 0.0e+00  OK
+eval buffer, start g=200          long 4.8e-08  short 4.8e-08  short-long 0.0e+00  OK
+eval buffer, start g=1800         long 6.6e-08  short 4.8e-08  short-long 3.9e-08  OK
+eval buffer, start g=2200         long 4.3e-08  short 4.8e-08  short-long 5.0e-08  OK
+eval buffer, start g=102400       long 4.3e-08  short 4.8e-08  short-long 6.0e-08  OK
+eval buffer, start g=299800       long 4.3e-08  short 4.8e-08  short-long 3.8e-08  OK
+frozen (nominal test window)      long 6.7e-08  short 4.8e-08  short-long 5.4e-08  OK
+ALL OK

@@ -1,0 +1,7 @@
+# d=3 mspair training (data/d3_wide, batch 512, h48/l4, stale 0.3, val every 500), 2026-11-11T18:51:57Z
+N=1 per-job steps/s: 181.8  total 181.8 steps/s  peak GPU mem total 1708 MiB, largest process 1702 MiB
+N=2 per-job steps/s: 87.0 87.0  total 174.0 steps/s  peak GPU mem total 3450 MiB, largest process 1718 MiB
+N=3 per-job steps/s: 55.6 54.1 55.6  total 165.3 steps/s  peak GPU mem total 5173 MiB, largest process 1718 MiB
+N=4 per-job steps/s: 40.0 40.8 40.8 40.0  total 161.6 steps/s  peak GPU mem total 6888 MiB, largest process 1716 MiB
+N=5 per-job steps/s: 32.3 31.7 32.3 32.3 32.3  total 160.9 steps/s  peak GPU mem total 8583 MiB, largest process 1722 MiB
+N=6 per-job steps/s: 26.7 27.0 26.7 27.0 27.0 27.0  total 161.4 steps/s  peak GPU mem total 10272 MiB, largest process 2614 MiB

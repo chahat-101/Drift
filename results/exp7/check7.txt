@@ -1,0 +1,12 @@
+train chunk 17 (fp)               long 2.3e-07  short 1.9e-07  short-long 2.3e-07  covariances 3.0e-07  OK
+train chunk 17 (input grid)       long 2.3e-07  short 1.9e-07  short-long 2.3e-07  covariances 3.0e-07  OK
+                                  fingerprint identical over the batch: True
+stale mix k=1615 (other[:k] + own[k:])long 7.2e-08  short 1.9e-07  short-long 2.2e-07  covariances 2.3e-07  OK
+eval buffer, start g=0            long 0.0e+00  short 0.0e+00  short-long 0.0e+00  covariances 0.0e+00  OK
+eval buffer, start g=200          long 3.6e-08  short 3.6e-08  short-long 0.0e+00  covariances 1.9e-07  OK
+eval buffer, start g=1800         long 2.5e-08  short 3.6e-08  short-long 2.1e-08  covariances 5.8e-08  OK
+eval buffer, start g=2200         long 3.3e-08  short 2.4e-08  short-long 3.8e-08  covariances 1.1e-07  OK
+eval buffer, start g=102400       long 3.3e-08  short 3.6e-08  short-long 3.3e-08  covariances 1.1e-07  OK
+eval buffer, start g=299800       long 3.1e-08  short 3.6e-08  short-long 2.4e-08  covariances 6.0e-08  OK
+frozen (nominal test window)      long 3.3e-08  short 4.8e-08  short-long 4.4e-08  covariances 1.0e-07  OK
+ALL OK

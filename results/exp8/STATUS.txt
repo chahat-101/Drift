@@ -1,0 +1,11 @@
+run8.sh exit 0 at 2026-11-12T17:59:18Z after 196 min
+job                                      state        rc   seconds
+train_ms_s0                              done         0    3782
+train_ms_s1                              done         0    3783
+train_ms_s2                              done         0    3781
+ens_ms_st0                               done         0    99
+ens_ms_st1                               done         0    79
+ens_ms_st2                               done         0    80
+ens_ms_st3                               done         0    80
+ens_ms_st4                               done         0    80
+report8                                  done         0    1

@@ -1,0 +1,8 @@
+# batch-size rule test (single process, adaptive-wide d=5, 3 members, bursts+bursts_big live+frozen = 3.6M member-shots)
+# doubling until OOM: largest 262144 -> 75% = 196608. Results at 196608 differ from batch 16384 (bursts_big drift 0.0572 vs 0.0571) and N=3 x 65536 ran out of memory; see report.
+# old: N=1 batch=196608 wall 96.3s  throughput 37389 member-shots/s  GPU util mean 96%  peak mem 21192 MiB
+# old: x st0: 93.7s, bursts_big drift (ens) 0.0572
+# batch 16384:
+N=1 batch=16384 ok=1/1 wall 40.6s  throughput 88765 member-shots/s  GPU util mean 91%  peak mem 2982 MiB
+N=2 batch=16384 ok=2/2 wall 87.6s  throughput 82160 member-shots/s  GPU util mean 95%  peak mem 5962 MiB
+N=3 batch=16384 ok=3/3 wall 129.7s  throughput 83270 member-shots/s  GPU util mean 97%  peak mem 8941 MiB

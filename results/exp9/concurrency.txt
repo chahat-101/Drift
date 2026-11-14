@@ -1,0 +1,44 @@
+# d=5 N/NF training (data/d5_wide_x5, batch 512, h48/l4, stale 0.3, --compile, val every 5000), 2026-11-13T19:05:44Z
+[aux] per-job steps/s: 73.3  total 73.3 steps/s  GPU mem before val: total 6626 MiB, largest process 6618 MiB; peak incl. val: total 6626 MiB, largest process 6618 MiB 
+    [aux] job 1: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=200,419
+    [aux] job 1: data on cuda: 5.77 GB
+    [aux] job 1: step   1000  loss 0.5102  aux 0.0128  25s
+    [aux] job 1: step   5000  loss 0.4497  aux 0.0024  val 0.4578  val_aux 0.0027  80s
+    [aux] job 1: step   5250  loss 0.4519  aux 0.0029  83s
+[auxfilm] per-job steps/s: 67.5  total 67.5 steps/s  GPU mem before val: total 6626 MiB, largest process 6618 MiB; peak incl. val: total 6626 MiB, largest process 6618 MiB 
+    [auxfilm] job 1: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=214,323
+    [auxfilm] job 1: data on cuda: 5.77 GB
+    [auxfilm] job 1: step   1000  loss 0.5093  aux 0.0129  42s
+    [auxfilm] job 1: step   5000  loss 0.4487  aux 0.0024  val 0.4566  val_aux 0.0022  101s
+    [auxfilm] job 1: step   5250  loss 0.4495  aux 0.0023  105s
+[aux auxfilm] per-job steps/s: 35.7 32.9  total 68.6 steps/s  GPU mem before val: total 13572 MiB, largest process 6940 MiB; peak incl. val: total 13572 MiB, largest process 6940 MiB 
+    [aux auxfilm] job 1: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=200,419
+    [aux auxfilm] job 1: data on cuda: 5.77 GB
+    [aux auxfilm] job 1: step   1000  loss 0.5103  aux 0.0128  29s
+    [aux auxfilm] job 1: step   5000  loss 0.4497  aux 0.0024  val 0.4578  val_aux 0.0027  142s
+    [aux auxfilm] job 1: step   5250  loss 0.4519  aux 0.0030  148s
+    [aux auxfilm] job 2: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=214,323
+    [aux auxfilm] job 2: data on cuda: 5.77 GB
+    [aux auxfilm] job 2: step   1000  loss 0.4984  aux 0.0158  33s
+    [aux auxfilm] job 2: step   5000  loss 0.4365  aux 0.0026  val 0.4506  val_aux 0.0029  155s
+    [aux auxfilm] job 2: step   5250  loss 0.4426  aux 0.0026  162s
+[aux auxfilm aux] per-job steps/s: 23.6 22.1 23.5  total 69.2 steps/s  GPU mem before val: total 19869 MiB, largest process 6940 MiB; peak incl. val: total 19869 MiB, largest process 6940 MiB 
+    [aux auxfilm aux] job 1: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=200,419
+    [aux auxfilm aux] job 1: data on cuda: 5.77 GB
+    [aux auxfilm aux] job 1: step   1000  loss 0.5103  aux 0.0128  45s
+    [aux auxfilm aux] job 1: step   5000  loss 0.4497  aux 0.0024  val 0.4578  val_aux 0.0027  215s
+    [aux auxfilm aux] job 1: step   5250  loss 0.4519  aux 0.0029  225s
+    [aux auxfilm aux] job 2: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=214,323
+    [aux auxfilm aux] job 2: data on cuda: 5.77 GB
+    [aux auxfilm aux] job 2: step   1000  loss 0.4984  aux 0.0158  49s
+    [aux auxfilm aux] job 2: step   5000  loss 0.4367  aux 0.0026  val 0.4509  val_aux 0.0028  231s
+    [aux auxfilm aux] job 2: step   5250  loss 0.4430  aux 0.0027  241s
+    [aux auxfilm aux] job 3: training adaptive d=5 r=5 grid=(6, 6, 6) device=cuda params=200,419
+    [aux auxfilm aux] job 3: data on cuda: 5.77 GB
+    [aux auxfilm aux] job 3: step   1000  loss 0.5203  aux 0.0212  40s
+    [aux auxfilm aux] job 3: step   5000  loss 0.4605  aux 0.0029  val 0.4537  val_aux 0.0028  211s
+    [aux auxfilm aux] job 3: step   5250  loss 0.4628  aux 0.0033  221s
+# Same-mix sequential rates: N+NF one after another = 2 / (1/73.3 + 1/67.5) = 70.3 steps/s (vs 68.6 concurrent);
+# N+NF+N = 3 / (2/73.3 + 1/67.5) = 71.3 (vs 69.2 concurrent). No val spike beyond ~6.9 GB per process (the round-5
+# 12.6 GB spike came from the old CPU data path); 3 jobs peak at 19.9 of 23 GB.
+# Decision: train one job at a time. Estimate: N 300000/73.3 = 68 min, NF 300000/67.5 = 74 min per model.

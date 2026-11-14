@@ -1,0 +1,26 @@
+run9.sh exit 0 at 2026-11-14T02:44:25Z after 433 min
+ensemble members (seeds): 0 1 2
+job                                      state        rc   seconds
+train_aux_s0                             done         0    3907
+train_auxfilm_s0                         done         0    4152
+train_aux_s1                             done         0    3898
+train_auxfilm_s1                         done         0    4143
+train_aux_s2                             done         0    3906
+train_auxfilm_s2                         done         0    4147
+ens_aux_st0                              done         0    95
+ens_aux_st1                              done         0    77
+ens_aux_st2                              done         0    77
+ens_aux_st3                              done         0    76
+ens_aux_st4                              done         0    76
+ens_auxfilm_st0                          done         0    190
+ens_auxfilm_st1                          done         0    153
+ens_auxfilm_st2                          done         0    152
+ens_auxfilm_st3                          done         0    152
+ens_auxfilm_st4                          done         0    152
+noise_aux_s0                             done         0    70
+noise_aux_s1                             done         0    70
+noise_aux_s2                             done         0    71
+noise_auxfilm_s0                         done         0    133
+noise_auxfilm_s1                         done         0    133
+noise_auxfilm_s2                         done         0    133
+report9                                  done         0    3
