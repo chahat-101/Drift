@@ -4,6 +4,7 @@ __pycache__/
 *.pt
 .ruff_cache/
 
+data/
 data/**
 !data/*/
 !data/*/manifest.json
