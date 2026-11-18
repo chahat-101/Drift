@@ -41,7 +41,8 @@
 
 \title{\bfseries Drift: a calibration-free neural decoder that adapts\\to drifting noise from its own syndromes}
 \author{Chahat Patel\\[2pt]\small Symbiosis Institute of Technology, Pune}
-\date{\small Whitepaper, November 2026}
+\date{\small Whitepaper, November 2026\\[2pt]
+\small Preprint DOI: \href{https://doi.org/10.5281/zenodo.24342173}{10.5281/zenodo.24342173}}
 
 \begin{document}
 \maketitle
@@ -389,7 +390,7 @@ state, so for regime-level conclusions the unit of replication is the event (29 
 \reg{telegraph}, 5 for \reg{hot\_qubit}, all at the same location). In an exact sign test over events, every $d=5$
 comparison in \cref{tab:main,tab:liveFrozen} on \reg{bursts} and \reg{bursts\_big} keeps $p\le\Eb{1.5}{5}$ except
 \reg{bursts\_big} against oracle MWPM (9 events better, 20 worse, $p=0.06$); every \reg{hot\_qubit} comparison has
-$p=0.06$, the smallest possible with five events.
+$p=0.06$, the minimum for five events.
 
 \paragraph{Pre-set decision rules.}
 The fingerprint variants of \cref{sec:ablations} were judged by pre-set rules. For the multiscale
@@ -484,7 +485,7 @@ $+0.0012$, $p=0.0015$, weak), while frozen adaptive-wide is well above it (0.068
 fingerprint supplies the gain over static-wide.
 
 On \reg{telegraph} the live fingerprint contributes $0.0002$ or less at both distances; the advantage over static-wide
-there is matched by the frozen model, so uniform scale drift needs little adaptation from this decoder.
+there is matched by the frozen model, so uniform scale drift needs little adaptation.
 
 \begin{table}[t]
 \centering
@@ -703,11 +704,11 @@ bursts. The frozen control shows that the gain over a non-adaptive network train
 rules. Hardware data, larger distances and latency are the open tests.
 
 \section*{Code and data availability}
-Code, experiment notes, result tables (Markdown, CSV, JSON) and dataset manifests with all generation seeds are at
-\url{https://github.com/chahat-101/drift}. Generated datasets are too large for the repository but can be
+Code, experiment notes, result tables and dataset manifests with all generation seeds are at
+\url{https://github.com/chahat-101/drift}. Generated datasets are not in the repository but can be
 regenerated from the manifests (identical samples need the same Stim version and machine). Model checkpoints and
-per-shot error bits are available from the author on request; scripts that recompute the LERs and $p$-values from
-them are in \code{whitepaper/audit}.
+per-shot error bits are archived on Zenodo (\href{https://doi.org/10.5281/zenodo.24342283}{10.5281/zenodo.24342283}); scripts that recompute the LERs and $p$-values are
+in \code{whitepaper/audit}.
 
 \section*{AI assistance}
 Code, analysis and drafting were assisted by an AI model (Claude); the author designed the study and checked all

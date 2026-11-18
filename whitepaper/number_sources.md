@@ -6,276 +6,276 @@ Figures are not listed here. `whitepaper/make_figs.py` draws the result figures 
 
 | # | paper | numbers | source (file:line) | check |
 |---|---|---|---|---|
-| 1 | L53: over the last 2000 shots it has decoded | 2000 | `whitepaper/tech_doc_src/drift.tex:290` | ok |
-| 2 | L54: In circuit-level simulation ($p=0.003$) | 0.003 | `whitepaper/tech_doc_src/drift.tex:156` | ok |
-| 3 | L55: reaches a drift-step logical error rate of 0.0457 | 0.0457 | `notes/07_ensembles.md:341` | ok |
+| 1 | L54: over the last 2000 shots it has decoded | 2000 | `whitepaper/tech_doc_src/drift.tex:290` | ok |
+| 2 | L55: In circuit-level simulation ($p=0.003$) | 0.003 | `whitepaper/tech_doc_src/drift.tex:156` | ok |
+| 3 | L56: reaches a drift-step logical error rate of 0.0457 | 0.0457 | `notes/07_ensembles.md:341` | ok |
 | 3 | ″ | 0.0980 0.0426 | `notes/07_ensembles.md:272` | ok |
 | 3 | ″ | 0.0896 | `notes/07_ensembles.md:272` | ok |
-| 4 | L57: frozen nominal fingerprint the rate is 0.0576 | 0.0576 | `results/exp9/report9_tables.md:137` | ok |
+| 4 | L58: frozen nominal fingerprint the rate is 0.0576 | 0.0576 | `results/exp9/report9_tables.md:137` | ok |
 | 4 | ″ | 3e-247 | `notes/07_ensembles.md:227` | ok |
 | 4 | ″ | 0.0564 | `results/exp6/report6_tables.md:139` | ok |
-| 5 | L115: $N=24$ at $d=3$ and $N=120$ | 24 120 | `whitepaper/tech_doc_src/drift.tex:140` | ok |
-| 6 | L193: noise of strength $p_0=0.003$ | 0.003 | `whitepaper/tech_doc_src/drift.tex:156` | ok |
-| 7 | L201: A stream consists of 150 \emph{steps} of 2000 shots | 2000 | `whitepaper/tech_doc_src/drift.tex:184` | ok |
+| 5 | L116: $N=24$ at $d=3$ and $N=120$ | 24 120 | `whitepaper/tech_doc_src/drift.tex:140` | ok |
+| 6 | L194: noise of strength $p_0=0.003$ | 0.003 | `whitepaper/tech_doc_src/drift.tex:156` | ok |
+| 7 | L202: A stream consists of 150 \emph{steps} of 2000 shots | 2000 | `whitepaper/tech_doc_src/drift.tex:184` | ok |
 | 7 | ″ | 150 | `whitepaper/tech_doc_src/drift.tex:185` | ok |
-| 8 | L204: switching with probability $0.04$ per step | 0.04 | `whitepaper/tech_doc_src/drift.tex:196` | ok |
-| 9 | L205: from step 50 on, the two qubits nearest the centre | 50 | `notes/02_d3_stale_fingerprint.md:311` | ok |
+| 8 | L205: switching with probability $0.04$ per step | 0.04 | `whitepaper/tech_doc_src/drift.tex:196` | ok |
+| 9 | L206: from step 50 on, the two qubits nearest the centre | 50 | `notes/02_d3_stale_fingerprint.md:311` | ok |
 | 9 | ″ | 0.03 | `whitepaper/tech_doc_src/drift.tex:198` | ok |
-| 10 | L206: a burst starts with probability $0.04$ | 0.04 | `whitepaper/tech_doc_src/drift.tex:199` | ok |
+| 10 | L207: a burst starts with probability $0.04$ | 0.04 | `whitepaper/tech_doc_src/drift.tex:199` | ok |
 | 10 | ″ | 5 0.05 | `whitepaper/tech_doc_src/drift.tex:200` | ok |
 | 10 | ″ | 4 | `whitepaper/tech_doc_src/drift.tex:201` | ok |
-| 11 | L208: as \reg{bursts} with 8-qubit clusters and $p_{\mathrm{hot}}=0.1$ | 8 | `whitepaper/tech_doc_src/drift.tex:202` | ok |
+| 11 | L209: as \reg{bursts} with 8-qubit clusters and $p_{\mathrm{hot}}=0.1$ | 8 | `whitepaper/tech_doc_src/drift.tex:202` | ok |
 | 11 | ″ | 0.1 | `whitepaper/tech_doc_src/drift.tex:203` | ok |
-| 12 | L219: was evaluated only at $d=3$ on one stream | 150 0 | `notes/02_d3_stale_fingerprint.md:205` | ok |
-| 13 | L233: $\ln s\sim\mathcal U(\ln0.5,\ln2.5)$ | 0.5 2.5 | `whitepaper/tech_doc_src/drift.tex:217` | ok |
+| 12 | L220: was evaluated only at $d=3$ on one stream | 150 0 | `notes/02_d3_stale_fingerprint.md:205` | ok |
+| 13 | L234: $\ln s\sim\mathcal U(\ln0.5,\ln2.5)$ | 0.5 2.5 | `whitepaper/tech_doc_src/drift.tex:217` | ok |
 | 13 | ″ | 1 6 | `whitepaper/tech_doc_src/drift.tex:219` | ok |
 | 13 | ″ | 0.005 0.08 | `whitepaper/tech_doc_src/drift.tex:220` | ok |
-| 14 | L235: A chunk holds $B=512$ training shots | 512 2000 | `whitepaper/tech_doc_src/drift.tex:319` | ok |
-| 15 | L242: that is $6\times6\times6$ at $d=5$ | 6 | `whitepaper/tech_doc_src/drift.tex:239` | ok |
-| 16 | L248: laid out on the same grid and multiplied by 10 | 10 | `whitepaper/tech_doc_src/drift.tex:294` | ok |
-| 17 | L250: nominal mean firing rate of $4.28\%$ | 4.279 4.28 | `whitepaper/audit/out/t10.txt:1` | ok |
+| 14 | L236: A chunk holds $B=512$ training shots | 512 2000 | `whitepaper/tech_doc_src/drift.tex:319` | ok |
+| 15 | L243: that is $6\times6\times6$ at $d=5$ | 6 | `whitepaper/tech_doc_src/drift.tex:239` | ok |
+| 16 | L249: laid out on the same grid and multiplied by 10 | 10 | `whitepaper/tech_doc_src/drift.tex:294` | ok |
+| 17 | L251: nominal mean firing rate of $4.28\%$ | 4.279 4.28 | `whitepaper/audit/out/t10.txt:1` | ok |
 | 17 | ″ | 10 | `whitepaper/tech_doc_src/drift.tex:297` | ok |
-| 18 | L279: default $H_c=48$, $L=4$ has 195\,681 | 194385 195681 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
+| 18 | L280: default $H_c=48$, $L=4$ has 195\,681 | 194385 195681 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
 | 18 | ″ | 9 | `whitepaper/tech_doc_src/drift.tex:432` | ok |
-| 19 | L322: With probability $q=0.3$ per training step | 0.3 | `whitepaper/tech_doc_src/drift.tex:484` | ok |
-| 20 | L334: seeds (0, 1, 2). An \emph{ensemble} averages | 0 1 2 | `notes/07_ensembles.md:15` | ok |
-| 21 | L340: for each of the 49 qubits at $d=5$ | 49 | `results/exp9/localisation_baseline.md:40` | ok |
-| 22 | L342: +0.1\,\mathrm{MSE}\bigl(10 | 0.1 10 0.1 | `results/exp9/report9_tables.md:3` | ok |
-| 23 | L347: encoder of two 16-channel 3D convolutions | 2 16 | `results/exp9/report9_tables.md:3` | ok |
-| 24 | L356: All data are simulated with Stim~1.16.0 | 1.16.0 2.4.0 | `notes/02_d3_stale_fingerprint.md:25` | ok |
-| 25 | L357: At $d=3$ models train for 60\,000 steps | 60000 | `notes/02_d3_stale_fingerprint.md:23` | ok |
+| 19 | L323: With probability $q=0.3$ per training step | 0.3 | `whitepaper/tech_doc_src/drift.tex:484` | ok |
+| 20 | L335: seeds (0, 1, 2). An \emph{ensemble} averages | 0 1 2 | `notes/07_ensembles.md:15` | ok |
+| 21 | L341: for each of the 49 qubits at $d=5$ | 49 | `results/exp9/localisation_baseline.md:40` | ok |
+| 22 | L343: +0.1\,\mathrm{MSE}\bigl(10 | 0.1 10 0.1 | `results/exp9/report9_tables.md:3` | ok |
+| 23 | L348: encoder of two 16-channel 3D convolutions | 2 16 | `results/exp9/report9_tables.md:3` | ok |
+| 24 | L357: All data are simulated with Stim~1.16.0 | 1.16.0 2.4.0 | `notes/02_d3_stale_fingerprint.md:25` | ok |
+| 25 | L358: At $d=3$ models train for 60\,000 steps | 60000 | `notes/02_d3_stale_fingerprint.md:23` | ok |
 | 25 | ″ | 30000 | `notes/02_d3_stale_fingerprint.md:20` | ok |
-| 26 | L358: at $d=5$ for 300\,000 steps (two passes over 150\,000 | 150000 300000 | `notes/05_d5_long_training.md:33` | ok |
-| 27 | L358: Three fixed test sets of 200\,000 | 200000 2000 | `whitepaper/tech_doc_src/drift.tex:325` | ok |
+| 26 | L359: at $d=5$ for 300\,000 steps (two passes over 150\,000 | 150000 300000 | `notes/05_d5_long_training.md:33` | ok |
+| 27 | L359: Three fixed test sets of 200\,000 | 200000 2000 | `whitepaper/tech_doc_src/drift.tex:325` | ok |
 | 27 | ″ | 0.03 | `whitepaper/tech_doc_src/drift.tex:325` | ok |
-| 28 | L360: (stream seeds 0--4) | 0 4 | `whitepaper/tech_doc_src/drift.tex:327` | ok |
-| 29 | L367: $w\in\{500,1000,2000,5000,10000\}$ and | 500 1000 2000 5000 10000 | `whitepaper/tech_doc_src/drift.tex:527` | ok |
-| 30 | L373: processed in sub-batches of 200 | 2000 200 | `whitepaper/tech_doc_src/drift.tex:536` | ok |
-| 31 | L380: has 29 onset steps (33 bursts | 29 29 21 5 | `notes/03_d3_controls.md:19` | ok |
+| 28 | L361: (stream seeds 0--4) | 0 4 | `whitepaper/tech_doc_src/drift.tex:327` | ok |
+| 29 | L368: $w\in\{500,1000,2000,5000,10000\}$ and | 500 1000 2000 5000 10000 | `whitepaper/tech_doc_src/drift.tex:527` | ok |
+| 30 | L374: processed in sub-batches of 200 | 2000 200 | `whitepaper/tech_doc_src/drift.tex:536` | ok |
+| 31 | L381: has 29 onset steps (33 bursts | 29 29 21 5 | `notes/03_d3_controls.md:19` | ok |
 | 31 | ″ | 33 29 | `results/exp9/localisation_baseline.md:62` | ok |
-| 32 | L384: nominal test set's 2000 fingerprint shots | 2000 | `notes/03_d3_controls.md:23` | ok |
-| 33 | L394: $0.001<p<0.05$ as weak evidence | 0.001 0.05 | `notes/07_ensembles.md:22` | ok |
-| 34 | L404: at onset or after on \reg{bursts} or \reg{bursts\_big} with $p<0.001$ | 0.001 | `notes/08_d3_fingerprints.md:54` | ok |
+| 32 | L385: nominal test set's 2000 fingerprint shots | 2000 | `notes/03_d3_controls.md:23` | ok |
+| 33 | L395: $0.001<p<0.05$ as weak evidence | 0.001 0.05 | `notes/07_ensembles.md:22` | ok |
+| 34 | L405: at onset or after on \reg{bursts} or \reg{bursts\_big} with $p<0.001$ | 0.001 | `notes/08_d3_fingerprints.md:54` | ok |
 | 34 | ″ | 0.001 | `notes/08_d3_fingerprints.md:55` | ok |
-| 35 | L407: drift steps with $p<0.001$, and | 0.001 | `results/exp9/report9_tables.md:7` | ok |
-| 36 | L418: paired tests have $p\le\Eb{2}{302}$, the largest being | 1e-300 | `results/exp6/report6.py:92` | ok |
+| 35 | L408: drift steps with $p<0.001$, and | 0.001 | `results/exp9/report9_tables.md:7` | ok |
+| 36 | L419: paired tests have $p\le\Eb{2}{302}$, the largest being | 1e-300 | `results/exp6/report6.py:92` | ok |
 | 36 | ″ | 1e-300 | `notes/07_ensembles.md:267` | ok |
 | 36 | ″ | 1e-300 | `notes/07_ensembles.md:268` | ok |
 | 36 | ″ | 1e-300 2e-302 | `notes/07_ensembles.md:269` | ok |
 | 36 | ″ | 1e-300 | `notes/07_ensembles.md:270` | ok |
-| 37 | L422: oracle MWPM remains better by $+0.0031$ (\E{3}{14}) | 0.0031 3e-14 | `notes/07_ensembles.md:268` | ok |
-| 38 | L439: static MWPM & 0.0439 & 0.0980 & 0.0181 & 0.0228 | 0.0439 0.0980 0.0181 0.0228 | `notes/07_ensembles.md:272` | ok |
-| 39 | L440: best WindowDEM & 0.0356 & 0.0896 & 0.0108 & 0.0229 | 0.0356 0.0896 0.0108 0.0229 | `notes/07_ensembles.md:272` | ok |
-| 40 | L441: oracle MWPM & 0.0197 & 0.0426 & 0.0103 & 0.0231 | 0.0197 0.0426 0.0103 0.0231 | `notes/07_ensembles.md:272` | ok |
-| 41 | L442: static-wide ensemble & 0.0224 (and its single-seed row) | 0.0224 0.0258 0.0021 | `notes/07_ensembles.md:69` | ok |
+| 37 | L423: oracle MWPM remains better by $+0.0031$ (\E{3}{14}) | 0.0031 3e-14 | `notes/07_ensembles.md:268` | ok |
+| 38 | L440: static MWPM & 0.0439 & 0.0980 & 0.0181 & 0.0228 | 0.0439 0.0980 0.0181 0.0228 | `notes/07_ensembles.md:272` | ok |
+| 39 | L441: best WindowDEM & 0.0356 & 0.0896 & 0.0108 & 0.0229 | 0.0356 0.0896 0.0108 0.0229 | `notes/07_ensembles.md:272` | ok |
+| 40 | L442: oracle MWPM & 0.0197 & 0.0426 & 0.0103 & 0.0231 | 0.0197 0.0426 0.0103 0.0231 | `notes/07_ensembles.md:272` | ok |
+| 41 | L443: static-wide ensemble & 0.0224 (and its single-seed row) | 0.0224 0.0258 0.0021 | `notes/07_ensembles.md:69` | ok |
 | 41 | ″ | 0.0564 0.0757 0.0153 | `notes/07_ensembles.md:70` | ok |
 | 41 | ″ | 0.0098 0.0106 0.0005 | `notes/07_ensembles.md:71` | ok |
 | 41 | ″ | 0.0175 0.0186 0.0004 | `notes/07_ensembles.md:72` | ok |
-| 42 | L444: adaptive-wide ensemble & 0.0171 (and its single-seed row) | 0.0171 0.0190 0.0011 | `notes/07_ensembles.md:73` | ok |
+| 42 | L445: adaptive-wide ensemble & 0.0171 (and its single-seed row) | 0.0171 0.0190 0.0011 | `notes/07_ensembles.md:73` | ok |
 | 42 | ″ | 0.0484 0.0634 0.0125 | `notes/07_ensembles.md:74` | ok |
 | 42 | ″ | 0.0071 0.0076 0.0002 | `notes/07_ensembles.md:75` | ok |
 | 42 | ″ | 0.0164 0.0171 0.0003 | `notes/07_ensembles.md:76` | ok |
-| 43 | L446: adaptive-stale ensemble & 0.0170 (and its single-seed row) | 0.0170 0.0184 0.0008 | `notes/07_ensembles.md:77` | ok |
+| 43 | L447: adaptive-stale ensemble & 0.0170 (and its single-seed row) | 0.0170 0.0184 0.0008 | `notes/07_ensembles.md:77` | ok |
 | 43 | ″ | 0.0457 0.0548 0.0059 | `notes/07_ensembles.md:78` | ok |
 | 43 | ″ | 0.0073 0.0077 0.0004 | `notes/07_ensembles.md:79` | ok |
 | 43 | ″ | 0.0164 0.0171 0.0002 | `notes/07_ensembles.md:80` | ok |
-| 44 | L448: $\Delta$ vs static-wide ens. & $-0.0053$ | 0.0053 4e-142 | `notes/07_ensembles.md:192` | ok |
+| 44 | L449: $\Delta$ vs static-wide ens. & $-0.0053$ | 0.0053 4e-142 | `notes/07_ensembles.md:192` | ok |
 | 44 | ″ | 0.0107 7e-158 | `notes/07_ensembles.md:193` | ok |
 | 44 | ″ | 0.0025 1e-298 | `notes/07_ensembles.md:194` | ok |
 | 44 | ″ | 0.0010 3e-29 | `notes/07_ensembles.md:195` | ok |
-| 45 | L449: $\Delta$ vs oracle MWPM & $-0.0027$ | 0.0027 5e-27 | `notes/07_ensembles.md:267` | ok |
+| 45 | L450: $\Delta$ vs oracle MWPM & $-0.0027$ | 0.0027 5e-27 | `notes/07_ensembles.md:267` | ok |
 | 45 | ″ | 0.0031 3e-14 | `notes/07_ensembles.md:268` | ok |
 | 45 | ″ | 0.0030 1e-224 | `notes/07_ensembles.md:269` | ok |
 | 45 | ″ | 0.0066 1e-300 | `notes/07_ensembles.md:270` | ok |
-| 46 | L452: static MWPM & 0.1742 & 0.3778 & 0.0586 & 0.0239 | 0.1742 0.3778 | `notes/07_ensembles.md:364` | ok |
+| 46 | L453: static MWPM & 0.1742 & 0.3778 & 0.0586 & 0.0239 | 0.1742 0.3778 | `notes/07_ensembles.md:364` | ok |
 | 46 | ″ | 0.0586 0.0239 | `notes/07_ensembles.md:375` | ok |
-| 47 | L453: best WindowDEM & 0.1069 & 0.2848 & 0.0250 & 0.0237 | 0.1069 0.2848 | `notes/07_ensembles.md:366` | ok |
+| 47 | L454: best WindowDEM & 0.1069 & 0.2848 & 0.0250 & 0.0237 | 0.1069 0.2848 | `notes/07_ensembles.md:366` | ok |
 | 47 | ″ | 0.0250 0.0237 | `notes/07_ensembles.md:377` | ok |
-| 48 | L454: oracle MWPM & 0.0667 & 0.1937 & 0.0228 & 0.0239 | 0.0667 0.1937 | `notes/07_ensembles.md:365` | ok |
+| 48 | L455: oracle MWPM & 0.0667 & 0.1937 & 0.0228 & 0.0239 | 0.0667 0.1937 | `notes/07_ensembles.md:365` | ok |
 | 48 | ″ | 0.0228 0.0239 | `notes/07_ensembles.md:376` | ok |
-| 49 | L455: static-wide ensemble & 0.1049 (and its single-seed row) | 0.1049 0.1058 0.0001 | `notes/07_ensembles.md:133` | ok |
+| 49 | L456: static-wide ensemble & 0.1049 (and its single-seed row) | 0.1049 0.1058 0.0001 | `notes/07_ensembles.md:133` | ok |
 | 49 | ″ | 0.2427 0.2496 0.0055 | `notes/07_ensembles.md:134` | ok |
 | 49 | ″ | 0.0276 0.0268 0.0008 | `notes/07_ensembles.md:135` | ok |
 | 49 | ″ | 0.0235 0.0237 0.0001 | `notes/07_ensembles.md:136` | ok |
-| 50 | L457: adaptive-wide ensemble & 0.0713 (and its single-seed row) | 0.0713 0.0725 0.0006 | `notes/07_ensembles.md:137` | ok |
+| 50 | L458: adaptive-wide ensemble & 0.0713 (and its single-seed row) | 0.0713 0.0725 0.0006 | `notes/07_ensembles.md:137` | ok |
 | 50 | ″ | 0.2014 0.2071 0.0042 | `notes/07_ensembles.md:138` | ok |
 | 50 | ″ | 0.0196 0.0202 0.0001 | `notes/07_ensembles.md:139` | ok |
 | 50 | ″ | 0.0208 0.0209 0.0000 | `notes/07_ensembles.md:140` | ok |
-| 51 | L459: adaptive-stale ensemble & 0.0720 (and its single-seed row) | 0.0720 0.0730 0.0002 | `notes/07_ensembles.md:141` | ok |
+| 51 | L460: adaptive-stale ensemble & 0.0720 (and its single-seed row) | 0.0720 0.0730 0.0002 | `notes/07_ensembles.md:141` | ok |
 | 51 | ″ | 0.2011 0.2037 0.0026 | `notes/07_ensembles.md:142` | ok |
 | 51 | ″ | 0.0208 0.0213 0.0004 | `notes/07_ensembles.md:143` | ok |
 | 51 | ″ | 0.0214 0.0216 0.0001 | `notes/07_ensembles.md:144` | ok |
-| 52 | L461: $\Delta$ vs static-wide ens. & $-0.0329$ | 0.0329 1e-300 | `notes/07_ensembles.md:205` | ok |
+| 52 | L462: $\Delta$ vs static-wide ens. & $-0.0329$ | 0.0329 1e-300 | `notes/07_ensembles.md:205` | ok |
 | 52 | ″ | 0.0416 1e-300 | `notes/07_ensembles.md:206` | ok |
 | 52 | ″ | 0.0068 1e-300 | `notes/07_ensembles.md:207` | ok |
 | 52 | ″ | 0.0021 7e-102 | `notes/07_ensembles.md:208` | ok |
-| 53 | L462: $\Delta$ vs oracle MWPM & $+0.0053$ | 0.0053 7e-35 | `notes/07_ensembles.md:296` | ok |
+| 53 | L463: $\Delta$ vs oracle MWPM & $+0.0053$ | 0.0053 7e-35 | `notes/07_ensembles.md:296` | ok |
 | 53 | ″ | 0.0073 3e-30 | `notes/07_ensembles.md:297` | ok |
 | 53 | ″ | 0.0020 3e-66 | `notes/07_ensembles.md:298` | ok |
 | 53 | ″ | 0.0025 5e-76 | `notes/07_ensembles.md:299` | ok |
-| 54 | L483: $+0.0219$ on \reg{bursts}, \E{2}{90} | 0.0219 2e-90 0.0224 7e-59 0.0006 0.2 | `notes/07_ensembles.md:307` | ok |
-| 55 | L490: frozen is $+0.0253$ above static-wide | 0.0253 1e-300 | `notes/03_d3_controls.md:95` | ok |
-| 56 | L492: drift 0.0576 vs 0.0564; paired | 0.0576 | `results/exp6/report6_tables.md:155` | ok |
+| 54 | L484: $+0.0219$ on \reg{bursts}, \E{2}{90} | 0.0219 2e-90 0.0224 7e-59 0.0006 0.2 | `notes/07_ensembles.md:307` | ok |
+| 55 | L491: frozen is $+0.0253$ above static-wide | 0.0253 1e-300 | `notes/03_d3_controls.md:95` | ok |
+| 56 | L493: drift 0.0576 vs 0.0564; paired | 0.0576 | `results/exp6/report6_tables.md:155` | ok |
 | 56 | ″ | 0.0564 | `results/exp6/report6_tables.md:139` | ok |
 | 56 | ″ | 0.0576 0.0564 0.0012 0.0015 | `whitepaper/paired_tests.md:7` | ok |
-| 57 | L426: \reg{bursts} ($+0.0001$, $p=0.6$) and | 0.0171 0.0170 0.0001 0.6 | `whitepaper/paired_tests.md:8` | ok |
+| 57 | L427: \reg{bursts} ($+0.0001$, $p=0.6$) and | 0.0171 0.0170 0.0001 0.6 | `whitepaper/paired_tests.md:8` | ok |
 | 57 | ″ | 0.0164 0.0164 0.0001 0.37 | `whitepaper/paired_tests.md:11` | ok |
 | 57 | ″ | 0.0484 0.0457 0.0027 3.1e-19 | `whitepaper/paired_tests.md:9` | ok |
 | 57 | ″ | 0.0071 0.0073 0.0002 6.3e-06 | `whitepaper/paired_tests.md:10` | ok |
-| 58 | L77: cause error bursts that start at a localised impact, spread across a 2 | 26 | `whitepaper/external_sources.md:7` | ok |
+| 58 | L78: cause error bursts that start at a localised impact, spread across a 2 | 26 | `whitepaper/external_sources.md:7` | ok |
 | 58 | ″ | 25 | `whitepaper/external_sources.md:8` | ok |
 | 58 | ″ | 10 | `whitepaper/external_sources.md:10` | ok |
-| 59 | L216: at roughly 1\,\textmu s per | 1 5 2000 10 | `whitepaper/external_sources.md:20` | ok |
+| 59 | L217: at roughly 1\,\textmu s per | 1 5 2000 10 | `whitepaper/external_sources.md:20` | ok |
 | 59 | ″ | 25 | `whitepaper/external_sources.md:8` | ok |
-| 60 | L683: ensemble minus seed mean: $-0.0193$ | 0.0193 0.0149 0.0091 | `notes/07_ensembles.md:33` | ok |
-| 61 | L496: the live fingerprint contributes $0.0002$ or less | 0.0002 | `notes/07_ensembles.md:251` | ok |
-| 62 | L507: $d=5$ adaptive-wide & $-0.0092$ | -0.0092 2e-315 | `notes/07_ensembles.md:222` | ok |
+| 60 | L684: ensemble minus seed mean: $-0.0193$ | 0.0193 0.0149 0.0091 | `notes/07_ensembles.md:33` | ok |
+| 61 | L497: the live fingerprint contributes $0.0002$ or less | 0.0002 | `notes/07_ensembles.md:251` | ok |
+| 62 | L508: $d=5$ adaptive-wide & $-0.0092$ | -0.0092 2e-315 | `notes/07_ensembles.md:222` | ok |
 | 62 | ″ | -0.0196 1e-300 | `notes/07_ensembles.md:223` | ok |
 | 62 | ″ | -0.0033 1e-300 | `notes/07_ensembles.md:224` | ok |
 | 62 | ″ | -0.0002 0.002 | `notes/07_ensembles.md:225` | ok |
-| 63 | L508: $d=5$ adaptive-stale & $-0.0063$ | -0.0063 1e-209 | `notes/07_ensembles.md:226` | ok |
+| 63 | L509: $d=5$ adaptive-stale & $-0.0063$ | -0.0063 1e-209 | `notes/07_ensembles.md:226` | ok |
 | 63 | ″ | -0.0119 3e-247 | `notes/07_ensembles.md:227` | ok |
 | 63 | ″ | -0.0025 1e-300 | `notes/07_ensembles.md:228` | ok |
 | 63 | ″ | -0.0002 0.0002 | `notes/07_ensembles.md:229` | ok |
-| 64 | L509: $d=3$ adaptive-wide & $-0.0568$ | -0.0568 1e-300 | `notes/07_ensembles.md:235` | ok |
+| 64 | L510: $d=3$ adaptive-wide & $-0.0568$ | -0.0568 1e-300 | `notes/07_ensembles.md:235` | ok |
 | 64 | ″ | -0.0891 1e-300 | `notes/07_ensembles.md:236` | ok |
 | 64 | ″ | -0.0194 1e-300 | `notes/07_ensembles.md:237` | ok |
 | 64 | ″ | -0.0000 0.5 | `notes/07_ensembles.md:238` | ok |
-| 65 | L510: $d=3$ adaptive-stale & $-0.0410$ | -0.0410 1e-300 | `notes/07_ensembles.md:239` | ok |
+| 65 | L511: $d=3$ adaptive-stale & $-0.0410$ | -0.0410 1e-300 | `notes/07_ensembles.md:239` | ok |
 | 65 | ″ | -0.0519 1e-300 | `notes/07_ensembles.md:240` | ok |
 | 65 | ″ | -0.0098 1e-300 | `notes/07_ensembles.md:241` | ok |
 | 65 | ″ | -0.0002 2e-05 | `notes/07_ensembles.md:242` | ok |
-| 66 | L527: the adaptive-wide ensemble is $+0.0035$ worse live | 0.0035 5e-41 | `notes/07_ensembles.md:223` | ok |
+| 66 | L528: the adaptive-wide ensemble is $+0.0035$ worse live | 0.0035 5e-41 | `notes/07_ensembles.md:223` | ok |
 | 66 | ″ | 0.0021 3e-11 | `notes/07_ensembles.md:279` | ok |
-| 67 | L528: reduces the live cost to $+0.0006$ ($p=0.0001$) | 0.0006 0.0001 | `notes/07_ensembles.md:227` | ok |
+| 67 | L529: reduces the live cost to $+0.0006$ ($p=0.0001$) | 0.0006 0.0001 | `notes/07_ensembles.md:227` | ok |
 | 67 | ″ | 0.0007 0.006 | `notes/07_ensembles.md:280` | ok |
-| 68 | L531: $+0.0026$ above static MWPM after \reg{bursts\_big} events | 0.0026 3e-13 | `notes/07_ensembles.md:307` | ok |
-| 69 | L534: trained on nominal noise only scores 0.00536 | 0.00532 0.00536 0.4 | `notes/03_d3_controls.md:368` | ok |
+| 68 | L532: $+0.0026$ above static MWPM after \reg{bursts\_big} events | 0.0026 3e-13 | `notes/07_ensembles.md:307` | ok |
+| 69 | L535: trained on nominal noise only scores 0.00536 | 0.00532 0.00536 0.4 | `notes/03_d3_controls.md:368` | ok |
 | 69 | ″ | 0.0007 0.00605 0.00536 1e-08 | `notes/03_d3_controls.md:370` | ok |
 | 69 | ″ | 13 | `notes/03_d3_controls.md:381` | ok |
-| 70 | L535: there is no such cost: static-wide is lower than static-nominal in all | 0.2 | `notes/06_d5_three_seeds.md:31` | ok |
+| 70 | L536: there is no such cost: static-wide is lower than static-nominal in all | 0.2 | `notes/06_d5_three_seeds.md:31` | ok |
 | 70 | ″ | 0.038 | `whitepaper/audit/out/t6.txt:7` | ok |
 | 70 | ″ | 3.2e-09 | `whitepaper/audit/out/t6.txt:8` | ok |
 | 70 | ″ | 0.18 | `whitepaper/audit/out/t6.txt:9` | ok |
-| 71 | L539: ties oracle MWPM at onset ($-0.0001$, $p=0.9$) | 0.0001 0.9 | `notes/09_d5_multiscale.md:146` | ok |
+| 71 | L540: ties oracle MWPM at onset ($-0.0001$, $p=0.9$) | 0.0001 0.9 | `notes/09_d5_multiscale.md:146` | ok |
 | 71 | ″ | 0.0034 2e-34 | `notes/09_d5_multiscale.md:147` | ok |
 | 71 | ″ | 0.0065 3e-14 | `notes/09_d5_multiscale.md:149` | ok |
 | 71 | ″ | 0.0019 2e-05 | `notes/09_d5_multiscale.md:150` | ok |
-| 72 | L542: even the best window is at 0.0116 | 0.0116 | `results/exp6/report6_tables.md:62` | ok |
+| 72 | L543: even the best window is at 0.0116 | 0.0116 | `results/exp6/report6_tables.md:62` | ok |
 | 72 | ″ | 0.0033 | `results/exp6/report6_tables.md:60` | ok |
-| 73 | L548: pooled over 5 streams (29 onset steps each) | 29 29 | `notes/03_d3_controls.md:19` | ok |
-| 74 | L556: (three-seed means 0.118 to 0.150, against 0.098; | 0.098 0.128 0.150 0.118 | `notes/04_d5_initial.md:10` | ok |
+| 73 | L549: pooled over 5 streams (29 onset steps each) | 29 29 | `notes/03_d3_controls.md:19` | ok |
+| 74 | L557: (three-seed means 0.118 to 0.150, against 0.098; | 0.098 0.128 0.150 0.118 | `notes/04_d5_initial.md:10` | ok |
 | 74 | ″ | 0.29441 | `notes/04_d5_initial.md:187` | ok |
-| 75 | L559: it still loses on \reg{bursts\_big}: 0.216 | 0.2159 | `notes/06_d5_three_seeds.md:40` | ok |
+| 75 | L560: it still loses on \reg{bursts\_big}: 0.216 | 0.2159 | `notes/06_d5_three_seeds.md:40` | ok |
 | 75 | ″ | 0.216 0.0980 | `whitepaper/audit/out/t6.txt:14` | ok |
-| 76 | L557: static-nominal was worse than MWPM on nominal noise (0.00400 vs 0.0032 | 0.00400 0.00329 | `notes/04_d5_initial.md:9` | ok |
-| 77 | L558: (static-nominal $0.00253\pm0.00026$ | 0.00253 0.00026 1e-4 | `notes/06_d5_three_seeds.md:11` | ok |
-| 78 | L559: Between 240\,000 and 300\,000 | 240k 300k 5 | `notes/05_d5_long_training.md:163` | ok |
-| 79 | L567: checkpoints every 30\,000 steps | 30000 | `notes/05_d5_long_training.md:128` | ok |
-| 80 | L581: (9 to 24 detectors per qubit at $d=5$) | 9 24 | `results/exp9/localisation_baseline.md:41` | ok |
-| 81 | L581: Both methods use the same causal 2000-shot buffer | 2000 | `results/exp9/localisation_baseline.md:25` | ok |
-| 82 | L593: the baseline scores 0.825 to 0.841 | 0.825 0.841 0.975 1.000 | `results/exp9/localisation_baseline.md:11` | ok |
-| 83 | L594: NF wins 20 bursts, loses 1 and ties 12 | 20 1 12 2e-05 17 18 0 2e-05 | `results/exp9/localisation_baseline.md:13` | ok |
-| 84 | L596: including the training-free score, scores 1.000 | 1.000 | `results/exp9/localisation_baseline.md:9` | ok |
-| 85 | L597: averages 0.056 to 0.114 above the baseline (0.845 to 0.849) | 0.845 0.849 0.905 0.958 0.056 0.114 | `results/exp9/localisation_baseline.md:15` | ok |
-| 86 | L598: seed 1 on later steps ($p=0.013$, weak) | 0.001 0.013 | `results/exp9/localisation_baseline.md:17` | ok |
-| 87 | L601: 96\% (\reg{bursts}) and 100\% (\reg{bursts\_big}) | 96 100 | `results/exp9/localisation_baseline.md:18` | ok |
-| 88 | L588: ``ev.'' is the number of events | 29 29 | `results/exp9/localisation_baseline.md:85` | ok |
+| 76 | L558: static-nominal was worse than MWPM on nominal noise (0.00400 vs 0.0032 | 0.00400 0.00329 | `notes/04_d5_initial.md:9` | ok |
+| 77 | L559: (static-nominal $0.00253\pm0.00026$ | 0.00253 0.00026 1e-4 | `notes/06_d5_three_seeds.md:11` | ok |
+| 78 | L560: Between 240\,000 and 300\,000 | 240k 300k 5 | `notes/05_d5_long_training.md:163` | ok |
+| 79 | L568: checkpoints every 30\,000 steps | 30000 | `notes/05_d5_long_training.md:128` | ok |
+| 80 | L582: (9 to 24 detectors per qubit at $d=5$) | 9 24 | `results/exp9/localisation_baseline.md:41` | ok |
+| 81 | L582: Both methods use the same causal 2000-shot buffer | 2000 | `results/exp9/localisation_baseline.md:25` | ok |
+| 82 | L594: the baseline scores 0.825 to 0.841 | 0.825 0.841 0.975 1.000 | `results/exp9/localisation_baseline.md:11` | ok |
+| 83 | L595: NF wins 20 bursts, loses 1 and ties 12 | 20 1 12 2e-05 17 18 0 2e-05 | `results/exp9/localisation_baseline.md:13` | ok |
+| 84 | L597: including the training-free score, scores 1.000 | 1.000 | `results/exp9/localisation_baseline.md:9` | ok |
+| 85 | L598: averages 0.056 to 0.114 above the baseline (0.845 to 0.849) | 0.845 0.849 0.905 0.958 0.056 0.114 | `results/exp9/localisation_baseline.md:15` | ok |
+| 86 | L599: seed 1 on later steps ($p=0.013$, weak) | 0.001 0.013 | `results/exp9/localisation_baseline.md:17` | ok |
+| 87 | L602: 96\% (\reg{bursts}) and 100\% (\reg{bursts\_big}) | 96 100 | `results/exp9/localisation_baseline.md:18` | ok |
+| 88 | L589: ``ev.'' is the number of events | 29 29 | `results/exp9/localisation_baseline.md:85` | ok |
 | 88 | ″ | 103 33 | `results/exp9/localisation_baseline.md:86` | ok |
 | 88 | ″ | 29 29 | `results/exp9/localisation_baseline.md:88` | ok |
 | 88 | ″ | 87 29 | `results/exp9/localisation_baseline.md:89` | ok |
 | 88 | ″ | 5 5 | `results/exp9/localisation_baseline.md:91` | ok |
 | 88 | ″ | 495 5 | `results/exp9/localisation_baseline.md:92` | ok |
-| 89 | L620: B: multiscale fingerprint & 3 & fails | 0.0171 3e-112 0.0002 0.0005 | `notes/08_d3_fingerprints.md:61` | ok |
-| 90 | L621: B: multiscale fingerprint & 5 & fails | 0.0019 2e-07 | `notes/09_d5_multiscale.md:57` | ok |
+| 89 | L621: B: multiscale fingerprint & 3 & fails | 0.0171 3e-112 0.0002 0.0005 | `notes/08_d3_fingerprints.md:61` | ok |
+| 90 | L622: B: multiscale fingerprint & 5 & fails | 0.0019 2e-07 | `notes/09_d5_multiscale.md:57` | ok |
 | 90 | ″ | 0.0019 4e-09 0.0024 2e-11 | `notes/09_d5_multiscale.md:58` | ok |
-| 91 | L622: C: B + 8 pair covariances & 3 & fails | 0.0180 2e-110 0.0050 8e-21 0.0082 2e-43 | `notes/08_d3_fingerprints.md:62` | ok |
+| 91 | L623: C: B + 8 pair covariances & 3 & fails | 0.0180 2e-110 0.0050 8e-21 0.0082 2e-43 | `notes/08_d3_fingerprints.md:62` | ok |
 | 91 | ″ | 8 | `notes/08_d3_fingerprints.md:23` | ok |
-| 92 | L623: N: noise-map head & 5 & fails | 0.0007 0.03 | `results/exp9/report9_tables.md:148` | ok |
-| 93 | L624: NF: noise-map head + FiLM & 5 & fails | 0.0007 0.04 | `results/exp9/report9_tables.md:149` | ok |
-| 94 | L632: the 2000-shot rates (long), the rates over the last 200 shots | 2000 | `notes/09_d5_multiscale.md:12` | ok |
+| 92 | L624: N: noise-map head & 5 & fails | 0.0007 0.03 | `results/exp9/report9_tables.md:148` | ok |
+| 93 | L625: NF: noise-map head + FiLM & 5 & fails | 0.0007 0.04 | `results/exp9/report9_tables.md:149` | ok |
+| 94 | L633: the 2000-shot rates (long), the rates over the last 200 shots | 2000 | `notes/09_d5_multiscale.md:12` | ok |
 | 94 | ″ | 200 | `notes/09_d5_multiscale.md:13` | ok |
-| 95 | L635: \reg{bursts\_big} ($-0.0175$, \E{4}{67}) | 0.0175 4e-67 | `notes/08_d3_fingerprints.md:86` | ok |
+| 95 | L636: \reg{bursts\_big} ($-0.0175$, \E{4}{67}) | 0.0175 4e-67 | `notes/08_d3_fingerprints.md:86` | ok |
 | 95 | ″ | 0.0014 8e-09 | `notes/08_d3_fingerprints.md:85` | ok |
 | 95 | ″ | 0.17 | `whitepaper/audit/out/t5.txt:102` | ok |
 | 95 | ″ | 0.15 | `whitepaper/audit/out/t5.txt:103` | ok |
-| 96 | L637: by about 1\% relative | 0.0002 0.0005 | `notes/08_d3_fingerprints.md:64` | ok |
+| 96 | L638: by about 1\% relative | 0.0002 0.0005 | `notes/08_d3_fingerprints.md:64` | ok |
 | 96 | ″ | 1 | `notes/08_d3_fingerprints.md:111` | ok |
-| 97 | L639: The onset gain shrinks on \reg{bursts} | 0.0019 | `notes/09_d5_multiscale.md:41` | ok |
+| 97 | L640: The onset gain shrinks on \reg{bursts} | 0.0019 | `notes/09_d5_multiscale.md:41` | ok |
 | 97 | ″ | 0.0019 2e-07 | `notes/09_d5_multiscale.md:57` | ok |
 | 97 | ″ | 0.0003 0.7 | `notes/09_d5_multiscale.md:42` | ok |
 | 97 | ″ | 0.0001 1 | `notes/09_d5_multiscale.md:43` | ok |
-| 98 | L640: ($+4.1\%$ and $+5.4\%$ relative) | 0.0019 4e-09 4.1 0.0024 2e-11 5.4 | `notes/09_d5_multiscale.md:39` | ok |
-| 99 | L641: $+6.4\%$ to $+17.7\%$ relative on nominal stream steps | 6.4 17.7 | `notes/09_d5_multiscale.md:324` | ok |
+| 98 | L641: ($+4.1\%$ and $+5.4\%$ relative) | 0.0019 4e-09 4.1 0.0024 2e-11 5.4 | `notes/09_d5_multiscale.md:39` | ok |
+| 99 | L642: $+6.4\%$ to $+17.7\%$ relative on nominal stream steps | 6.4 17.7 | `notes/09_d5_multiscale.md:324` | ok |
 | 99 | ″ | 6.4 5.5e-10 | `whitepaper/audit/out/t5.txt:46` | ok |
 | 99 | ″ | 7.4 2.8e-12 | `whitepaper/audit/out/t5.txt:51` | ok |
 | 99 | ″ | 17.7 5e-21 | `whitepaper/audit/out/t5.txt:55` | ok |
 | 99 | ″ | 8.3 1.2e-10 | `whitepaper/audit/out/t5.txt:60` | ok |
-| 100 | L643: beats oracle MWPM at \reg{bursts} onset ($-0.0020$, $p=0.0002$) | 0.0020 0.0002 | `notes/09_d5_multiscale.md:49` | ok |
-| 101 | L645: (60\,000 vs 300\,000 steps) and data | 60k 300k | `notes/09_d5_multiscale.md:280` | ok |
-| 102 | L648: drift vs baseline $-0.0064$, \E{1}{114} | 0.0064 1e-114 | `notes/08_d3_fingerprints.md:94` | ok |
+| 100 | L644: beats oracle MWPM at \reg{bursts} onset ($-0.0020$, $p=0.0002$) | 0.0020 0.0002 | `notes/09_d5_multiscale.md:49` | ok |
+| 101 | L646: (60\,000 vs 300\,000 steps) and data | 60k 300k | `notes/09_d5_multiscale.md:280` | ok |
+| 102 | L649: drift vs baseline $-0.0064$, \E{1}{114} | 0.0064 1e-114 | `notes/08_d3_fingerprints.md:94` | ok |
 | 102 | ″ | 0.0011 2e-54 | `notes/08_d3_fingerprints.md:96` | ok |
 | 102 | ″ | 0.00112 1e-11 | `notes/08_d3_fingerprints.md:145` | ok |
 | 102 | ″ | 0.0050 8e-21 | `notes/08_d3_fingerprints.md:95` | ok |
 | 102 | ″ | 0.0112 1e-113 | `notes/08_d3_fingerprints.md:104` | ok |
-| 103 | L652: (0.2714 vs 0.2539, unpaired) | 0.2714 0.2539 | `notes/08_d3_fingerprints.md:173` | ok |
-| 104 | L657: On the test sets NF vs the baseline is $-0.00006$ | 0.00006 0.3 0.00016 0.3 0.00012 0.3 | `results/exp9/report9_tables.md:60` | ok |
-| 105 | L661: (565\,121 parameters) | 565121 | `whitepaper/tech_doc_src/drift.tex:424` | ok |
-| 106 | L662: (0.0484 vs 0.0514, $-0.0031$, \E{8}{14}) | 0.0484 0.0514 0.0031 8e-14 | `notes/05_d5_long_training.md:13` | ok |
+| 103 | L653: (0.2714 vs 0.2539, unpaired) | 0.2714 0.2539 | `notes/08_d3_fingerprints.md:173` | ok |
+| 104 | L658: On the test sets NF vs the baseline is $-0.00006$ | 0.00006 0.3 0.00016 0.3 0.00012 0.3 | `results/exp9/report9_tables.md:60` | ok |
+| 105 | L662: (565\,121 parameters) | 565121 | `whitepaper/tech_doc_src/drift.tex:424` | ok |
+| 106 | L663: (0.0484 vs 0.0514, $-0.0031$, \E{8}{14}) | 0.0484 0.0514 0.0031 8e-14 | `notes/05_d5_long_training.md:13` | ok |
 | 106 | ″ | 0.00009 0.1 | `notes/05_d5_long_training.md:299` | ok |
 | 106 | ″ | 2.2 2 22 65 | `results/report4.md:13` | ok |
-| 107 | L664: with 0.3 points (0.0590 vs 0.0620) | 0.0590 0.0620 0.3 1 | `notes/05_d5_long_training.md:38` | ok |
-| 108 | L665: ensembles (0.0457 and 0.0484) are at or below it | 0.0457 0.0484 0.0484 | `notes/07_ensembles.md:442` | ok |
-| 109 | L668: (largest $p=\Eb{1}{7}$) | 1e-07 | `notes/07_ensembles.md:32` | ok |
-| 110 | L669: the gain over the best seed is $-0.0065$ | 0.0065 0.0032 0.0056 | `notes/07_ensembles.md:33` | ok |
-| 111 | L671: falls from $-0.0209$ (single-seed mean) to $-0.0107$ | 0.0107 0.0209 | `notes/07_ensembles.md:42` | ok |
-| 112 | L672: ($-0.0119$ vs a single-seed mean of $-0.0125$) | 0.0119 0.0125 | `notes/07_ensembles.md:227` | ok |
-| 113 | L673: on \reg{hot\_qubit} drift ($+0.0015$, \E{4}{137}) | 0.0015 4e-137 | `notes/07_ensembles.md:38` | ok |
-| 114 | L702: it takes 1.85\,\textmu s per shot on CPU | 1.85 | `notes/04_d5_initial.md:450` | ok |
+| 107 | L665: with 0.3 points (0.0590 vs 0.0620) | 0.0590 0.0620 0.3 1 | `notes/05_d5_long_training.md:38` | ok |
+| 108 | L666: ensembles (0.0457 and 0.0484) are at or below it | 0.0457 0.0484 0.0484 | `notes/07_ensembles.md:442` | ok |
+| 109 | L669: (largest $p=\Eb{1}{7}$) | 1e-07 | `notes/07_ensembles.md:32` | ok |
+| 110 | L670: the gain over the best seed is $-0.0065$ | 0.0065 0.0032 0.0056 | `notes/07_ensembles.md:33` | ok |
+| 111 | L672: falls from $-0.0209$ (single-seed mean) to $-0.0107$ | 0.0107 0.0209 | `notes/07_ensembles.md:42` | ok |
+| 112 | L673: ($-0.0119$ vs a single-seed mean of $-0.0125$) | 0.0119 0.0125 | `notes/07_ensembles.md:227` | ok |
+| 113 | L674: on \reg{hot\_qubit} drift ($+0.0015$, \E{4}{137}) | 0.0015 4e-137 | `notes/07_ensembles.md:38` | ok |
+| 114 | L703: it takes 1.85\,\textmu s per shot on CPU | 1.85 | `notes/04_d5_initial.md:450` | ok |
 | 114 | ″ | 10.2 | `notes/04_d5_initial.md:453` | ok |
 | 114 | ″ | 10.8 | `notes/04_d5_initial.md:455` | ok |
 | 114 | ″ | 4096 | `notes/04_d5_initial.md:466` | ok |
-| 115 | L707: curves were still falling at 300\,000 steps | 300k | `notes/05_d5_long_training.md:15` | ok |
-| 116 | L719: and trails it by $0.0031$ on out-of-distribution large | 0.0031 3e-14 | `notes/07_ensembles.md:268` | ok |
-| 117 | L279: default $H_c=48$, $L=4$ (also Appendix A, and h64/l6 $H_c=64$, $L=6$) | 48 4 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
+| 115 | L708: curves were still falling at 300\,000 steps | 300k | `notes/05_d5_long_training.md:15` | ok |
+| 116 | L720: and trails it by $0.0031$ on out-of-distribution large | 0.0031 3e-14 | `notes/07_ensembles.md:268` | ok |
+| 117 | L280: default $H_c=48$, $L=4$ (also Appendix A, and h64/l6 $H_c=64$, $L=6$) | 48 4 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
 | 117 | ″ | 64 6 | `whitepaper/tech_doc_src/drift.tex:424` | ok |
-| 118 | L488: lowers the drift-step LER in every case at $p\le\Eb{2}{209}$ (the larg | 1.2e-209 | `whitepaper/audit/out/t2.txt:7` | ok |
-| 119 | L91: On nominal noise the network is already about 36\,\% | 36 | `whitepaper/audit/out/t8.txt:25` | ok |
-| 120 | L420: since the network is already 35--39\,\% below MWPM on nominal steps | 36 | `whitepaper/audit/out/t8.txt:25` | ok |
+| 118 | L489: lowers the drift-step LER in every case at $p\le\Eb{2}{209}$ (the larg | 1.2e-209 | `whitepaper/audit/out/t2.txt:7` | ok |
+| 119 | L92: On nominal noise the network is already about 36\,\% | 36 | `whitepaper/audit/out/t8.txt:25` | ok |
+| 120 | L421: since the network is already 35--39\,\% below MWPM on nominal steps | 36 | `whitepaper/audit/out/t8.txt:25` | ok |
 | 120 | ″ | 38 | `whitepaper/audit/out/t8.txt:26` | ok |
 | 120 | ″ | 39 | `whitepaper/audit/out/t8.txt:27` | ok |
 | 120 | ″ | 35 | `whitepaper/audit/out/t8.txt:28` | ok |
-| 121 | L493: while frozen adaptive-wide is well above it (0.0680, \E{2}{178}) | 0.0680 0.0564 2e-178 | `whitepaper/audit/out/t8.txt:3` | ok |
-| 122 | L396: (29 runs per burst regime, 21 for | 29 29 21 5 | `notes/03_d3_controls.md:19` | ok |
-| 123 | L398: keeps $p\le\Eb{1.5}{5}$ except | 26 3 1.5e-05 | `whitepaper/audit/out/t9.txt:2` | ok |
+| 121 | L494: while frozen adaptive-wide is well above it (0.0680, \E{2}{178}) | 0.0680 0.0564 2e-178 | `whitepaper/audit/out/t8.txt:3` | ok |
+| 122 | L397: (29 runs per burst regime, 21 for | 29 29 21 5 | `notes/03_d3_controls.md:19` | ok |
+| 123 | L399: keeps $p\le\Eb{1.5}{5}$ except | 26 3 1.5e-05 | `whitepaper/audit/out/t9.txt:2` | ok |
 | 123 | ″ | 28 0 7.5e-09 | `whitepaper/audit/out/t9.txt:7` | ok |
 | 123 | ″ | 27 1 2.2e-07 | `whitepaper/audit/out/t9.txt:11` | ok |
 | 123 | ″ | 9 20 0.061 | `whitepaper/audit/out/t9.txt:8` | ok |
 | 123 | ″ | 5 0 0.062 | `whitepaper/audit/out/t9.txt:14` | ok |
-| 124 | L560: all five seed-0 models (static-wide, static-nominal | 5 | `notes/05_d5_long_training.md:163` | ok |
-| 125 | L750: Detectors per shot; grid $(T,X,Y)$ & 24 | 24 120 | `whitepaper/tech_doc_src/drift.tex:140` | ok |
-| 126 | L752: 194\,385 (static), 195\,681 (adaptive); h64/l6: 563\,393 / 565\,121 | 194385 195681 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
+| 124 | L561: all five seed-0 models (static-wide, static-nominal | 5 | `notes/05_d5_long_training.md:163` | ok |
+| 125 | L751: Detectors per shot; grid $(T,X,Y)$ & 24 | 24 120 | `whitepaper/tech_doc_src/drift.tex:140` | ok |
+| 126 | L753: 194\,385 (static), 195\,681 (adaptive); h64/l6: 563\,393 / 565\,121 | 194385 195681 | `whitepaper/tech_doc_src/drift.tex:423` | ok |
 | 126 | ″ | 563393 565121 | `whitepaper/tech_doc_src/drift.tex:424` | ok |
-| 127 | L753: Fingerprint & $W=2000$ shots, scaled by 10; updated every 200 shots | 2000 | `whitepaper/tech_doc_src/drift.tex:290` | ok |
+| 127 | L754: Fingerprint & $W=2000$ shots, scaled by 10; updated every 200 shots | 2000 | `whitepaper/tech_doc_src/drift.tex:290` | ok |
 | 127 | ″ | 200 | `whitepaper/tech_doc_src/drift.tex:536` | ok |
-| 128 | L757: AdamW, peak learning rate $10^{-3}$ | 10{-3} | `whitepaper/tech_doc_src/drift.tex:451` | ok |
-| 129 | L758: 512 shots (one chunk) per step, fp32 | 512 | `whitepaper/tech_doc_src/drift.tex:446` | ok |
-| 130 | L763: $w\in\{500,1000,2000,5000,10000\}$; estimates clipped | 10{-6} 0.45 | `whitepaper/tech_doc_src/drift.tex:527` | ok |
-| 131 | L764: Stim 1.16.0, PyMatching 2.4.0, NumPy 2.4.6, PyTorch 2.15.0 | 1.16.0 2.4.0 2.4.6 2.15.0 | `notes/02_d3_stale_fingerprint.md:25` | ok |
-| 132 | L783: \code{d3\_wide} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:337` | ok |
+| 128 | L758: AdamW, peak learning rate $10^{-3}$ | 10{-3} | `whitepaper/tech_doc_src/drift.tex:451` | ok |
+| 129 | L759: 512 shots (one chunk) per step, fp32 | 512 | `whitepaper/tech_doc_src/drift.tex:446` | ok |
+| 130 | L764: $w\in\{500,1000,2000,5000,10000\}$; estimates clipped | 10{-6} 0.45 | `whitepaper/tech_doc_src/drift.tex:527` | ok |
+| 131 | L765: Stim 1.16.0, PyMatching 2.4.0, NumPy 2.4.6, PyTorch 2.15.0 | 1.16.0 2.4.0 2.4.6 2.15.0 | `notes/02_d3_stale_fingerprint.md:25` | ok |
+| 132 | L784: \code{d3\_wide} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:337` | ok |
 | 132 | ″ | 107 | `whitepaper/audit/out/t10.txt:4` | ok |
-| 133 | L785: \code{d5\_wide} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:338` | ok |
+| 133 | L786: \code{d5\_wide} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:338` | ok |
 | 133 | ″ | 510 | `whitepaper/audit/out/t10.txt:7` | ok |
-| 134 | L786: \code{d5\_nominal} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:339` | ok |
+| 134 | L787: \code{d5\_nominal} &  | 30000 15.4 | `whitepaper/tech_doc_src/drift.tex:339` | ok |
 | 134 | ″ | 85 | `whitepaper/audit/out/t10.txt:5` | ok |
-| 135 | L787: \code{d5\_wide\_x5} &  | 150000 76.8 | `whitepaper/tech_doc_src/drift.tex:340` | ok |
+| 135 | L788: \code{d5\_wide\_x5} &  | 150000 76.8 | `whitepaper/tech_doc_src/drift.tex:340` | ok |
 | 135 | ″ | 2.28 | `whitepaper/audit/out/t10.txt:8` | ok |
-| 136 | L788: \code{d5\_nominal\_x5} &  | 150000 76.8 | `whitepaper/tech_doc_src/drift.tex:341` | ok |
+| 136 | L789: \code{d5\_nominal\_x5} &  | 150000 76.8 | `whitepaper/tech_doc_src/drift.tex:341` | ok |
 | 136 | ″ | 392 | `whitepaper/audit/out/t10.txt:6` | ok |
-| 137 | L782: \code{d3\_r3\_p0.003\_s0}$^{*}$ & 3 | 101 | `whitepaper/audit/out/t10.txt:3` | ok |
-| 138 | L784: \code{d3\_nominal} & 3 & nominal only & 30\,000 & 15.4\,M & 16 | 16 | `whitepaper/audit/out/t10.txt:2` | ok |
-| 139 | L784: \code{d3\_nominal} & 3 & nominal only & 30\,000 | 30000 512 | `notes/04_d5_initial.md:394` | ok |
-| 140 | L792: All have 1000 validation chunks | 1000 | `whitepaper/tech_doc_src/drift.tex:344` | ok |
+| 137 | L783: \code{d3\_r3\_p0.003\_s0}$^{*}$ & 3 | 101 | `whitepaper/audit/out/t10.txt:3` | ok |
+| 138 | L785: \code{d3\_nominal} & 3 & nominal only & 30\,000 & 15.4\,M & 16 | 16 | `whitepaper/audit/out/t10.txt:2` | ok |
+| 139 | L785: \code{d3\_nominal} & 3 & nominal only & 30\,000 | 30000 512 | `notes/04_d5_initial.md:394` | ok |
+| 140 | L793: All have 1000 validation chunks | 1000 | `whitepaper/tech_doc_src/drift.tex:344` | ok |
 | 141 | [Table 6, bursts] static MWPM | 0.0439 0.0455 0.0435 0.0033 0.0033 | `results/exp6/report6_tables.md:60` | ok |
 | 142 | [Table 6, bursts] best WindowDEM | 0.0356 2000 0.0455 1000 0.0327 2000 0.0116 1000 0.0046 5000 | `results/exp6/report6_tables.md:62` | ok |
 | 143 | [Table 6, bursts] oracle MWPM | 0.0197 0.0195 0.0198 0.0033 0.0033 | `results/exp6/report6_tables.md:61` | ok |
