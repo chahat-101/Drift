@@ -1,0 +1,4 @@
+h64 vs h48 s0 bb drift pooled: 0.0484 vs 0.0514 d=-0.00306 p=8e-14
+stream0: h64 0.0590 h48 0.0620
+nominal test h64 0.00199 h48 0.00208 d=-0.00009 p=0.15
+m0 vs exp4 s0 identical: True

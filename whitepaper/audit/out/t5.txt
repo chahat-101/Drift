@@ -1,0 +1,112 @@
+== d3 B - ast, all regime×phase (bold <1e-3)
+   bursts     drift   -0.0048 (-6.7%) p=3.5e-88 **
+   bursts     onset   -0.0171 (-19.0%) p=3.2e-112 **
+   bursts     later   -0.0014 (-2.1%) p=7.6e-10 **
+   bursts     after   -0.0014 (-18.4%) p=8e-09 **
+   bursts     nominal -0.0001 (-1.5%) p=0.00013 **
+   bursts_big drift   -0.0061 (-3.0%) p=1.3e-45 **
+   bursts_big onset   -0.0175 (-8.1%) p=3.8e-67 **
+   bursts_big later   -0.0023 (-1.2%) p=6e-07 **
+   bursts_big after   -0.0030 (-32.8%) p=3.3e-26 **
+   bursts_big nominal -0.0001 (-2.5%) p=1.5e-10 **
+   hot_qubit  drift   +0.0002 (+0.8%) p=0.0038 w
+   hot_qubit  onset   -0.0033 (-13.7%) p=1.9e-05 **
+   hot_qubit  later   +0.0002 (+1.0%) p=0.00048 **
+   hot_qubit  nominal +0.0000 (+0.1%) p=0.95 
+   telegraph  drift   -0.0001 (-0.4%) p=0.13 
+   telegraph  onset   -0.0004 (-1.9%) p=0.11 
+   telegraph  later   -0.0001 (-0.3%) p=0.28 
+   telegraph  after   +0.0002 (+4.0%) p=0.039 w
+   telegraph  nominal -0.0000 (-0.1%) p=0.88 
+== d3 C - ast, all regime×phase (bold <1e-3)
+   bursts     drift   -0.0064 (-9.0%) p=1.5e-114 **
+   bursts     onset   -0.0180 (-20.0%) p=2.1e-110 **
+   bursts     later   -0.0032 (-4.8%) p=1.9e-29 **
+   bursts     after   -0.0013 (-17.9%) p=5.1e-07 **
+   bursts     nominal -0.0001 (-2.0%) p=4.6e-06 **
+   bursts_big drift   +0.0050 (+2.5%) p=7.6e-21 **
+   bursts_big onset   -0.0046 (-2.1%) p=0.00013 **
+   bursts_big later   +0.0082 (+4.2%) p=2e-43 **
+   bursts_big after   -0.0024 (-25.9%) p=2.3e-14 **
+   bursts_big nominal -0.0002 (-2.8%) p=2.4e-10 **
+   hot_qubit  drift   -0.0011 (-5.4%) p=2.3e-54 **
+   hot_qubit  onset   -0.0045 (-18.7%) p=1e-06 **
+   hot_qubit  later   -0.0011 (-5.2%) p=5.4e-51 **
+   hot_qubit  nominal +0.0000 (+0.0%) p=1 
+   telegraph  drift   -0.0003 (-1.3%) p=2.8e-05 **
+   telegraph  onset   -0.0003 (-1.5%) p=0.2 
+   telegraph  later   -0.0003 (-1.2%) p=7.3e-05 **
+   telegraph  after   +0.0000 (+0.5%) p=1 
+   telegraph  nominal -0.0000 (-0.7%) p=0.13 
+== d5 B - ast, all regime×phase (bold <1e-3)
+   bursts     drift   -0.0004 (-2.1%) p=0.018 w
+   bursts     onset   -0.0019 (-9.8%) p=2.5e-07 **
+   bursts     later   +0.0001 (+0.5%) p=0.65 
+   bursts     after   -0.0003 (-12.3%) p=0.02 w
+   bursts     nominal +0.0001 (+6.4%) p=5.5e-10 **
+   bursts_big drift   +0.0019 (+4.1%) p=4.3e-09 **
+   bursts_big onset   +0.0003 (+0.6%) p=0.71 
+   bursts_big later   +0.0024 (+5.4%) p=2.3e-11 **
+   bursts_big after   -0.0005 (-16.9%) p=0.0018 w
+   bursts_big nominal +0.0002 (+7.4%) p=2.8e-12 **
+   hot_qubit  drift   +0.0001 (+2.0%) p=0.0012 w
+   hot_qubit  onset   +0.0001 (+1.4%) p=1 
+   hot_qubit  later   +0.0001 (+2.0%) p=0.0012 w
+   hot_qubit  nominal +0.0004 (+17.7%) p=5e-21 **
+   telegraph  drift   +0.0000 (+0.1%) p=0.84 
+   telegraph  onset   -0.0001 (-0.7%) p=0.75 
+   telegraph  later   +0.0000 (+0.2%) p=0.75 
+   telegraph  after   -0.0001 (-6.5%) p=0.38 
+   telegraph  nominal +0.0002 (+8.3%) p=1.2e-10 **
+== d5 N - ast, all regime×phase (bold <1e-3)
+   bursts     drift   -0.0002 (-1.1%) p=0.19 
+   bursts     onset   +0.0002 (+0.8%) p=0.66 
+   bursts     later   -0.0003 (-1.7%) p=0.076 
+   bursts     after   +0.0001 (+4.6%) p=0.41 
+   bursts     nominal -0.0000 (-0.3%) p=0.75 
+   bursts_big drift   +0.0007 (+1.5%) p=0.031 w
+   bursts_big onset   +0.0013 (+2.6%) p=0.047 w
+   bursts_big later   +0.0005 (+1.1%) p=0.18 
+   bursts_big after   -0.0001 (-3.1%) p=0.53 
+   bursts_big nominal -0.0000 (-0.2%) p=0.88 
+   hot_qubit  drift   -0.0000 (-0.2%) p=0.79 
+   hot_qubit  onset   +0.0001 (+1.4%) p=1 
+   hot_qubit  later   -0.0000 (-0.2%) p=0.77 
+   hot_qubit  nominal +0.0000 (+0.5%) p=0.82 
+   telegraph  drift   -0.0001 (-0.8%) p=0.11 
+   telegraph  onset   -0.0006 (-3.9%) p=0.034 w
+   telegraph  later   -0.0001 (-0.6%) p=0.27 
+   telegraph  after   -0.0001 (-6.5%) p=0.33 
+   telegraph  nominal -0.0000 (-1.5%) p=0.21 
+== d5 NF - ast, all regime×phase (bold <1e-3)
+   bursts     drift   -0.0002 (-1.2%) p=0.15 
+   bursts     onset   +0.0000 (+0.2%) p=0.96 
+   bursts     later   -0.0003 (-1.7%) p=0.09 
+   bursts     after   +0.0000 (+1.5%) p=0.86 
+   bursts     nominal +0.0000 (+0.7%) p=0.52 
+   bursts_big drift   +0.0007 (+1.4%) p=0.043 w
+   bursts_big onset   +0.0014 (+3.0%) p=0.028 w
+   bursts_big later   +0.0004 (+0.9%) p=0.29 
+   bursts_big after   +0.0002 (+6.9%) p=0.11 
+   bursts_big nominal +0.0000 (+0.9%) p=0.39 
+   hot_qubit  drift   +0.0000 (+0.0%) p=1 
+   hot_qubit  onset   -0.0001 (-1.4%) p=1 
+   hot_qubit  later   +0.0000 (+0.0%) p=0.98 
+   hot_qubit  nominal -0.0000 (-0.8%) p=0.69 
+   telegraph  drift   -0.0001 (-0.8%) p=0.13 
+   telegraph  onset   -0.0007 (-4.2%) p=0.028 w
+   telegraph  later   -0.0001 (-0.5%) p=0.31 
+   telegraph  after   -0.0002 (-9.1%) p=0.12 
+   telegraph  nominal -0.0000 (-1.1%) p=0.36 
+== extra
+  d3 B after bursts - static: A=0.0061 B=0.0065 d=-0.00038 p=0.17
+  d3 B after bursts_big - static: A=0.0062 B=0.0066 d=-0.00038 p=0.15
+  d3 C - B bb drift: A=0.2061 B=0.1950 d=+0.01115 p=1.1e-113
+  d3 B frozen bb drift 0.2539
+  d3 C frozen bb drift 0.2714
+  d5 B ens - oracle bursts onset: A=0.0175 B=0.0195 d=-0.00202 p=0.0002
+  d5 ast ens - oracle bursts onset: A=0.0194 B=0.0195 d=-0.00010 p=0.88
+  d5 nominal steps bursts: B frozen 0.00199 ast frozen 0.00201
+  d5 nominal steps bursts_big: B frozen 0.00202 ast frozen 0.00202
+  d5 nominal steps hot_qubit: B frozen 0.00195 ast frozen 0.00193
+  d5 nominal steps telegraph: B frozen 0.00205 ast frozen 0.00208

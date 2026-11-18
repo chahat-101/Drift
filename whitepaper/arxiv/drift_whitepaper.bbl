@@ -1,0 +1,819 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{klimov2018fluctuations}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=42f38e7bd498d97e941bc41c96a102bf}{%
+           family={Klimov},
+           familyi={K\bibinitperiod},
+           given={P.\bibnamedelimi V.},
+           giveni={P\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=52ce271eaf95f32dd23df21155d474bd}{%
+           family={Kelly},
+           familyi={K\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d90f53b6c47cfea3540b0fb9da23dbd7}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=75f3d78a932ed86386a2ef2bafd63f44}{%
+           family={Neeley},
+           familyi={N\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{def93af2d22d9e475a518490a25fdde4}
+      \strng{fullhash}{63d6628f3555aad2743f473ec800d91d}
+      \strng{fullhashraw}{63d6628f3555aad2743f473ec800d91d}
+      \strng{bibnamehash}{63d6628f3555aad2743f473ec800d91d}
+      \strng{authorbibnamehash}{63d6628f3555aad2743f473ec800d91d}
+      \strng{authornamehash}{def93af2d22d9e475a518490a25fdde4}
+      \strng{authorfullhash}{63d6628f3555aad2743f473ec800d91d}
+      \strng{authorfullhashraw}{63d6628f3555aad2743f473ec800d91d}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Physical Review Letters}
+      \field{title}{Fluctuations of Energy-Relaxation Times in Superconducting Qubits}
+      \field{volume}{121}
+      \field{year}{2018}
+      \field{pages}{090502}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.121.090502
+      \endverb
+      \verb{eprint}
+      \verb 1809.01043
+      \endverb
+    \endentry
+    \entry{mcewen2022cosmic}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=4177c755f1b9239cdea14abc7f724194}{%
+           family={McEwen},
+           familyi={M\bibinitperiod},
+           given={Matt},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1afb833d7b03ef33b212be2e4e36c567}{%
+           family={Faoro},
+           familyi={F\bibinitperiod},
+           given={Lara},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0a2abe43325e0dd3690ccc47bfa6c6b7}{%
+           family={Arya},
+           familyi={A\bibinitperiod},
+           given={Kunal},
+           giveni={K\bibinitperiod}}}%
+        {{hash=ecea25363fad364a9f4a37613078f227}{%
+           family={Dunsworth},
+           familyi={D\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{3b85f6fffd8da140793ddb3af4c00291}
+      \strng{fullhash}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \strng{fullhashraw}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \strng{bibnamehash}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \strng{authorbibnamehash}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \strng{authornamehash}{3b85f6fffd8da140793ddb3af4c00291}
+      \strng{authorfullhash}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \strng{authorfullhashraw}{875a1d6d5d7a69c3f32ca709a9daaaa7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Nature Physics}
+      \field{title}{Resolving Catastrophic Error Bursts from Cosmic Rays in Large Arrays of Superconducting Qubits}
+      \field{volume}{18}
+      \field{year}{2022}
+      \field{pages}{107\bibrangedash 111}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1038/s41567-021-01432-8
+      \endverb
+      \verb{eprint}
+      \verb 2104.05219
+      \endverb
+    \endentry
+    \entry{higgott2025sparse}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2db1ed6b0ea0e0cd8635024ff435326e}{%
+           family={Higgott},
+           familyi={H\bibinitperiod},
+           given={Oscar},
+           giveni={O\bibinitperiod}}}%
+        {{hash=0101a428978c8ddc038880b7a77afd98}{%
+           family={Gidney},
+           familyi={G\bibinitperiod},
+           given={Craig},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{fullhash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{fullhashraw}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{bibnamehash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{authorbibnamehash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{authornamehash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{authorfullhash}{c00b4d690796e12c08464e2fd64e8b2a}
+      \strng{authorfullhashraw}{c00b4d690796e12c08464e2fd64e8b2a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Quantum}
+      \field{title}{Sparse Blossom: Correcting a Million Errors per Core Second with Minimum-Weight Matching}
+      \field{volume}{9}
+      \field{year}{2025}
+      \field{pages}{1600}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.22331/q-2025-01-20-1600
+      \endverb
+      \verb{eprint}
+      \verb 2303.15933
+      \endverb
+    \endentry
+    \entry{gidney2021stim}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=0101a428978c8ddc038880b7a77afd98}{%
+           family={Gidney},
+           familyi={G\bibinitperiod},
+           given={Craig},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{fullhash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{fullhashraw}{0101a428978c8ddc038880b7a77afd98}
+      \strng{bibnamehash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{authorbibnamehash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{authornamehash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{authorfullhash}{0101a428978c8ddc038880b7a77afd98}
+      \strng{authorfullhashraw}{0101a428978c8ddc038880b7a77afd98}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Quantum}
+      \field{title}{Stim: a Fast Stabilizer Circuit Simulator}
+      \field{volume}{5}
+      \field{year}{2021}
+      \field{pages}{497}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.22331/q-2021-07-06-497
+      \endverb
+      \verb{eprint}
+      \verb 2103.02202
+      \endverb
+    \endentry
+    \entry{spitz2018adaptive}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=17c87f00f080de5d130dcbb53bf71f1c}{%
+           family={Spitz},
+           familyi={S\bibinitperiod},
+           given={S.\bibnamedelimi T.},
+           giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=4d420c123843d61ba0ad115a80fc3f8d}{%
+           family={Tarasinski},
+           familyi={T\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=46cbed27ebd2a2972ca82a8c5217c944}{%
+           family={Beenakker},
+           familyi={B\bibinitperiod},
+           given={C.\bibnamedelimi W.\bibnamedelimi J.},
+           giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=f6b0eacedf51df80c0593ca5b453ce5d}{%
+           family={O'Brien},
+           familyi={O\bibinitperiod},
+           given={T.\bibnamedelimi E.},
+           giveni={T\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{071d6d2275d022491b52e6a18d208224}
+      \strng{fullhash}{2eeea4dca88264de8529cb25773dcd3c}
+      \strng{fullhashraw}{2eeea4dca88264de8529cb25773dcd3c}
+      \strng{bibnamehash}{2eeea4dca88264de8529cb25773dcd3c}
+      \strng{authorbibnamehash}{2eeea4dca88264de8529cb25773dcd3c}
+      \strng{authornamehash}{071d6d2275d022491b52e6a18d208224}
+      \strng{authorfullhash}{2eeea4dca88264de8529cb25773dcd3c}
+      \strng{authorfullhashraw}{2eeea4dca88264de8529cb25773dcd3c}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Advanced Quantum Technologies}
+      \field{number}{1}
+      \field{title}{Adaptive Weight Estimator for Quantum Error Correction in a Time-Dependent Environment}
+      \field{volume}{1}
+      \field{year}{2018}
+      \field{pages}{1800012}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1002/qute.201800012
+      \endverb
+      \verb{eprint}
+      \verb 1712.02360
+      \endverb
+    \endentry
+    \entry{varbanov2025nn}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=f475b6d5a77e37f4b36dce4ac452851a}{%
+           family={Varbanov},
+           familyi={V\bibinitperiod},
+           given={Boris\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=622537ceb120bdf92c4baa3a772c447a}{%
+           family={Serra-Peralta},
+           familyi={S\bibinithyphendelim P\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=23ff8ee0a9dc564c68069718b4457f56}{%
+           family={Byfield},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=ae66a23883f73a4e22b077d8eaad3b88}{%
+           family={Terhal},
+           familyi={T\bibinitperiod},
+           given={Barbara\bibnamedelima M.},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{37ed637abf8abc69ef1f855dad4f17ef}
+      \strng{fullhash}{f994579457d81eac00f353fc103517ea}
+      \strng{fullhashraw}{f994579457d81eac00f353fc103517ea}
+      \strng{bibnamehash}{f994579457d81eac00f353fc103517ea}
+      \strng{authorbibnamehash}{f994579457d81eac00f353fc103517ea}
+      \strng{authornamehash}{37ed637abf8abc69ef1f855dad4f17ef}
+      \strng{authorfullhash}{f994579457d81eac00f353fc103517ea}
+      \strng{authorfullhashraw}{f994579457d81eac00f353fc103517ea}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Physical Review Research}
+      \field{title}{Neural Network Decoder for Near-Term Surface-Code Experiments}
+      \field{volume}{7}
+      \field{year}{2025}
+      \field{pages}{013029}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevResearch.7.013029
+      \endverb
+      \verb{eprint}
+      \verb 2307.03280
+      \endverb
+    \endentry
+    \entry{lange2025gnn}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=2712c6e805d672ee2c4bf1099e85eef7}{%
+           family={Lange},
+           familyi={L\bibinitperiod},
+           given={Moritz},
+           giveni={M\bibinitperiod}}}%
+        {{hash=57441b50f32de0303c0f06dd684ea0a9}{%
+           family={Havström},
+           familyi={H\bibinitperiod},
+           given={Pontus},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7b32c4eb44d66b31c03b1e7705e9ed26}{%
+           family={Srivastava},
+           familyi={S\bibinitperiod},
+           given={Basudha},
+           giveni={B\bibinitperiod}}}%
+        {{hash=fb68f94041afefbb1a186236fd32c9bf}{%
+           family={Bengtsson},
+           familyi={B\bibinitperiod},
+           given={Isak},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{d9821e6f6bee04e5c408589b48c73108}
+      \strng{fullhash}{cbb07b051f693238b351fa43a0822a4a}
+      \strng{fullhashraw}{cbb07b051f693238b351fa43a0822a4a}
+      \strng{bibnamehash}{cbb07b051f693238b351fa43a0822a4a}
+      \strng{authorbibnamehash}{cbb07b051f693238b351fa43a0822a4a}
+      \strng{authornamehash}{d9821e6f6bee04e5c408589b48c73108}
+      \strng{authorfullhash}{cbb07b051f693238b351fa43a0822a4a}
+      \strng{authorfullhashraw}{cbb07b051f693238b351fa43a0822a4a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Physical Review Research}
+      \field{title}{Data-Driven Decoding of Quantum Error Correcting Codes Using Graph Neural Networks}
+      \field{volume}{7}
+      \field{year}{2025}
+      \field{pages}{023181}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevResearch.7.023181
+      \endverb
+      \verb{eprint}
+      \verb 2307.01241
+      \endverb
+    \endentry
+    \entry{bausch2024alphaqubit}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=1ec652491db06beba3928734411dd45f}{%
+           family={Bausch},
+           familyi={B\bibinitperiod},
+           given={Johannes},
+           giveni={J\bibinitperiod}}}%
+        {{hash=211e54ca76df5d8c1de6957d48792545}{%
+           family={Senior},
+           familyi={S\bibinitperiod},
+           given={Andrew\bibnamedelima W.},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=0f196457a57f51ef05f6abf5713a891e}{%
+           family={Heras},
+           familyi={H\bibinitperiod},
+           given={Francisco\bibnamedelimb J.\bibnamedelimi H.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=0dd982fc1f80b2f6fc4dca655174f3d2}{%
+           family={Edlich},
+           familyi={E\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf33b4717ca57709fed7c5fe5be3f269}
+      \strng{fullhash}{2a87edf95fb93f0c790396d3fce4f113}
+      \strng{fullhashraw}{2a87edf95fb93f0c790396d3fce4f113}
+      \strng{bibnamehash}{2a87edf95fb93f0c790396d3fce4f113}
+      \strng{authorbibnamehash}{2a87edf95fb93f0c790396d3fce4f113}
+      \strng{authornamehash}{bf33b4717ca57709fed7c5fe5be3f269}
+      \strng{authorfullhash}{2a87edf95fb93f0c790396d3fce4f113}
+      \strng{authorfullhashraw}{2a87edf95fb93f0c790396d3fce4f113}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Nature}
+      \field{title}{Learning High-Accuracy Error Decoding for Quantum Processors}
+      \field{volume}{635}
+      \field{year}{2024}
+      \field{pages}{834\bibrangedash 840}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1038/s41586-024-08148-8
+      \endverb
+      \verb{eprint}
+      \verb 2310.05900
+      \endverb
+    \endentry
+    \entry{senior2025alphaqubit2}{misc}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=211e54ca76df5d8c1de6957d48792545}{%
+           family={Senior},
+           familyi={S\bibinitperiod},
+           given={Andrew\bibnamedelima W.},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=0dd982fc1f80b2f6fc4dca655174f3d2}{%
+           family={Edlich},
+           familyi={E\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=0f196457a57f51ef05f6abf5713a891e}{%
+           family={Heras},
+           familyi={H\bibinitperiod},
+           given={Francisco\bibnamedelimb J.\bibnamedelimi H.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=94b3fd664124820f79b846cfe2ef0211}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lei\bibnamedelima M.},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{a8163a529b375022300c493a8e98c724}
+      \strng{fullhash}{5c230f03090a90ecb103bb6efc416664}
+      \strng{fullhashraw}{5c230f03090a90ecb103bb6efc416664}
+      \strng{bibnamehash}{5c230f03090a90ecb103bb6efc416664}
+      \strng{authorbibnamehash}{5c230f03090a90ecb103bb6efc416664}
+      \strng{authornamehash}{a8163a529b375022300c493a8e98c724}
+      \strng{authorfullhash}{5c230f03090a90ecb103bb6efc416664}
+      \strng{authorfullhashraw}{5c230f03090a90ecb103bb6efc416664}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{note}{AlphaQubit~2}
+      \field{title}{A Scalable and Real-Time Neural Decoder for Topological Quantum Codes}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2512.07737
+      \endverb
+    \endentry
+    \entry{yan2026rethink}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=7b08566613a5be87db9ee822a67dde49}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Ge},
+           giveni={G\bibinitperiod}}}%
+        {{hash=484d4c8fc96e4d74b33477e5e8261941}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Shanchuan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fe4973aab2c3055a052158be9a308188}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yuxuan},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{fullhash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{fullhashraw}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{bibnamehash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{authorbibnamehash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{authornamehash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{authorfullhash}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \strng{authorfullhashraw}{87ca81c5cef5403c81a3ae8102eb01d0}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Rethink the Role of Neural Decoders in Quantum Error Correction}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2605.12046
+      \endverb
+    \endentry
+    \entry{stein2026film}{misc}{}{}
+      \name{author}{9}{}{%
+        {{hash=f7e5f2b66213ccdbdc063cea87845b4a}{%
+           family={Stein},
+           familyi={S\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d3a4e615809ce2d51944a4a7514f15ba}{%
+           family={Kan},
+           familyi={K\bibinitperiod},
+           given={Shuwen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=40f79ea49d9dadf6afac09377eb723f5}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Chenxu},
+           giveni={C\bibinitperiod}}}%
+        {{hash=fa34cff71d773b59dc19b32849ef4282}{%
+           family={Harkness},
+           familyi={H\bibinitperiod},
+           given={Adrian},
+           giveni={A\bibinitperiod}}}%
+        {{hash=4e980535d48449c1cb05fc70a78a3771}{%
+           family={Garner},
+           familyi={G\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+        {{hash=50d822e005b6547ec1b957c01c1c194b}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Zefan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=42e29a7207204f53824864549124067e}{%
+           family={Ding},
+           familyi={D\bibinitperiod},
+           given={Yufei},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=068e651b2f339fca8b8fb59dce2f8e97}{%
+           family={Mao},
+           familyi={M\bibinitperiod},
+           given={Ying},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=67f3a673d1b5d096250c6b53c122ceb4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Ang},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{11702f73198288d55c9454b33f21f009}
+      \strng{fullhash}{9ae8d50c1ee9a48fb8d746c4d1ee16be}
+      \strng{fullhashraw}{9ae8d50c1ee9a48fb8d746c4d1ee16be}
+      \strng{bibnamehash}{385c9bc6f6cd22b0e5af6d076abf6846}
+      \strng{authorbibnamehash}{385c9bc6f6cd22b0e5af6d076abf6846}
+      \strng{authornamehash}{11702f73198288d55c9454b33f21f009}
+      \strng{authorfullhash}{9ae8d50c1ee9a48fb8d746c4d1ee16be}
+      \strng{authorfullhashraw}{9ae8d50c1ee9a48fb8d746c4d1ee16be}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Calibration-Conditioned {FiLM} Decoders for Low-Latency Decoding of Quantum Error Correction Evaluated on {IBM} Repetition-Code Experiments}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2601.16123
+      \endverb
+    \endentry
+    \entry{perez2018film}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=79978685fd7b37606022b06c0f6419a1}{%
+           family={Perez},
+           familyi={P\bibinitperiod},
+           given={Ethan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=c3af936a4e6dd4b0086458a45dfac6da}{%
+           family={Strub},
+           familyi={S\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=742551419d9c216e1ae7e6bf61ee348c}{%
+           family={Vries},
+           familyi={V\bibinitperiod},
+           given={Harm},
+           giveni={H\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{hash=1328d3ceef6add8461994fc364c664df}{%
+           family={Dumoulin},
+           familyi={D\bibinitperiod},
+           given={Vincent},
+           giveni={V\bibinitperiod}}}%
+        {{hash=ccec1ccd2e1aa86960eb2e872c6b7020}{%
+           family={Courville},
+           familyi={C\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e27a95b1212beb87546ed77c5ec8b570}
+      \strng{fullhash}{1577c94eaa2667bc6986ff02dfdb1114}
+      \strng{fullhashraw}{1577c94eaa2667bc6986ff02dfdb1114}
+      \strng{bibnamehash}{1577c94eaa2667bc6986ff02dfdb1114}
+      \strng{authorbibnamehash}{1577c94eaa2667bc6986ff02dfdb1114}
+      \strng{authornamehash}{e27a95b1212beb87546ed77c5ec8b570}
+      \strng{authorfullhash}{1577c94eaa2667bc6986ff02dfdb1114}
+      \strng{authorfullhashraw}{1577c94eaa2667bc6986ff02dfdb1114}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the AAAI Conference on Artificial Intelligence}
+      \field{eprinttype}{arXiv}
+      \field{title}{{FiLM}: Visual Reasoning with a General Conditioning Layer}
+      \field{volume}{32}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1609/aaai.v32i1.11671
+      \endverb
+      \verb{eprint}
+      \verb 1709.07871
+      \endverb
+    \endentry
+    \entry{miao2026qadapt}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=e5644bdc02f3451aadcfbef6da95b5aa}{%
+           family={Miao},
+           familyi={M\bibinitperiod},
+           given={Ran},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1292f67a9d739077371447300d6c740e}{%
+           family={Luo},
+           familyi={L\bibinitperiod},
+           given={Rui},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6a8152e3028ce099a6406fa0ae55164f}{%
+           family={Shan},
+           familyi={S\bibinitperiod},
+           given={Xiaohan},
+           giveni={X\bibinitperiod}}}%
+        {{hash=35659f7d016c98804b9ea6623888b259}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Xiaoming},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{e5b958d887bfaa0476165414b07e1cdb}
+      \strng{fullhash}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \strng{fullhashraw}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \strng{bibnamehash}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \strng{authorbibnamehash}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \strng{authornamehash}{e5b958d887bfaa0476165414b07e1cdb}
+      \strng{authorfullhash}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \strng{authorfullhashraw}{6de1d5109fe2e1bcd12e0a269406ce2e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{{QAdapt}: Noise-Adaptive Neural Pre-Decoding for Surface-Code Quantum Error Correction}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2607.28422
+      \endverb
+    \endentry
+    \entry{peled2026nmwpm}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=7984777c0c2b33049436508fb80b9774}{%
+           family={Peled},
+           familyi={P\bibinitperiod},
+           given={Yotam},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=a50765beadebbe66b2ff92d351978dd3}{%
+           family={Zenati},
+           familyi={Z\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=e60cf1c9d056bdd18be149c023b155e0}{%
+           family={Nachmani},
+           familyi={N\bibinitperiod},
+           given={Eliya},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{fullhash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{fullhashraw}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{bibnamehash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{authorbibnamehash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{authornamehash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{authorfullhash}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \strng{authorfullhashraw}{a9e2256b3d9824fd1698e64befc4c9ba}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Neural Minimum Weight Perfect Matching for Quantum Error Codes}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2601.00242
+      \endverb
+    \endentry
+    \entry{chamberland2026predecoder}{misc}{}{}
+      \name{author}{5}{}{%
+        {{hash=98e28e077d09624eed02481c4bbfea2e}{%
+           family={Chamberland},
+           familyi={C\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=57d2745823f1aa6b1388d09d0a13c7cb}{%
+           family={Olle},
+           familyi={O\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=cf51edbaa356fce7d182526be96bbca9}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Muyuan},
+           giveni={M\bibinitperiod}}}%
+        {{hash=487309ea0fb82476ef0d8cb8a31589e9}{%
+           family={Thornton},
+           familyi={T\bibinitperiod},
+           given={Scott},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0defdb8b14f35acdc5dc21ead4a2c697}{%
+           family={Baratta},
+           familyi={B\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{42d533a9adf286d5e92f5a0a0d90e4c7}
+      \strng{fullhash}{140ff0751971fcc81490c199a16c17e8}
+      \strng{fullhashraw}{140ff0751971fcc81490c199a16c17e8}
+      \strng{bibnamehash}{140ff0751971fcc81490c199a16c17e8}
+      \strng{authorbibnamehash}{140ff0751971fcc81490c199a16c17e8}
+      \strng{authornamehash}{42d533a9adf286d5e92f5a0a0d90e4c7}
+      \strng{authorfullhash}{140ff0751971fcc81490c199a16c17e8}
+      \strng{authorfullhashraw}{140ff0751971fcc81490c199a16c17e8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Fast and Accurate {AI}-Based Pre-Decoders for Surface Codes}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2604.12841
+      \endverb
+    \endentry
+    \entry{hoyt2026compat}{misc}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=7bbaf06d79b9bd62a82738278dea52e6}{%
+           family={Hoyt},
+           familyi={H\bibinitperiod},
+           given={Aaron\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=1f807bda50e08ba60b5bdcb5e1fa036a}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Chunshu},
+           giveni={C\bibinitperiod}}}%
+        {{hash=d3a4e615809ce2d51944a4a7514f15ba}{%
+           family={Kan},
+           familyi={K\bibinitperiod},
+           given={Shuwen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4e980535d48449c1cb05fc70a78a3771}{%
+           family={Garner},
+           familyi={G\bibinitperiod},
+           given={Sean},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ba610d371364d874b874677a1d8a2508}
+      \strng{fullhash}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \strng{fullhashraw}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \strng{bibnamehash}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \strng{authorbibnamehash}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \strng{authornamehash}{ba610d371364d874b874677a1d8a2508}
+      \strng{authorfullhash}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \strng{authorfullhashraw}{85eb9fdeb94553dcc4844e6c8ea41bf3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{title}{Decoder Model Compatibility Provides Information beyond the Logical Gap under Drifting and Correlated Quantum Noise}
+      \field{year}{2026}
+      \verb{eprint}
+      \verb 2609.29018
+      \endverb
+    \endentry
+    \entry{google2025below}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{4}{}{%
+        {{hash=e825a03930fe44f598d9547f12fdffa1}{%
+           family={Acharya},
+           familyi={A\bibinitperiod},
+           given={Rajeev},
+           giveni={R\bibinitperiod}}}%
+        {{hash=09080e2b93e425320ba28bde2aff3ad8}{%
+           family={Aghababaie-Beni},
+           familyi={A\bibinithyphendelim B\bibinitperiod},
+           given={Laleh},
+           giveni={L\bibinitperiod}}}%
+        {{hash=523aa964738ca666bf379264370243d8}{%
+           family={Aleiner},
+           familyi={A\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod}}}%
+        {{hash=9193031e941f5f7d35dc91d77106073b}{%
+           family={Andersen},
+           familyi={A\bibinitperiod},
+           given={Trond\bibnamedelima I.},
+           giveni={T\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{3434b4b9931a33441a057f2d1c265c4a}
+      \strng{fullhash}{c2a86222d05dcb1b7b53c37d8f484317}
+      \strng{fullhashraw}{c2a86222d05dcb1b7b53c37d8f484317}
+      \strng{bibnamehash}{c2a86222d05dcb1b7b53c37d8f484317}
+      \strng{authorbibnamehash}{c2a86222d05dcb1b7b53c37d8f484317}
+      \strng{authornamehash}{3434b4b9931a33441a057f2d1c265c4a}
+      \strng{authorfullhash}{c2a86222d05dcb1b7b53c37d8f484317}
+      \strng{authorfullhashraw}{c2a86222d05dcb1b7b53c37d8f484317}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arXiv}
+      \field{journaltitle}{Nature}
+      \field{title}{Quantum Error Correction below the Surface Code Threshold}
+      \field{volume}{638}
+      \field{year}{2025}
+      \field{pages}{920\bibrangedash 926}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1038/s41586-024-08449-y
+      \endverb
+      \verb{eprint}
+      \verb 2408.13687
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

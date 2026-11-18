@@ -79,7 +79,7 @@ plt.rcParams.update({
     "savefig.pad_inches": 0.02,
 })
 REGIMES = ["bursts", "bursts_big", "hot_qubit", "telegraph"]
-RLAB = {"bursts": "bursts", "bursts_big": "bursts_big (held out)", "hot_qubit": "hot_qubit",
+RLAB = {"bursts": "bursts", "bursts_big": "bursts_big (out of distr.)", "hot_qubit": "hot_qubit",
         "telegraph": "telegraph"}
 WINDOWS = [500, 1000, 2000, 5000, 10000]
 TEXTW = 6.4  # inches, ~ text width of a 21 cm page with 2.3 cm margins

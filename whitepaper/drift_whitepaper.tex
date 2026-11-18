@@ -52,13 +52,15 @@ Error rates on quantum processors drift over time, and a decoder whose weights e
 loses accuracy when the noise moves. We study a neural surface-code decoder that receives, next to each shot,
 a \emph{fingerprint}: the firing rate of every detector over the last 2000 shots it has decoded. It receives no
 calibration data. In circuit-level simulation ($p=0.003$) with four drift regimes, a three-seed ensemble of this
-decoder at distance~5 reaches a drift-step logical error rate of 0.0457 on held-out large bursts, against 0.0980
-for static matching, 0.0896 for the best sliding-window reweighted matching and 0.0426 for matching with the true
-noise. With the same weights and a frozen nominal fingerprint the rate is 0.0576 (paired McNemar
-$p=\Eb{3}{247}$), so the gain comes from adaptation. An auxiliary head reads hot-qubit locations from the same
-inputs; it beats a training-free fingerprint score on in-distribution bursts but not, at the event level, on
-held-out bursts. Three extensions with decision rules fixed in advance (multiscale and pair-covariance
-fingerprints, a noise-map head with FiLM conditioning) failed those rules. All results are from simulation at
+decoder at distance~5 reaches a drift-step logical error rate of 0.0457 on large bursts outside the training
+distribution, against 0.0980 for static matching, 0.0896 for the best sliding-window reweighted matching and 0.0426
+for matching with the true noise. With the same weights and a frozen nominal fingerprint the rate is 0.0576 (paired
+McNemar $p=\Eb{3}{247}$), close to a network trained without a fingerprint (0.0564): the gain over that network
+comes from adaptation, while most of the gain over matching comes from the network itself. An auxiliary head reads
+hot-qubit locations from the same inputs; it beats a training-free fingerprint score on in-distribution bursts but
+not, at the event level, on out-of-distribution bursts. Four variants judged by pre-set decision rules (multiscale and
+pair-covariance fingerprints, a noise-map head with and without FiLM conditioning) failed those rules. All results
+are from simulation at
 $d\le5$.
 \end{abstract}
 
@@ -86,8 +88,11 @@ decoded. It never receives calibration data or the true noise state. We call thi
   \item \textbf{A calibration-free adaptive decoder}: a small 3D convolutional decoder with a fingerprint channel and
         stale-fingerprint augmentation (\cref{sec:method}). At $d=5$ its ensemble beats static and tuned sliding-window
         MWPM on all four regimes, and MWPM with the true noise on moderate bursts and hot-qubit drift (\cref{sec:results}).
+        On nominal noise the network is already about 36\,\% below MWPM, so part of this margin is decoder quality
+        rather than adaptation.
   \item \textbf{A frozen-fingerprint control}: the same weights with a fixed nominal fingerprint show that the gain
-        on localised drift is adaptation, and that uniform scale drift gets almost none (\cref{sec:res-adapt}).
+        over a non-adaptive network trained on the same data is adaptation, and that uniform scale drift gets almost
+        none (\cref{sec:res-adapt}).
   \item \textbf{Drift localisation from syndromes}: an auxiliary head maps hot qubits; we compare it with a
         training-free fingerprint score and report where it is and is not better (\cref{sec:res-loc}).
   \item \textbf{Ablations with pre-set decision rules}, including negative results: richer fingerprints, a noise-map
@@ -143,8 +148,9 @@ environments by continual training with elastic weight consolidation. Our decode
 Peled et al.~\cite{peled2026nmwpm} predict MWPM edge weights per syndrome with a graph network and a
 transformer. Chamberland et al.~\cite{chamberland2026predecoder} use a local neural pre-decoder in front of a
 global matching decoder and also infer matching weights from syndrome statistics. We do not build a hybrid here.
-Hoyt et al.~\cite{hoyt2026compat} show on IBM and Google data that syndrome statistics drift away from the
-stationary detector error model used for decoding, and use the mismatch for post-selection; this is evidence that
+Hoyt et al.~\cite{hoyt2026compat} show on IBM hardware that syndrome statistics drift across acquisition windows
+away from the stationary detector error model used for decoding, report a similar mismatch in Google surface-code
+data, and use the mismatch for post-selection; this is evidence that
 syndrome statistics drift on current hardware. The below-threshold surface-code memories on Google's Willow
 processor~\cite{google2025below} are the hardware data we plan to test on next.
 
@@ -185,11 +191,11 @@ the firing rates of the shots it decoded before it.}
 
 \subsection{Noise model and drift regimes}\label{sec:noise}
 The nominal circuit uses uniform circuit-level depolarising noise of strength $p_0=0.003$: two-qubit
-depolarising noise after every two-qubit gate, single-qubit depolarising noise on every data qubit before every
-round, and bit-flip errors after resets and before measurements. A \emph{noise state}
+depolarising noise after every two-qubit gate, single-qubit depolarising noise after every single-qubit gate,
+single-qubit depolarising noise on every data qubit before every round, and bit-flip errors after resets and before measurements. A \emph{noise state}
 $\mathcal N=(s,H,p_{\mathrm{hot}})$ scales every location to $p=s\,p_0$ and adds a single-qubit depolarising
 channel of strength $p_{\mathrm{hot}}$ after every circuit layer to each qubit in the set $H$ of hot qubits. Hot
-qubits are always the $k$ qubits nearest to some centre, so they form a spatial cluster, as a defect or a
+qubits are always the $k$ qubits nearest to some centre (data or measure qubits), so they form a spatial cluster, as a defect or a
 radiation event would. The state $(1,\varnothing,0)$ is \emph{nominal}.
 
 A stream consists of 150 \emph{steps} of 2000 shots each; the noise state is fixed within a step and evolves between
@@ -200,7 +206,9 @@ steps according to a regime (\cref{fig:regimes}):
 \item[\reg{bursts}] when no burst is active, a burst starts with probability $0.04$; it makes the 5 qubits nearest
   to a random centre hot with $p_{\mathrm{hot}}=0.05$ for 4 steps;
 \item[\reg{bursts\_big}] as \reg{bursts} with 8-qubit clusters and $p_{\mathrm{hot}}=0.1$. This regime lies outside
-  the training distribution on both axes and is held out.
+  the training distribution on both axes. It was not used for training, but it did inform development decisions
+  (training length, the noise-map decision rule and the h64/l6 adoption bar), so it is out-of-distribution rather
+  than a sealed test set.
 \end{description}
 \reg{telegraph} and \reg{hot\_qubit} are simplified versions of TLS-induced fluctuations~\cite{klimov2018fluctuations}:
 switching between two noise levels (here applied to the whole patch) and a persistent local defect. \reg{bursts} is a
@@ -215,7 +223,8 @@ behaved like \reg{telegraph}; we do not report it further. A \reg{static} regime
 \centering
 \includegraphics[width=\linewidth]{fig/regimes.pdf}
 \caption{One sample schedule of each evaluated regime at $d=5$ (150 steps of 2000 shots), drawn with the same random
-seed, so \reg{bursts} and \reg{bursts\_big} share burst times and differ in cluster size and $p_{\mathrm{hot}}$.}
+seed, so \reg{bursts} and \reg{bursts\_big} share burst times and differ in cluster size and $p_{\mathrm{hot}}$. The evaluated streams use independent seeds
+per regime.}
 \label{fig:regimes}
 \end{figure}
 
@@ -238,7 +247,7 @@ firing rate of each detector over the last $W$ shots the decoder has decoded,
 \end{equation}
 laid out on the same grid and multiplied by 10 so that its values are on a scale similar to the 0/1 events. Since
 $f_a$ estimates $\Pr[D_a=1]$, it reflects both the overall noise level and where the noise is concentrated
-(\cref{fig:fp}). At the nominal mean firing rate of $4.27\%$ ($d=5$), the binomial standard error of one rate over
+(\cref{fig:fp}). At the nominal mean firing rate of $4.28\%$ ($d=5$), the binomial standard error of one rate over
 2000 shots is about $10\%$ of the rate.
 
 \begin{figure}[t]
@@ -323,8 +332,8 @@ The augmentation has its own random generator, so the chunk order is unchanged. 
 \emph{static-wide} has no fingerprint ($C=1$) and is trained on the same wide chunks in the same order as
 adaptive-wide, so the two differ only in the fingerprint channel. \emph{static-nominal} has no fingerprint and is
 trained on nominal noise only. Every model is trained with three model seeds (0, 1, 2). An \emph{ensemble} averages
-the logits of the three seeds and predicts a flip if the mean is positive; this rule was fixed before the ensemble
-runs. In a live ensemble each member keeps its own fingerprint buffer.
+the logits of the three seeds and predicts a flip if the mean is positive; this rule is stated in the ensemble
+launch script. All members receive the same fingerprint.
 
 \subsection{Noise-map head and FiLM}\label{sec:noisehead}
 Variant N adds two auxiliary outputs (\cref{fig:arch}): a noise-map head on the last feature map that predicts
@@ -344,19 +353,21 @@ stale augmentation. The noise map is read out per step as the mean over the step
 %=====================================================================
 
 \paragraph{Data.}
-All data are simulated with Stim~1.16.0 and decoded with PyMatching~2.4.0. Training datasets are listed in
+All data are simulated with Stim~1.16.0 and decoded with PyMatching~2.4.0. Datasets are listed in
 \cref{tab:datasets} (\cref{app:data}). At $d=3$ models train for 60\,000 steps (two passes over 30\,000 chunks);
 at $d=5$ for 300\,000 steps (two passes over 150\,000 chunks). Three fixed test sets of 200\,000 shots each (plus
 2000 fingerprint shots) cover nominal noise, scale $\times2$, and two hot central qubits with
-$p_{\mathrm{hot}}=0.03$. Each regime has five independent streams (stream seeds 0--4); test sets and streams are
-byte-identical across all datasets of one distance.
+$p_{\mathrm{hot}}=0.03$. Each regime has five independent streams (stream seeds 0--4). All test sets and streams of
+one distance come from a single dataset (\code{d3\_r3\_p0.003\_s0} at $d=3$, \code{d5\_wide} at $d=5$).
 
 \paragraph{Baselines.}
 \emph{Static MWPM} uses nominal weights. \emph{Oracle MWPM} rebuilds the weights from the true noise state at
 every step; it is MWPM with perfect noise knowledge, not an optimal decoder. \emph{WindowDEM} re-weights MWPM from
 the last $w$ shots, estimating each edge probability from pairwise detector correlations in the manner
 of~\cite{spitz2018adaptive}, with no access to the noise state. We run $w\in\{500,1000,2000,5000,10000\}$ and
-report, for each regime and phase, the best window chosen after the fact. This favours WindowDEM.
+report, for each regime and phase, the best window chosen after the fact. This favours WindowDEM. The estimator is
+the two-point formula on the edges of the nominal matching graph, with boundary edges solved from single-detector
+rates and no hyperedge correction; reweighting starts after $\min(w,1000)$ shots and is refreshed every 200 shots.
 
 \paragraph{Causal streaming.}
 Each step's 2000 shots are processed in sub-batches of 200. A sub-batch is decoded first and only then added to
@@ -381,15 +392,21 @@ only decoder A gets wrong and $c$ the number only B gets wrong,
 \end{equation}
 For single models we test each seed and report the largest $p$. With no multiple-testing correction we treat
 $0.001<p<0.05$ as weak evidence (\weak{} in tables). McNemar measures shot noise for fixed models; variation between
-training seeds appears only in the sample s.d.\ over three seeds.
+training seeds appears only in the sample s.d.\ over three seeds. Shots within a drift event share the same noise
+state, so for regime-level conclusions the unit of replication is the event (29 runs per burst regime, 21 for
+\reg{telegraph}, 5 for \reg{hot\_qubit}, all at the same location). In an exact sign test over events, every $d=5$
+comparison in \cref{tab:main,tab:liveFrozen} on \reg{bursts} and \reg{bursts\_big} keeps $p\le\Eb{1.5}{5}$ except
+\reg{bursts\_big} against oracle MWPM (9 events better, 20 worse, $p=0.06$); every \reg{hot\_qubit} comparison has
+$p=0.06$, the smallest possible with five events.
 
 \paragraph{Pre-set decision rules.}
-The fingerprint variants of \cref{sec:ablations} were judged by rules written before each run. For the multiscale
+The fingerprint variants of \cref{sec:ablations} were judged by pre-set rules. For the multiscale
 and pair-covariance fingerprints: the variant's live ensemble must beat the adaptive-stale ensemble at onset or
 after on \reg{bursts} or \reg{bursts\_big} with $p<0.001$, and must not be worse on later or drift steps of any regime
 at $p<0.001$. For the noise-map variants: the ensemble must beat the adaptive-stale ensemble on \reg{bursts\_big}
 drift steps with $p<0.001$, and must not be worse on drift or later steps of any regime or on the nominal test set at
-$p<0.001$. We applied the rules as written.
+$p<0.001$. We applied the rules as written. Decision rules were written into each round's run instructions before
+launch; they were not independently time-stamped.
 
 %=====================================================================
 \section{Results}\label{sec:results}
@@ -400,8 +417,9 @@ $p<0.001$. We applied the rules as written.
 At $d=5$ the adaptive-stale ensemble beats static MWPM and the best WindowDEM in every regime: all eight
 paired tests have $p\le\Eb{2}{302}$, the largest being \reg{hot\_qubit} vs best WindowDEM; the other seven are too
 small to represent in double precision. It beats oracle MWPM on \reg{bursts},
-\reg{hot\_qubit} and \reg{telegraph} (on \reg{telegraph} through decoder quality, \cref{sec:res-adapt}). On held-out
-\reg{bursts\_big}, oracle MWPM remains better by $+0.0031$ (\E{3}{14}).
+\reg{hot\_qubit} and \reg{telegraph}; since the network is already 35--39\,\% below MWPM on nominal steps, these wins
+reflect decoder quality as well as adaptation (on \reg{telegraph}, decoder quality alone, \cref{sec:res-adapt}). On
+out-of-distribution \reg{bursts\_big}, oracle MWPM remains better by $+0.0031$ (\E{3}{14}).
 
 Against the static-wide ensemble, trained on the same chunks without a fingerprint, the adaptive-stale ensemble is
 lower on drift steps of every regime at both distances (\cref{sec:abl-ens} for how ensembling changes this margin).
@@ -465,17 +483,18 @@ trail oracle MWPM on both burst regimes. Most of that remaining gap is at burst 
 oracle: $+0.0219$ on \reg{bursts}, \E{2}{90}; $+0.0224$ on \reg{bursts\_big}, \E{7}{59}); on later steps the
 adaptive-stale ensemble ties oracle on \reg{bursts} ($+0.0006$, $p=0.2$).
 
-\subsection{The gain is adaptation}\label{sec:res-adapt}
+\subsection{What the fingerprint adds}\label{sec:res-adapt}
 \Cref{fig:liveFrozen} and \cref{tab:liveFrozen} compare each adaptive ensemble with itself under a frozen nominal
-fingerprint. On localised drift the live fingerprint lowers the drift-step LER in every case at $p\le\Eb{1}{209}$. At
+fingerprint. On localised drift the live fingerprint lowers the drift-step LER in every case at $p\le\Eb{2}{209}$. At
 $d=3$, frozen adaptive models are worse than static-wide: averaged over single seeds on \reg{bursts}, adaptive-wide
 frozen is $+0.0253$ above static-wide ($p<10^{-300}$ in each of the 3 seeds). The network has learned to rely on the fingerprint
 instead of hedging, so the whole of its gain over static-wide, and more, comes from adaptation. At $d=5$ the frozen
-ensembles are close to the static-wide ensemble (\reg{bursts\_big} drift 0.0576 vs 0.0564; paired $+0.0012$, $p=0.0015$, weak), and the live
-fingerprint again supplies the gain.
+adaptive-stale ensemble is close to the static-wide ensemble (\reg{bursts\_big} drift 0.0576 vs 0.0564; paired
+$+0.0012$, $p=0.0015$, weak), while frozen adaptive-wide is well above it (0.0680, \E{2}{178}); in both, the live
+fingerprint supplies the gain over static-wide.
 
 On \reg{telegraph} the live fingerprint contributes $0.0002$ or less at both distances; the advantage over static-wide
-there is matched by the frozen model, so uniform scale drift needs no adaptation from this decoder.
+there is matched by the frozen model, so uniform scale drift needs little adaptation from this decoder.
 
 \begin{table}[t]
 \centering
@@ -513,7 +532,8 @@ adaptive-stale ensemble is $+0.0026$ above static MWPM after \reg{bursts\_big} e
 
 The fingerprint also spares the adaptive model the cost of hedging. On the $d=3$ nominal test set, a static model
 trained on nominal noise only scores 0.00536, adaptive-wide ties it (0.00532, $p=0.4$), and static-wide pays about
-$13\%$ (0.00605, \E{1}{8}). At $d=5$ after 300\,000 steps this cost is not significant (largest $p=0.2$).
+$13\%$ (0.00605, \E{1}{8}). At $d=5$ after 300\,000 steps there is no such cost: static-wide is lower than static-nominal in all three seeds
+(largest $p=0.2$).
 
 \subsection{Phases: onset, later, after}\label{sec:res-phases}
 \Cref{fig:phases} splits the $d=5$ burst regimes by phase. On \reg{bursts} the adaptive-stale ensemble ties oracle
@@ -533,11 +553,13 @@ ensemble. Best WindowDEM is chosen per phase after the fact.}
 
 \subsection{Training length}\label{sec:res-curves}
 The $d=5$ results depend strongly on the training budget (\cref{fig:curves}, seed 0). After 60\,000 steps every
-neural model lost to static MWPM on \reg{bursts\_big} drift (three-seed means 0.118 to 0.150, against 0.098), and
-static-nominal was worse than MWPM on nominal noise (0.00400 vs 0.00329). After 300\,000 steps both failures are
-gone in every seed (static-nominal $0.00253\pm0.00026$, largest $p=\Eb{1}{4}$). Between 240\,000 and 300\,000 steps no
-seed-0 model improved on the nominal test set by more than 2 standard errors, but all five improved on
-\reg{bursts\_big} drift, so the $d=5$ numbers are a snapshot of an unconverged run.
+wide-trained model lost to static MWPM on \reg{bursts\_big} drift (three-seed means 0.118 to 0.150, against 0.098;
+static-nominal 0.294), and static-nominal was worse than MWPM on nominal noise (0.00400 vs 0.00329). After
+300\,000 steps both failures are gone in every seed for the wide-trained models (static-nominal $0.00253\pm0.00026$
+on nominal noise, largest $p=\Eb{1}{4}$; it still loses on \reg{bursts\_big}: 0.216). Between 240\,000 and 300\,000
+steps no seed-0 model improved on the nominal test set by more than 2 standard errors, but all five seed-0 models
+(static-wide, static-nominal, adaptive-wide, adaptive-stale, h64/l6) improved on \reg{bursts\_big} drift of stream
+seed 0, so the $d=5$ numbers are a snapshot of an unconverged run.
 
 \begin{figure}[t]
 \centering
@@ -571,9 +593,9 @@ training-free fingerprint score. Blue: NF noise-map head, mean of three seeds; c
 \Cref{fig:loc} shows the result. On \reg{bursts} the head is clearly better: the baseline scores 0.825 to 0.841 by
 phase and NF 0.975 to 1.000 by seed and phase. Per event, NF wins 20 bursts, loses 1 and ties 12 for every seed
 ($p=\Eb{2}{5}$); at onset it wins 17 or 18 events and loses none ($p\le\Eb{2}{5}$). On \reg{hot\_qubit} every method,
-including the training-free score, scores 1.000, so this regime cannot separate them. On held-out \reg{bursts\_big} NF
+including the training-free score, scores 1.000, so this regime cannot separate them. On out-of-distribution \reg{bursts\_big} NF
 averages 0.056 to 0.114 above the baseline (0.845 to 0.849), but at the event level no seed reaches $p<0.001$; the
-best cell is seed 1 on later steps ($p=0.013$, weak). The statement that the head localises held-out large bursts
+best cell is seed 1 on later steps ($p=0.013$, weak). The statement that the head localises out-of-distribution large bursts
 better than the raw fingerprint is not supported.
 
 The baseline's errors are near misses: 96\% (\reg{bursts}) and 100\% (\reg{bursts\_big}) of its wrong picks share a
@@ -602,46 +624,43 @@ N: noise-map head & 5 & fails & no win: \reg{bursts\_big} drift $+0.0007$ ($p=0.
 NF: noise-map head + FiLM & 5 & fails & no win: \reg{bursts\_big} drift $+0.0007$ ($p=0.04$\weak); no losses \\
 \bottomrule
 \end{tabularx}
-\caption{Variants judged by decision rules fixed before each run (\cref{sec:setup}). C was not run at $d=5$.}
+\caption{Variants judged by decision rules set before each run (\cref{sec:setup}). C was not run at $d=5$.}
 \label{tab:ablations}
 \end{table}
 
 \subsection{Multiscale fingerprint (B)}
 B replaces the single fingerprint by three channels: the 2000-shot rates (long), the rates over the last 200 shots
-(short), and short minus long. The short window is meant to remove the lag at burst onset.
+(short), and short minus long. The short window is meant to remove the onset lag.
 
-At $d=3$ it does that. B beats the baseline at onset on \reg{bursts} ($-0.0171$, \E{3}{112}) and \reg{bursts\_big}
-($-0.0175$, \E{4}{67}), and on both after steps; it ties static MWPM after bursts ($p\ge0.2$), where the baseline was
-worse. It fails the rule on a single cell, \reg{hot\_qubit} later steps, by $+0.0002$ ($p=0.0005$), about 1\%
-relative. We record this as a near miss and did not change the rule after the fact.
+At $d=3$ it does that. B beats the baseline at onset on \reg{bursts} (\cref{tab:ablations}) and \reg{bursts\_big}
+($-0.0175$, \E{4}{67}), and on both after steps; it ties static MWPM after bursts ($p\ge0.15$), where the baseline was
+worse. It fails the rule on a single cell (\reg{hot\_qubit} later steps), by about 1\% relative. We record this as a near miss and did not change the rule after the fact.
 
-At $d=5$ the gain mostly disappears and B fails clearly. The onset gain shrinks to $-0.0019$ on \reg{bursts}
-(\E{2}{7}) and is absent on \reg{bursts\_big} ($+0.0003$, $p=0.7$) and \reg{hot\_qubit} ($+0.0001$, $p=1$). B is worse on
-\reg{bursts\_big} drift ($+0.0019$, $+4.1\%$, \E{4}{9}) and later steps ($+0.0024$, $+5.4\%$, \E{2}{11}), and costs
-$+6.4\%$ to $+17.7\%$ relative on nominal stream steps in all four regimes ($p\le\Eb{1}{10}$), a cell the rule does not
+At $d=5$ the gain mostly disappears and B fails clearly. The onset gain shrinks on \reg{bursts} and is absent on \reg{bursts\_big} ($+0.0003$, $p=0.7$) and \reg{hot\_qubit} ($+0.0001$, $p=1$). B is worse on
+\reg{bursts\_big} drift and later steps ($+4.1\%$ and $+5.4\%$ relative), and costs
+$+6.4\%$ to $+17.7\%$ relative on nominal stream steps in all four regimes ($p\le\Eb{6}{10}$), a cell the rule does not
 cover. With a frozen fingerprint B and the baseline have the same nominal-step LERs, so this cost comes from the
-live short channel; we have not checked the channel values. One positive result: the B ensemble beats oracle MWPM
+live short channel; we have not checked the channel values. One positive, post hoc result: the B ensemble beats oracle MWPM
 at \reg{bursts} onset ($-0.0020$, $p=0.0002$), where the baseline tied it. The $d=3$/$d=5$ difference is confounded
 with training length (60\,000 vs 300\,000 steps) and data.
 
 \subsection{Pair-covariance channels (C)}
-C adds eight pair-covariance channels to B. At $d=3$ it is the best variant on \reg{bursts} and \reg{hot\_qubit} (drift
+C adds eight pair-covariance channels to B. At $d=3$ it is the best of the fingerprint variants (adaptive-stale, B, C) on \reg{bursts} and \reg{hot\_qubit} (drift
 vs baseline $-0.0064$, \E{1}{114}, and $-0.0011$, \E{2}{54}) and on the two-hot-qubit test set ($-0.00112$, \E{1}{11}),
-but it is worse on \reg{bursts\_big} drift ($+0.0050$, \E{8}{21}) and much worse than B there ($+0.0112$, \E{1}{113}).
+but it is worse on \reg{bursts\_big} drift and much worse than B there ($+0.0112$, \E{1}{113}).
 One untested explanation is that the covariance channels leave their training range under the strongest noise. It
 does not explain everything: C is also worse than B on \reg{bursts\_big} with a frozen nominal fingerprint (0.2714 vs
 0.2539, unpaired). C was not run at $d=5$.
 
 \subsection{Noise-map head and FiLM (N, NF)}
 Neither auxiliary head changes decoding accuracy. Both variants fail the rule because they do not improve
-\reg{bursts\_big} drift; the difference is slightly positive and weak ($+0.0007$, $p=0.03$ and $p=0.04$). No cell is
-worse at $p<0.001$. On the test sets NF vs the baseline is $-0.00006$ (nominal, $p=0.3$), $-0.00016$ (scale $\times2$,
+\reg{bursts\_big} drift (\cref{tab:ablations}); no cell is worse at $p<0.001$. On the test sets NF vs the baseline is $-0.00006$ (nominal, $p=0.3$), $-0.00016$ (scale $\times2$,
 $p=0.3$) and $-0.00012$ (two hot qubits, $p=0.3$). The heads are useful only as a diagnostic output (\cref{sec:res-loc}).
 
 \subsection{Network size (h64/l6)}
 A network with $H_c=64$, $L=6$ (565\,121 parameters) was trained once (seed 0, adaptive-stale). It is lower than the
 seed-0 $H_c=48$, $L=4$ model on \reg{bursts\_big} drift (0.0484 vs 0.0514, $-0.0031$, \E{8}{14}) and ties it on nominal
-noise ($-0.00009$, $p=0.1$), at 2.2 times the GPU time (8540\,s vs 3890\,s). It missed the pre-set adoption bar of one
+noise ($-0.00009$, $p=0.1$), at about 2.2 times the GPU time (about 2\,h\,22\,min vs 65\,min). It missed the pre-set adoption bar of one
 percentage point on \reg{bursts\_big} drift (stream seed 0) with 0.3 points (0.0590 vs 0.0620). The three-seed $H_c=48$
 ensembles (0.0457 and 0.0484) are at or below it (unpaired; one h64/l6 seed).
 
@@ -659,14 +678,11 @@ have not found.
 %=====================================================================
 
 Two patterns have explanations we have not tested; we state them as hypotheses. First, the live$-$frozen gap is
-largest on \reg{bursts\_big} ($d=5$ adaptive-stale ensemble: $-0.0119$, against $-0.0063$ on \reg{bursts} and $-0.0025$
-on \reg{hot\_qubit}). \emph{Hypothesis:} \reg{bursts\_big} moves the noise furthest from nominal (static MWPM drift LER
-0.0980, against 0.0439 on \reg{bursts}), so a nominal fingerprint misinforms the decoder most there, and a network that
+largest on \reg{bursts\_big} (\cref{tab:liveFrozen}). \emph{Hypothesis:} \reg{bursts\_big} moves the noise furthest from nominal (static MWPM in \cref{tab:main}), so a nominal fingerprint misinforms the decoder most there, and a network that
 never saw 8-qubit clusters cannot infer the cluster from a single shot. Second, ensembling helps static-wide more than
 the adaptive models (on \reg{bursts\_big} drift, ensemble minus seed mean: $-0.0193$ for static-wide, $-0.0149$ for
 adaptive-wide, $-0.0091$ for adaptive-stale). \emph{Hypothesis:} without a fingerprint each static seed must hedge over
-the whole training distribution and settles on a different compromise (seed s.d.\ 0.0153, against 0.0059 for
-adaptive-stale), so averaging removes more variance; the fingerprint pins down the noise state, so adaptive seeds
+the whole training distribution and settles on a different compromise (larger seed s.d.\ in \cref{tab:main}), so averaging removes more variance; the fingerprint pins down the noise state, so adaptive seeds
 agree more.
 
 %=====================================================================
@@ -675,7 +691,7 @@ agree more.
 
 \begin{itemize}
   \item \textbf{Simulated drift only.} Every result comes from Stim simulations. We have not validated the decoder on
-        hardware data. Google's Willow surface-code memory data~\cite{google2025below} is the planned next step.
+        hardware data. Google's Willow memory data~\cite{google2025below} is the planned next step.
   \item \textbf{Test regimes from the training family.} All noise is circuit-level depolarising noise with a global
         scale and hot-qubit clusters, and the test regimes come from the same family as the training data. Only
         \reg{bursts\_big} extrapolates, and only in cluster size and strength. Unseen drift types, such as correlated
@@ -690,7 +706,8 @@ agree more.
   \item \textbf{Seeds, convergence, statistics.} Each ensemble is one trio of seeds; the learning curves and h64/l6 are
         seed 0 only. The $d=5$ \reg{bursts\_big} curves were still falling at 300\,000 steps, and $d=3$ and $d=5$ differ in
         training length as well as distance. There is no multiple-testing correction, and the best WindowDEM is chosen
-        after the fact.
+        after the fact. $p$-values are shot-level (event counts in \cref{sec:setup}), and
+        \reg{bursts\_big} informed development decisions.
 \end{itemize}
 
 %=====================================================================
@@ -699,16 +716,16 @@ agree more.
 
 A neural decoder that sees only the firing rates of its own recent detection events adapts to localised drift in
 simulation. At $d=5$ its ensemble beats static and tuned sliding-window matching on every regime we tested, beats
-matching with the true noise on moderate bursts and a hot-qubit defect, and trails it by $0.0031$ on held-out large
-bursts. The frozen control shows the gain is adaptation. Richer fingerprints and noise heads failed their pre-set
-rules. Hardware memory data, larger distances and latency are the open tests.
+matching with the true noise on moderate bursts and a hot-qubit defect, largely through decoder quality, and trails it by $0.0031$ on out-of-distribution large
+bursts. The frozen control shows that the gain over a non-adaptive network trained on the same data is adaptation. Richer fingerprints and noise heads failed their pre-set
+rules. Hardware data, larger distances and latency are the open tests.
 
 \section*{Code and data availability}
 Code, experiment notes, result tables (Markdown, CSV, JSON) and dataset manifests with all generation seeds are at
-\url{https://github.com/chahat-101/drift}. Model checkpoints, generated datasets and per-shot error bits are not in the
-repository because of their size; the datasets can be regenerated from the manifests (identical samples need the same
-Stim version and machine).
-% TODO: decide where to host checkpoints and per-shot error bits (or state "available on request"), then update this paragraph.
+\url{https://github.com/chahat-101/drift}. Generated datasets are too large for the repository but can be
+regenerated from the manifests (identical samples need the same Stim version and machine). Model checkpoints and
+per-shot error bits are available from the author on request; scripts that recompute the LERs and $p$-values from
+them are in \code{whitepaper/audit}.
 
 \section*{AI assistance}
 Code, analysis and drafting were assisted by an AI model (Claude); the author designed the study and checked all
@@ -738,7 +755,7 @@ Multiscale fingerprint (B) & long (2000 shots), short (last 200 shots), short $-
 Loss & binary cross-entropy; N/NF: $+0.1$ MSE($10\,\hat p_{\mathrm{hot}}$) $+0.1$ MSE($\widehat{\ln s}$) \\
 FiLM encoder (NF) & two 16-channel 3D convolutions; zero-initialised $\gamma,\beta$ per layer \\
 Optimiser & AdamW, peak learning rate $10^{-3}$, OneCycle schedule over the run \\
-Batch, precision & 512 shots (one chunk) per step, fp32 \\
+Batch, precision & 512 shots (one chunk) per step, fp32 (TF32 convolutions) \\
 Training steps & 60\,000 ($d=3$); 300\,000 ($d=5$); two passes over the chunks \\
 Stale augmentation & $q=0.3$; half fully stale, half mixed window \\
 Model seeds; stream seeds & 0, 1, 2; 0--4 \\
@@ -762,19 +779,20 @@ Software & Stim 1.16.0, PyMatching 2.4.0, NumPy 2.4.6, PyTorch 2.15.0 \\
 \toprule
 Dataset & $d$ & Training noise & Train chunks & Train shots & On disk \\
 \midrule
-\code{d3\_wide} & 3 & wide & 30\,000 & 15.4\,M & $\approx0.1$\,GB \\
-\code{d3\_nominal} & 3 & nominal only & 30\,000 & 15.4\,M & -- \\
-\code{d5\_wide} & 5 & wide & 30\,000 & 15.4\,M & 510\,MB \\
-\code{d5\_nominal} & 5 & nominal only & 30\,000 & 15.4\,M & 86\,MB \\
-\code{d5\_wide\_x5} & 5 & wide & 150\,000 & 76.8\,M & 2.3\,GB \\
-\code{d5\_nominal\_x5} & 5 & nominal only & 150\,000 & 76.8\,M & 393\,MB \\
+\code{d3\_r3\_p0.003\_s0}$^{*}$ & 3 & wide & 30\,000 & 15.4\,M & 101\,MiB \\
+\code{d3\_wide} & 3 & wide & 30\,000 & 15.4\,M & 107\,MiB \\
+\code{d3\_nominal} & 3 & nominal only & 30\,000 & 15.4\,M & 16\,MiB \\
+\code{d5\_wide} & 5 & wide & 30\,000 & 15.4\,M & 510\,MiB \\
+\code{d5\_nominal} & 5 & nominal only & 30\,000 & 15.4\,M & 85\,MiB \\
+\code{d5\_wide\_x5} & 5 & wide & 150\,000 & 76.8\,M & 2.28\,GiB \\
+\code{d5\_nominal\_x5} & 5 & nominal only & 150\,000 & 76.8\,M & 392\,MiB \\
 \bottomrule
 \end{tabular}
-\caption{Training datasets. Each wide chunk has 512 training shots and 2000 fingerprint shots from one noise state;
+\caption{Datasets. Each wide chunk has 512 training shots and 2000 fingerprint shots from one noise state;
 nominal-only sets store no fingerprint shots. All have 1000 validation chunks. The 60\,000-step models used the
-$30\,000$-chunk sets; the 300\,000-step $d=5$ models used the \code{\_x5} sets. Test sets (3 states $\times$ 200\,000
-shots) and streams (4 regimes $\times$ 5 stream seeds $\times$ 150 steps $\times$ 2000 shots) are byte-identical within
-one distance.}
+$30\,000$-chunk sets; the 300\,000-step $d=5$ models used the \code{\_x5} sets. $^{*}$Used only for its test sets
+(3 states $\times$ 200\,000 shots) and streams (4 regimes $\times$ 5 stream seeds $\times$ 150 steps $\times$ 2000
+shots); at $d=5$ these come from \code{d5\_wide}.}
 \label{tab:datasets}
 \end{table}
 

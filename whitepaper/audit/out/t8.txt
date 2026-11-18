@@ -1,0 +1,44 @@
+frozen vs static-wide ensembles d5/d3
+  d5 aw frozen - sw ens bursts: A=0.0263 B=0.0224 d=+0.0039 p=6.6e-77
+  d5 aw frozen - sw ens bursts_big: A=0.0680 B=0.0564 d=+0.0116 p=2e-178
+  d5 aw frozen - sw ens hot_qubit: A=0.0104 B=0.0098 d=+0.0006 p=6.1e-21
+  d5 aw frozen - sw ens telegraph: A=0.0165 B=0.0175 d=-0.0009 p=5.2e-22
+  d5 ast frozen - sw ens bursts: A=0.0233 B=0.0224 d=+0.0010 p=2.1e-07
+  d5 ast frozen - sw ens bursts_big: A=0.0576 B=0.0564 d=+0.0012 p=0.0015
+  d5 ast frozen - sw ens hot_qubit: A=0.0098 B=0.0098 d=+0.0000 p=0.42
+  d5 ast frozen - sw ens telegraph: A=0.0166 B=0.0175 d=-0.0008 p=1.2e-20
+  d3 aw frozen - sw ens bursts: A=0.1281 B=0.1049 d=+0.0232 p=4.1e-601
+  d3 aw frozen - sw ens bursts_big: A=0.2905 B=0.2427 d=+0.0478 p=3.3e-988
+  d3 aw frozen - sw ens hot_qubit: A=0.0390 B=0.0276 d=+0.0114 p=2.9e-1709
+  d3 aw frozen - sw ens telegraph: A=0.0208 B=0.0235 d=-0.0027 p=2.5e-129
+  d3 ast frozen - sw ens bursts: A=0.1130 B=0.1049 d=+0.0082 p=2.5e-159
+  d3 ast frozen - sw ens bursts_big: A=0.2530 B=0.2427 d=+0.0103 p=1.2e-104
+  d3 ast frozen - sw ens hot_qubit: A=0.0307 B=0.0276 d=+0.0031 p=9.5e-306
+  d3 ast frozen - sw ens telegraph: A=0.0217 B=0.0235 d=-0.0019 p=2.9e-105
+d3 aw frozen vs sw per seed, bursts drift
+  seed0 +0.0248 p=2.6e-618
+  seed1 +0.0247 p=8.1e-622
+  seed2 +0.0266 p=3.5e-700
+  mean +0.0253
+  static vs oracle telegraph d5: A=0.0228 B=0.0231 d=-0.0002 p=6.3e-09
+nominal-step relative advantage of ast over static MWPM, d5
+  bursts: 0.0021 vs 0.0033 rel -36%;  drift ast vs oracle rel -14%
+  bursts_big: 0.0021 vs 0.0034 rel -38%;  drift ast vs oracle rel +7%
+  hot_qubit: 0.0021 vs 0.0034 rel -39%;  drift ast vs oracle rel -29%
+  telegraph: 0.0021 vs 0.0033 rel -35%;  drift ast vs oracle rel -29%
+  d5 bursts ast(live) vs oracle(live) drift runs: A better 26, worse 3, tie 0, sign p=1.5e-05
+  d5 bursts ast(live) vs sw(live) drift runs: A better 29, worse 0, tie 0, sign p=3.7e-09
+  d5 bursts ast(live) vs ast(frozen) drift runs: A better 29, worse 0, tie 0, sign p=3.7e-09
+  d5 bursts ast(live) vs static(live) drift runs: A better 29, worse 0, tie 0, sign p=3.7e-09
+  d5 bursts_big ast(live) vs oracle(live) drift runs: A better 9, worse 20, tie 0, sign p=0.061
+  d5 bursts_big ast(live) vs sw(live) drift runs: A better 28, worse 0, tie 1, sign p=7.5e-09
+  d5 bursts_big ast(live) vs ast(frozen) drift runs: A better 27, worse 1, tie 1, sign p=2.2e-07
+  d5 bursts_big ast(live) vs static(live) drift runs: A better 29, worse 0, tie 0, sign p=3.7e-09
+  d5 telegraph ast(live) vs oracle(live) drift runs: A better 21, worse 0, tie 0, sign p=9.5e-07
+  d5 telegraph ast(live) vs sw(live) drift runs: A better 21, worse 0, tie 0, sign p=9.5e-07
+  d5 telegraph ast(live) vs ast(frozen) drift runs: A better 15, worse 5, tie 1, sign p=0.041
+  d5 telegraph ast(live) vs static(live) drift runs: A better 21, worse 0, tie 0, sign p=9.5e-07
+  d5 hot_qubit ast(live) vs oracle(live) drift runs: A better 5, worse 0, tie 0, sign p=0.062
+  d5 hot_qubit ast(live) vs sw(live) drift runs: A better 5, worse 0, tie 0, sign p=0.062
+  d5 hot_qubit ast(live) vs ast(frozen) drift runs: A better 5, worse 0, tie 0, sign p=0.062
+  d5 hot_qubit ast(live) vs static(live) drift runs: A better 5, worse 0, tie 0, sign p=0.062

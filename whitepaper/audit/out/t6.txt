@@ -1,0 +1,14 @@
+d5 nominal      ast=0.00204 | sw=0.00210 d=+0.00006 p=0.35 | aw=0.00202 d=-0.00002 p=0.83 | sn=0.00221 d=+0.00017 p=0.014 | B=0.00202 d=-0.00002 p=0.75 | N=0.00204 d=+0.00000 p=1 | NF=0.00198 d=-0.00006 p=0.27
+d5 scale x2     ast=0.01627 | sw=0.01750 d=+0.00124 p=9.7e-14 | aw=0.01648 d=+0.00022 p=0.11 | sn=0.01850 d=+0.00224 p=2.5e-28 | B=0.01650 d=+0.00024 p=0.096 | N=0.01638 d=+0.00011 p=0.46 | NF=0.01610 d=-0.00016 p=0.27
+d5 2 hot qubits ast=0.00779 | sw=0.01043 d=+0.00264 p=1.8e-63 | aw=0.00736 d=-0.00044 p=5.3e-05 | sn=0.01368 d=+0.00590 p=1.6e-173 | B=0.00785 d=+0.00006 p=0.55 | N=0.00782 d=+0.00003 p=0.85 | NF=0.00767 d=-0.00012 p=0.28
+d3 nominal      ast=0.00544 | sw=0.00603 d=+0.00059 p=1.2e-14 | aw=0.00531 d=-0.00013 p=0.056 | sn=0.00530 d=-0.00014 p=0.086 | B=0.00546 d=+0.00002 p=0.75 | C=0.00541 d=-0.00003 p=0.73
+d3 scale x2     ast=0.02152 | sw=0.02371 d=+0.00219 p=1.7e-36 | aw=0.02108 d=-0.00044 p=0.00044 | sn=0.02123 d=-0.00030 p=0.042 | B=0.02143 d=-0.00009 p=0.4 | C=0.02133 d=-0.00020 p=0.058
+d3 2 hot qubits ast=0.02065 | sw=0.02732 d=+0.00668 p=3.2e-178 | aw=0.01920 d=-0.00145 p=2e-17 | sn=0.04062 d=+0.01997 p=8.5e-681 | B=0.02104 d=+0.00039 p=0.0041 | C=0.01953 d=-0.00112 p=1.1e-11
+d5 seed0 nominal: sw=0.00216 sn=0.00232 aw=0.00210 sw-sn p=0.038 aw-sn p=0.0029
+d5 seed1 nominal: sw=0.00226 sn=0.00281 aw=0.00215 sw-sn p=3.2e-09 aw-sn p=1.6e-13
+d5 seed2 nominal: sw=0.00233 sn=0.00245 aw=0.00217 sw-sn p=0.18 aw-sn p=0.00069
+d3 seed0 nominal: sw=0.00607 sn=0.00538 aw=0.00530 sw-sn p=6e-10 aw-sn p=0.28
+d3 seed1 nominal: sw=0.00602 sn=0.00527 aw=0.00533 sw-sn p=9.4e-13 aw-sn p=0.39
+d3 seed2 nominal: sw=0.00607 sn=0.00544 aw=0.00532 sw-sn p=1e-08 aw-sn p=0.09
+['nominal|static', 'nominal|oracle', 'scale x2|static', 'scale x2|oracle', '2 hot qubits|static', '2 hot qubits|oracle']
+d5 static-nominal single seeds, bursts_big drift: mean 0.2159 (rounded 0.216), seeds 0.1596 0.2796 0.2085; static MWPM 0.0980

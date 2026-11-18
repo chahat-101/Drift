@@ -32,6 +32,8 @@ F = {
     "R6PY": "results/exp6/report6.py",
     "PT": "whitepaper/paired_tests.md",
     "EXT": "whitepaper/external_sources.md",
+    "R4": "results/report4.md",
+    **{f"A{i}": f"whitepaper/audit/out/t{i}.txt" for i in range(1, 11)},  # audit recomputations (audit/README.md)
 }
 
 # (paper fragment, [ (numbers, file, section-or-None, row regex), ... ])
@@ -51,7 +53,8 @@ e("reaches a drift-step logical error rate of 0.0457",
   ("0.0896", "N07", None, r"^Reference LERs on drift"))
 e("frozen nominal fingerprint the rate is 0.0576",
   ("0.0576", "R9", "## bursts_big", r"^\| adaptive-stale \(baseline\) \(frozen\): ensemble"),
-  ("3e-247", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| bursts_big \| -0.0119 \(3e-247\)"))
+  ("3e-247", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| bursts_big \| -0.0119 \(3e-247\)"),
+  ("0.0564", "R6", "### d=5 bursts_big", r"^\| static-wide: ensemble"))
 
 # ------------------------------------------------------------------ background
 e("$N=24$ at $d=3$ and $N=120$", ("24 120", "TD", None, r"this is \$N=24\$"))
@@ -75,7 +78,7 @@ e("$\\ln s\\sim\\mathcal U(\\ln0.5,\\ln2.5)$", ("0.5 2.5", "TD", None, r"\\ln s 
 e("A chunk holds $B=512$ training shots", ("512 2000", "TD", None, r"plus \$B=512\$ training shots"))
 e("that is\n$6\\times6\\times6$ at $d=5$", ("6", "TD", None, r"that is \$\(4,4,4\)\$ for \$d=3\$ and \$\(6,6,6\)\$"))
 e("laid out on the same grid and multiplied by 10", ("10", "TD", None, r"multiplied by \$10\$"))
-e("nominal mean firing rate of $4.27\\%$", ("4.27", "TD", None, r"Mean detector firing rate"),
+e("nominal mean firing rate of $4.28\\%$", ("4.279 4.28", "A10", None, r"^nominal mean firing rate"),
   ("10", "TD", None, r"about \$10\\%\$ of the rate"))
 e("default $H_c=48$, $L=4$ has 195\\,681", ("194385 195681", "TD", None, r"\$H=48\$, \$L=4\$ \(default\)"),
   ("9", "TD", None, r"For \$L=4\$ that is \$9\^3\$"))
@@ -171,7 +174,7 @@ e("$+0.0219$ on \\reg{bursts}, \\E{2}{90}",
 # ------------------------------------------------------------------ results: adaptation
 e("frozen is $+0.0253$ above static-wide",
   ("0.0253 1e-300", "N03", "#### Paired comparisons: bursts$", r"^\| adaptive-wide frozen vs static-wide \|"))
-e("(\\reg{bursts\\_big} drift 0.0576 vs 0.0564; paired $+0.0012$, $p=0.0015$, weak)",
+e("drift 0.0576 vs 0.0564; paired",
   ("0.0576", "R6", "### d=5 bursts_big", r"^\| adaptive-stale \(frozen\): ensemble"),
   ("0.0564", "R6", "### d=5 bursts_big", r"^\| static-wide: ensemble"),
   ("0.0576 0.0564 0.0012 0.0015", "PT", None, r"^\| 1\. adaptive-stale ens\. frozen"))
@@ -185,14 +188,8 @@ e("cause error bursts that start at a localised impact, spread across a 26-qubit
   ("10", "EXT", None, r"occurring on average every 10 s"))
 e("at roughly 1\\,\\textmu s per",
   ("1 5 2000 10", "EXT", None, r"^Arithmetic: 2000 shots"), ("25", "EXT", None, r"exponential time constant of ∼ 25 ms"))
-e("largest on \\reg{bursts\\_big} ($d=5$ adaptive-stale ensemble: $-0.0119$",
-  ("-0.0063", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| bursts \| "),
-  ("-0.0119", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| bursts_big \| "),
-  ("-0.0025", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| hot_qubit \| "),
-  ("0.0980 0.0439", "N07", None, r"^Reference LERs on drift"),
-  ("0.0193 0.0149 0.0091", "N07", "## Short answers", r"Vs the seed mean it is"),
-  ("0.0153", "N07", "### d=5, drift steps", r"^\| static-wide \| bursts_big \| "),
-  ("0.0059", "N07", "### d=5, drift steps", r"^\| adaptive-stale \| bursts_big \| "))
+e("ensemble minus seed mean: $-0.0193$",
+  ("0.0193 0.0149 0.0091", "N07", "## Short answers", r"Vs the seed mean it is"))
 e("the live fingerprint contributes $0.0002$ or less", ("0.0002", "N07", None, r"^On telegraph the effect is 0.0002 or less"))
 for d, model, regs in [(5, "adaptive-wide", ["-0.0092 2e-315", "-0.0196 1e-300", "-0.0033 1e-300", "-0.0002 0.002"]),
                        (5, "adaptive-stale", ["-0.0063 1e-209", "-0.0119 3e-247", "-0.0025 1e-300", "-0.0002 0.0002"]),
@@ -213,8 +210,10 @@ e("trained on nominal noise only scores 0.00536",
   ("0.00532 0.00536 0.4", "N03", "### b\\) Adaptive vs static-nominal", r"^\| adaptive-wide vs static-nominal \|"),
   ("0.0007 0.00605 0.00536 1e-08", "N03", "### b\\) Adaptive vs static-nominal", r"^\| static-wide vs static-nominal \|"),
   ("13", "N03", None, r"^- Static-wide pays about 13%"))
-e("At $d=5$ after 300\\,000 steps this cost is not significant (largest $p=0.2$)",
-  ("0.2", "N06", None, r"static-wide vs static-nominal is −0.00028"))
+e("there is no such cost: static-wide is lower than static-nominal in all three seeds",
+  ("0.2", "N06", None, r"static-wide vs static-nominal is −0.00028"),
+  ("0.038", "A6", None, r"^d5 seed0 nominal"), ("3.2e-09", "A6", None, r"^d5 seed1 nominal"),
+  ("0.18", "A6", None, r"^d5 seed2 nominal"))
 
 # ------------------------------------------------------------------ results: phases
 e("ties oracle\nMWPM at onset ($-0.0001$, $p=0.9$)",
@@ -227,12 +226,15 @@ e("even the best window is at 0.0116",
 e("pooled over 5 streams (29 onset steps each)", ("29 29", "N03", None, r"^\| Onsets pooled over 5 streams"))
 
 # ------------------------------------------------------------------ results: training length
-e("(three-seed means 0.118 to 0.150, against 0.098)",
-  ("0.098 0.128 0.150 0.118", "N04", None, r"^- The classical baselines win back two regimes"))
+e("(three-seed means 0.118 to 0.150, against 0.098;",
+  ("0.098 0.128 0.150 0.118", "N04", None, r"^- The classical baselines win back two regimes"),
+  ("0.29441", "N04", None, r"^\| static-nominal \| 0.04879"))
+e("it still loses on \\reg{bursts\\_big}: 0.216", ("0.2159", "N06", None, r"^\| static-nominal \| 0.2159 ± 0.0604 \| 0/3"),
+  ("0.216 0.0980", "A6", None, r"^d5 static-nominal single seeds"))
 e("static-nominal was worse than MWPM on nominal noise (0.00400 vs 0.00329)",
   ("0.00400 0.00329", "N04", None, r"^- The d=5 static-nominal model is broken"))
 e("(static-nominal $0.00253\\pm0.00026$", ("0.00253 0.00026 1e-4", "N06", "## Summary", r"^1\. Q1"))
-e("Between 240\\,000 and 300\\,000 steps no", ("240k 300k", "N05", None, r"^From 240k to 300k steps, all 5 models"))
+e("Between 240\\,000 and 300\\,000", ("240k 300k 5", "N05", None, r"^From 240k to 300k steps, all 5 models"))
 e("checkpoints every 30\\,000 steps", ("30000", "N05", None, r"Checkpoints every 30000 steps"))
 
 # ------------------------------------------------------------------ results: localisation
@@ -271,18 +273,20 @@ e("the 2000-shot rates (long), the rates over the last 200 shots",
 e("\\reg{bursts\\_big}\n($-0.0175$, \\E{4}{67})",
   ("0.0175 4e-67", "N08", "\\*\\*B multiscale vs baseline\\*\\*", r"^\| bursts_big \|"),
   ("0.0014 8e-09", "N08", "\\*\\*B multiscale vs baseline\\*\\*", r"^\| bursts \|"),
-  ("0.2", "N08", None, r"^4\. \*\*Both variants remove the d=3 after-burst cost"))
-e("by $+0.0002$ ($p=0.0005$), about 1\\%", ("0.0002 0.0005", "N08", None, r"^Outcome, stated exactly"),
+  ("0.17", "A5", None, r"^  d3 B after bursts - static"), ("0.15", "A5", None, r"^  d3 B after bursts_big - static"))
+e("by about 1\\% relative", ("0.0002 0.0005", "N08", None, r"^Outcome, stated exactly"),
   ("1", "N08", None, r"B's hot_qubit loss is tiny but significant"))
-e("The onset gain shrinks to $-0.0019$ on \\reg{bursts}",
+e("The onset gain shrinks on \\reg{bursts}",
   ("0.0019", "N09", "## Summary", r"^   - bursts onset improves by"),
   ("0.0019 2e-07", "N09", "## Decision rule", r"^\| Win \(onset"),
   ("0.0003 0.7", "N09", "## Summary", r"^   - bursts_big onset does not change"),
   ("0.0001 1", "N09", "## Summary", r"^   - hot_qubit onset does not change"))
-e("($+0.0019$, $+4.1\\%$, \\E{4}{9})",
+e("($+4.1\\%$ and $+5.4\\%$ relative)",
   ("0.0019 4e-09 4.1 0.0024 2e-11 5.4", "N09", "## Summary", r"^1\. \*\*Decision rule: B FAILS"))
 e("$+6.4\\%$ to $+17.7\\%$ relative on nominal stream steps",
-  ("6.4 17.7 1e-10", "N09", None, r"^15\. \*\*At d=5 the live multiscale"))
+  ("6.4 17.7", "N09", None, r"^15\. \*\*At d=5 the live multiscale"),
+  ("6.4 5.5e-10", "A5", "== d5 B", r"^   bursts     nominal"), ("7.4 2.8e-12", "A5", "== d5 B", r"^   bursts_big nominal"),
+  ("17.7 5e-21", "A5", "== d5 B", r"^   hot_qubit  nominal"), ("8.3 1.2e-10", "A5", "== d5 B", r"^   telegraph  nominal"))
 e("beats oracle MWPM\nat \\reg{bursts} onset ($-0.0020$, $p=0.0002$)", ("0.0020 0.0002", "N09", None, r"^6\. \*\*One new positive result"))
 e("(60\\,000 vs 300\\,000 steps) and data", ("60k 300k", "N09", None, r"^- \*\*Confounds\.\*\*"))
 e("drift\nvs baseline $-0.0064$, \\E{1}{114}",
@@ -296,7 +300,7 @@ e("On the test sets NF vs the baseline is $-0.00006$",
   ("0.00006 0.3 0.00016 0.3 0.00012 0.3", "R9", None, r"^\| NF noise-map head \+ FiLM vs adaptive-stale \(baseline\) \| -0.00006"))
 e("(565\\,121 parameters)", ("565121", "TD", None, r"\$H=64\$, \$L=6\$ \(capacity check\)"))
 e("(0.0484 vs 0.0514, $-0.0031$, \\E{8}{14})", ("0.0484 0.0514 0.0031 8e-14", "N05", "## Summary", r"^5\. h64/l6 beats h48/l4"),
-  ("0.00009 0.1 2.2 8540 3890", "N05", None, r"^Q5\. Does h64/l6 beat"))
+  ("0.00009 0.1", "N05", None, r"^Q5\. Does h64/l6 beat"), ("2.2 2 22 65", "R4", None, r"^5\. \*\*h64/l6 beats h48/l4"))
 e("with 0.3 points (0.0590 vs 0.0620)", ("0.0590 0.0620 0.3 1", "N05", None, r"^\| \"h64/l6 clearly won\" \|"))
 e("ensembles (0.0457 and 0.0484) are at or below it", ("0.0457 0.0484 0.0484", "N07", None, r"^14\. \*\*A 3-seed h48/l4 ensemble"))
 e("(largest\n$p=\\Eb{1}{7}$)", ("1e-07", "N07", "## Short answers", r"^     - The gain is largest|^   - \*\*d=5: yes, clearly"))
@@ -315,12 +319,28 @@ e("it takes 1.85\\,\\textmu s per shot on CPU",
   ("10.8", "N04", "Per-shot latency", r"^\| 5 \| adaptive NN \| L4 \|"),
   ("4096", "N04", None, r"^- MWPM is the fastest decoder in every configuration"))
 e("curves were still falling at 300\\,000 steps", ("300k", "N05", None, r"^Training is not finished"))
-e("and trails it by $0.0031$ on held-out large", ("0.0031 3e-14", "N07", "### d=5, drift steps: ensemble", r"^\| adaptive-stale \| bursts_big \|"))
+e("and trails it by $0.0031$ on out-of-distribution large", ("0.0031 3e-14", "N07", "### d=5, drift steps: ensemble", r"^\| adaptive-stale \| bursts_big \|"))
 
 e("default $H_c=48$, $L=4$ (also Appendix A, and h64/l6 $H_c=64$, $L=6$)",
   ("48 4", "TD", None, r"\$H=48\$, \$L=4\$ \(default\)"), ("64 6", "TD", None, r"\$H=64\$, \$L=6\$ \(capacity check\)"))
-e("lowers the drift-step LER in every case at $p\\le\\Eb{1}{209}$ (the largest localised-regime p in Table 2)",
-  ("1e-209", "N07", ("## 3. Ensemble live", "### d=5$"), r"^\| adaptive-stale \| bursts \| -0.0063"))
+e("lowers the drift-step LER in every case at $p\\le\\Eb{2}{209}$ (the largest localised-regime p in Table 2)",
+  ("1.2e-209", "A2", None, r"^  d5 ast bursts:"))
+
+# ------------------------------------------------------------------ added after the claim audit (whitepaper/audit)
+e("On nominal noise the network is already about 36\\,\\%", ("36", "A8", None, r"^  bursts: 0.0021 vs 0.0033"))
+e("since the network is already 35--39\\,\\% below MWPM on nominal steps",
+  ("36", "A8", None, r"^  bursts: 0.0021"), ("38", "A8", None, r"^  bursts_big: 0.0021"),
+  ("39", "A8", None, r"^  hot_qubit: 0.0021"), ("35", "A8", None, r"^  telegraph: 0.0021"))
+e("while frozen adaptive-wide is well above it (0.0680, \\E{2}{178})",
+  ("0.0680 0.0564 2e-178", "A8", None, r"^  d5 aw frozen - sw ens bursts_big"))
+e("(29 runs per burst regime, 21 for", ("29 29 21 5", "N03", None, r"^\| Onsets pooled over 5 streams"))
+e("keeps $p\\le\\Eb{1.5}{5}$ except",
+  ("26 3 1.5e-05", "A9", None, r"^d5 bursts     ast vs oracle"),
+  ("28 0 7.5e-09", "A9", None, r"^d5 bursts_big ast vs static-wide"),
+  ("27 1 2.2e-07", "A9", None, r"^d5 bursts_big ast live-frozen"),
+  ("9 20 0.061", "A9", None, r"^d5 bursts_big ast vs oracle"),
+  ("5 0 0.062", "A9", None, r"^d5 hot_qubit  ast vs oracle"))
+e("all five seed-0 models\n(static-wide, static-nominal", ("5", "N05", None, r"^From 240k to 300k steps, all 5 models"))
 
 # ------------------------------------------------------------------ appendix A, B
 e("Detectors per shot; grid $(T,X,Y)$ & 24", ("24 120", "TD", None, r"this is \$N=24\$"))
@@ -336,9 +356,13 @@ e("Stim 1.16.0, PyMatching 2.4.0, NumPy 2.4.6, PyTorch 2.15.0",
 for name, row in [("d3\\_wide", r"\\code\{d3\\_wide\} & wide"), ("d5\\_wide", r"\\code\{d5\\_wide\} & wide"),
                   ("d5\\_nominal", r"\\code\{d5\\_nominal\} & nominal"), ("d5\\_wide\\_x5", r"\\code\{d5\\_wide\\_x5\}"),
                   ("d5\\_nominal\\_x5", r"\\code\{d5\\_nominal\\_x5\}")]:
-    nums = {"d3\\_wide": "30000 15.4 0.1", "d5\\_wide": "30000 15.4 510", "d5\\_nominal": "30000 15.4 86",
-            "d5\\_wide\\_x5": "150000 76.8 2.3", "d5\\_nominal\\_x5": "150000 76.8 393"}[name]
-    e("\\code{" + name + "} & ", (nums, "TD", None, row))
+    nums = {"d3\\_wide": "30000 15.4", "d5\\_wide": "30000 15.4", "d5\\_nominal": "30000 15.4",
+            "d5\\_wide\\_x5": "150000 76.8", "d5\\_nominal\\_x5": "150000 76.8"}[name]
+    size = {"d3\\_wide": ("107", "d3_wide"), "d5\\_wide": ("510", "d5_wide"), "d5\\_nominal": ("85", "d5_nominal"),
+            "d5\\_wide\\_x5": ("2.28", "d5_wide_x5"), "d5\\_nominal\\_x5": ("392", "d5_nominal_x5")}[name]
+    e("\\code{" + name + "} & ", (nums, "TD", None, row), (size[0], "A10", None, rf"^dataset {size[1]}:"))
+e("\\code{d3\\_r3\\_p0.003\\_s0}$^{*}$ & 3", ("101", "A10", None, r"^dataset d3_r3_p0.003_s0:"))
+e("\\code{d3\\_nominal} & 3 & nominal only & 30\\,000 & 15.4\\,M & 16", ("16", "A10", None, r"^dataset d3_nominal:"))
 e("\\code{d3\\_nominal} & 3 & nominal only & 30\\,000", ("30000 512", "N04", None, r"is a nominal-only dataset of the same size as"))
 e("All have 1000 validation chunks", ("1000", "TD", None, r"All have \$1000\$ validation chunks"))
 

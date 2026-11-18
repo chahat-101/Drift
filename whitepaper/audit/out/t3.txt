@@ -1,0 +1,28 @@
+5.1 d3 onset/later ast vs oracle
+  d3 bursts onset: A=0.09005 B=0.06812 d=+0.02193 b=2658 c=1386 p=2.3e-90
+  d3 bursts later: A=0.06690 B=0.06626 d=+0.00065 b=4555 c=4422 p=0.16
+  d3 bursts_big onset: A=0.21507 B=0.19264 d=+0.02243 b=3901 c=2600 p=7.3e-59
+  d3 bursts_big later: A=0.19641 B=0.19411 d=+0.00230 b=8033 c=7633 p=0.0014
+5.2 after step
+  d5 bb after aw live-frozen: A=0.00555 B=0.00202 d=+0.00353 b=234 c=29 p=5.3e-41
+  d5 bb after aw - static: A=0.00555 B=0.00343 d=+0.00212 b=233 c=110 p=2.8e-11
+  d5 bb after ast live-frozen: A=0.00276 B=0.00216 d=+0.00060 b=58 c=23 p=0.00013
+  d5 bb after ast - static: A=0.00276 B=0.00343 d=-0.00067 b=75 c=114 p=0.0056
+  d3 bb after ast - static: A=0.00919 B=0.00655 d=+0.00264 b=297 c=144 p=2.6e-13
+  d3 b after ast - static: A=0.00748 B=0.00648 d=+0.00100 b=182 c=126 p=0.0017
+  d3 bb after ast live-frozen: A=0.00919 B=0.00543 d=+0.00376 b=266 c=48 p=9.5e-38
+5.3 d5 phases ast vs oracle
+  d5 bursts onset: A=0.01943 B=0.01953 d=-0.00010 b=511 c=517 p=0.88
+  d5 bursts later: A=0.01637 B=0.01978 d=-0.00340 b=1296 c=1997 p=1.8e-34
+  d5 bursts_big onset: A=0.04869 B=0.04219 d=+0.00650 b=1411 c=1034 p=2.6e-14
+  d5 bursts_big later: A=0.04473 B=0.04278 d=+0.00195 b=3358 c=3019 p=2.3e-05
+6 ensembles vs members (drift), largest p
+  d5 sw: largest p ens vs member = 4.4e-13
+  d5 aw: largest p ens vs member = 1.4e-07
+  d5 ast: largest p ens vs member = 2.9e-08
+  d3 sw hot_qubit m0: ens NOT better +0.0015 p=4.2e-137
+  d3 sw hot_qubit m2: ens NOT better +0.0011 p=1.5e-87
+  d3 sw: largest p ens vs member = 0.77
+  d3 aw: largest p ens vs member = 0.081
+  d3 ast: largest p ens vs member = 0.56
+  d3 sw hot ens - best member: A=0.02760 B=0.02614 d=+0.00146 b=2493 c=1034 p=4.2e-137

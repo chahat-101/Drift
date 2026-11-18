@@ -1,0 +1,8 @@
+nominal mean firing rate d=5: analytic DEM 4.279 % (rounded 4.28 %), nominal test-set window 4.347 %
+dataset d3_nominal: 16652554 bytes = 15.9 MiB (rounded 16 MiB) = 0.02 GiB
+dataset d3_r3_p0.003_s0: 106089551 bytes = 101.2 MiB (rounded 101 MiB) = 0.10 GiB
+dataset d3_wide: 112562898 bytes = 107.3 MiB (rounded 107 MiB) = 0.10 GiB
+dataset d5_nominal: 89545921 bytes = 85.4 MiB (rounded 85 MiB) = 0.08 GiB
+dataset d5_nominal_x5: 411071406 bytes = 392.0 MiB (rounded 392 MiB) = 0.38 GiB
+dataset d5_wide: 534676774 bytes = 509.9 MiB (rounded 510 MiB) = 0.50 GiB
+dataset d5_wide_x5: 2446519606 bytes = 2333.2 MiB (rounded 2333 MiB) = 2.28 GiB

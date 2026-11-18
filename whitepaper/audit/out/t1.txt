@@ -1,0 +1,74 @@
+===== d=5 Table1 drift
+bursts      n=264000 static 0.0439 bestW 0.0356(2000) oracle 0.0197
+   sw   ens 0.0224 seeds 0.0258±0.0021  best seed 0.0241  ens-mean -0.0034 ens-best -0.0018
+   aw   ens 0.0171 seeds 0.0190±0.0011  best seed 0.0178  ens-mean -0.0019 ens-best -0.0007
+   ast  ens 0.0170 seeds 0.0184±0.0008  best seed 0.0178  ens-mean -0.0014 ens-best -0.0008
+   ast - static-wide ens: -0.0053 b=883 c=2289 p=3.6e-142 (log10 -141.4)
+   ast - oracle: -0.0027 b=1807 c=2514 p=5.1e-27 (log10 -26.3)
+   ast - static MWPM: -0.0269 b=1430 c=8520 p=1.1e-1218 (log10 -1217.9)
+   ast - bestW: -0.0186 b=1738 c=6646 p=8e-668 (log10 -667.1)
+   aw - ast: +0.0001 p=0.6
+bursts_big  n=232000 static 0.0980 bestW 0.0896(2000) oracle 0.0426
+   sw   ens 0.0564 seeds 0.0757±0.0153  best seed 0.0629  ens-mean -0.0193 ens-best -0.0065
+   aw   ens 0.0484 seeds 0.0634±0.0125  best seed 0.0516  ens-mean -0.0149 ens-best -0.0032
+   ast  ens 0.0457 seeds 0.0548±0.0059  best seed 0.0513  ens-mean -0.0091 ens-best -0.0056
+   ast - static-wide ens: -0.0107 b=3117 c=5600 p=7.5e-158 (log10 -157.1)
+   ast - oracle: +0.0031 b=4769 c=4053 p=2.6e-14 (log10 -13.6)
+   ast - static MWPM: -0.0522 b=4420 c=16538 p=1.2e-1622 (log10 -1621.9)
+   ast - bestW: -0.0439 b=4819 c=15010 p=5e-1196 (log10 -1195.3)
+   aw - ast: +0.0027 p=3.1e-19
+hot_qubit   n=1000000 static 0.0181 bestW 0.0108(10000) oracle 0.0103
+   sw   ens 0.0098 seeds 0.0106±0.0005  best seed 0.0101  ens-mean -0.0008 ens-best -0.0004
+   aw   ens 0.0071 seeds 0.0076±0.0002  best seed 0.0074  ens-mean -0.0005 ens-best -0.0003
+   ast  ens 0.0073 seeds 0.0077±0.0004  best seed 0.0075  ens-mean -0.0004 ens-best -0.0002
+   ast - static-wide ens: -0.0025 b=1121 c=3596 p=9.7e-299 (log10 -298.0)
+   ast - oracle: -0.0030 b=2899 c=5866 p=1.2e-224 (log10 -223.9)
+   ast - static MWPM: -0.0108 b=2171 c=12929 p=1.1e-1847 (log10 -1847.0)
+   ast - bestW: -0.0035 b=2875 c=6414 p=1.6e-302 (log10 -301.8)
+   aw - ast: -0.0002 p=6.3e-06
+telegraph   n=622000 static 0.0228 bestW 0.0229(10000) oracle 0.0231
+   sw   ens 0.0175 seeds 0.0186±0.0004  best seed 0.0184  ens-mean -0.0012 ens-best -0.0009
+   aw   ens 0.0164 seeds 0.0171±0.0003  best seed 0.0168  ens-mean -0.0008 ens-best -0.0004
+   ast  ens 0.0164 seeds 0.0171±0.0002  best seed 0.0169  ens-mean -0.0007 ens-best -0.0005
+   ast - static-wide ens: -0.0010 b=1318 c=1960 p=2.9e-29 (log10 -28.5)
+   ast - oracle: -0.0066 b=2889 c=7025 p=1.2e-388 (log10 -387.9)
+   ast - static MWPM: -0.0064 b=2877 c=6873 p=1.4e-368 (log10 -367.8)
+   ast - bestW: -0.0065 b=2914 c=6958 p=8.9e-373 (log10 -372.0)
+   aw - ast: -0.0001 p=0.37
+===== d=3 Table1 drift
+bursts      n=264000 static 0.1742 bestW 0.1069(2000) oracle 0.0667
+   sw   ens 0.1049 seeds 0.1058±0.0001  best seed 0.1057  ens-mean -0.0009 ens-best -0.0008
+   aw   ens 0.0713 seeds 0.0725±0.0006  best seed 0.0719  ens-mean -0.0012 ens-best -0.0006
+   ast  ens 0.0720 seeds 0.0730±0.0002  best seed 0.0728  ens-mean -0.0010 ens-best -0.0008
+   ast - static-wide ens: -0.0329 b=2978 c=11660 p=1.4e-1197 (log10 -1196.9)
+   ast - oracle: +0.0053 b=7213 c=5808 p=7.4e-35 (log10 -34.1)
+   ast - static MWPM: -0.1022 b=5536 c=32517 p=9.1e-4603 (log10 -4602.0)
+   ast - bestW: -0.0349 b=5689 c=14898 p=1.9e-929 (log10 -928.7)
+   aw - ast: -0.0007 p=0.0072
+bursts_big  n=232000 static 0.3778 bestW 0.2848(2000) oracle 0.1937
+   sw   ens 0.2427 seeds 0.2496±0.0055  best seed 0.2455  ens-mean -0.0069 ens-best -0.0028
+   aw   ens 0.2014 seeds 0.2071±0.0042  best seed 0.2041  ens-mean -0.0058 ens-best -0.0027
+   ast  ens 0.2011 seeds 0.2037±0.0026  best seed 0.2017  ens-mean -0.0026 ens-best -0.0006
+   ast - static-wide ens: -0.0416 b=6936 c=16588 p=2.6e-888 (log10 -887.6)
+   ast - oracle: +0.0073 b=11934 c=10233 p=3.2e-30 (log10 -29.5)
+   ast - static MWPM: -0.1767 b=14811 c=55807 p=3.9e-5509 (log10 -5508.4)
+   ast - bestW: -0.0837 b=12720 c=32149 p=2.5e-1891 (log10 -1890.6)
+   aw - ast: +0.0003 p=0.56
+hot_qubit   n=1000000 static 0.0586 bestW 0.0250(10000) oracle 0.0228
+   sw   ens 0.0276 seeds 0.0268±0.0008  best seed 0.0261  ens-mean +0.0008 ens-best +0.0015
+   aw   ens 0.0196 seeds 0.0202±0.0001  best seed 0.0201  ens-mean -0.0006 ens-best -0.0005
+   ast  ens 0.0208 seeds 0.0213±0.0004  best seed 0.0209  ens-mean -0.0004 ens-best -0.0001
+   ast - static-wide ens: -0.0068 b=2426 c=9197 p=2.1e-915 (log10 -914.7)
+   ast - oracle: -0.0020 b=5871 c=7886 p=2.6e-66 (log10 -65.6)
+   ast - static MWPM: -0.0378 b=5026 c=42825 p=1.7e-7424 (log10 -7423.8)
+   ast - bestW: -0.0042 b=5693 c=9849 p=1.6e-246 (log10 -245.8)
+   aw - ast: -0.0012 p=5.7e-68
+telegraph   n=622000 static 0.0239 bestW 0.0237(10000) oracle 0.0239
+   sw   ens 0.0235 seeds 0.0237±0.0001  best seed 0.0236  ens-mean -0.0001 ens-best -0.0000
+   aw   ens 0.0208 seeds 0.0209±0.0000  best seed 0.0209  ens-mean -0.0001 ens-best -0.0001
+   ast  ens 0.0214 seeds 0.0216±0.0001  best seed 0.0215  ens-mean -0.0001 ens-best -0.0000
+   ast - static-wide ens: -0.0021 b=1226 c=2526 p=7.3e-102 (log10 -101.1)
+   ast - oracle: -0.0025 b=2776 c=4326 p=4.8e-76 (log10 -75.3)
+   ast - static MWPM: -0.0025 b=2776 c=4324 p=7.1e-76 (log10 -75.1)
+   ast - bestW: -0.0023 b=2559 c=3978 p=2.1e-69 (log10 -68.7)
+   aw - ast: -0.0006 p=5.4e-19
