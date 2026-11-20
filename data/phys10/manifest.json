@@ -1,0 +1,283 @@
+{
+ "format": 1,
+ "kind": "phys10",
+ "args": {
+  "distance": 5,
+  "rounds": 5,
+  "p": 0.0015,
+  "device_seed": 0,
+  "n_substeps": 1500,
+  "shots_per_substep": 200,
+  "regimes": [
+   "phys_static",
+   "phys_tls",
+   "phys_cosmic",
+   "phys_slow",
+   "phys_coupler",
+   "phys_mixed"
+  ],
+  "stream_seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "calibration_shots": 2000,
+  "stim_seed_rule": "blake2b(f\"{regime}|{stream_seed}|{substep}\", 8 bytes, big-endian); calibration: blake2b('phys10|calibration')",
+  "drift_rule": "cosmic: max burst >= 0.005; tls: any fluctuator on; coupler: any coupler on; slow: all; mixed: cosmic or tls or coupler"
+ },
+ "versions": {
+  "python": "3.11.17",
+  "numpy": "2.4.6",
+  "stim": "1.16.0",
+  "physics_noise_sha256": "cd02e12dada6a2b5bdbe1b8ff63ce957085c715fbf7f7b351e104063ec79ba82"
+ },
+ "files": {
+  "calibration.npz": {
+   "sha256": "ca5552263e4a66a7355cbaed2a58017507b604aee4da8a304991952f63da5925",
+   "bytes": 10213,
+   "kind": "calibration"
+  },
+  "stream_phys_tls_s0.npz": {
+   "sha256": "bfc065eded6e4593d67ef448b5f7f7383fe7419c3b6138dbf03817617968ecd8",
+   "bytes": 1655716,
+   "kind": "stream",
+   "regime": "phys_tls",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_static_s0.npz": {
+   "sha256": "b011d15e3ec14db410f40d1bf319e8c7e8293d722c40cc58a66d3723a2bd95f7",
+   "bytes": 1445037,
+   "kind": "stream",
+   "regime": "phys_static",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_static_s1.npz": {
+   "sha256": "94917936e0cc70d5f92b387b45fe6e597ca6875c56c67870443e16165ff10f35",
+   "bytes": 1443697,
+   "kind": "stream",
+   "regime": "phys_static",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_static_s2.npz": {
+   "sha256": "c931f0e719ae14838b2eb9372ecf534732e6302697f6eb2f29fcc55fdccd9f58",
+   "bytes": 1444673,
+   "kind": "stream",
+   "regime": "phys_static",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_static_s3.npz": {
+   "sha256": "bbb7345ab7908cd3661667c8c2bce378249788d2b34b1dbaa9428642d3e4db14",
+   "bytes": 1443500,
+   "kind": "stream",
+   "regime": "phys_static",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_static_s4.npz": {
+   "sha256": "677c7095082c2dabb4622f7c58b2a9e44001bfa1121c48bc3be336d61d061247",
+   "bytes": 1443594,
+   "kind": "stream",
+   "regime": "phys_static",
+   "stream_seed": 4,
+   "substeps": 1500
+  },
+  "stream_phys_tls_s1.npz": {
+   "sha256": "f6f1b897da3a50fd6e77c3d83725aeb09f5e64ecd42697b27c0d5b5d65c69634",
+   "bytes": 1681634,
+   "kind": "stream",
+   "regime": "phys_tls",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_tls_s2.npz": {
+   "sha256": "242b2122e74fc751d6f66885197e1d80f7ceb2697b82ff2544c46f09905313bc",
+   "bytes": 1661040,
+   "kind": "stream",
+   "regime": "phys_tls",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_tls_s3.npz": {
+   "sha256": "503eeb134e8fa7b8171f514734ba839f23a1d7a08e2cca7ff46bb9b84fc06d99",
+   "bytes": 1719526,
+   "kind": "stream",
+   "regime": "phys_tls",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_tls_s4.npz": {
+   "sha256": "37d18ac4a84fecb6a4720f39d42d6e9629800bd078c29602fc2b682d83643a94",
+   "bytes": 1657271,
+   "kind": "stream",
+   "regime": "phys_tls",
+   "stream_seed": 4,
+   "substeps": 1500
+  },
+  "stream_phys_cosmic_s0.npz": {
+   "sha256": "b3727452d16a1ca3050a7629e00ccfccaa3fec2fb8b3a92ea89b7d181a558744",
+   "bytes": 2188721,
+   "kind": "stream",
+   "regime": "phys_cosmic",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_cosmic_s1.npz": {
+   "sha256": "1ce7ec43d4e5bff7f6ee3f4bb8efeab8b2d19bfc4bb7be811ed16afd375d3587",
+   "bytes": 1951246,
+   "kind": "stream",
+   "regime": "phys_cosmic",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_cosmic_s2.npz": {
+   "sha256": "471bf248fec03ebee639b233a6612b80923617cf8f102068685fbda808fa424e",
+   "bytes": 1864451,
+   "kind": "stream",
+   "regime": "phys_cosmic",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_cosmic_s3.npz": {
+   "sha256": "5f21728a05db01ded049db686861b2853d44252dec6e62152f4deb3453be11e0",
+   "bytes": 1442802,
+   "kind": "stream",
+   "regime": "phys_cosmic",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_cosmic_s4.npz": {
+   "sha256": "b29f57f0eadb881bdcbc65fb35c22d48ce3753f41ff52ffe736b1dbf731079a9",
+   "bytes": 1784880,
+   "kind": "stream",
+   "regime": "phys_cosmic",
+   "stream_seed": 4,
+   "substeps": 1500
+  },
+  "stream_phys_slow_s0.npz": {
+   "sha256": "4d72c7934ebd83ecf3d376d183076f9e288777ac717d24444914184d328b7642",
+   "bytes": 2604882,
+   "kind": "stream",
+   "regime": "phys_slow",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_slow_s1.npz": {
+   "sha256": "74567da339bda659d3cd2843e12420f5bcefaec6a07478998ef4452bd4e2d0ad",
+   "bytes": 2520648,
+   "kind": "stream",
+   "regime": "phys_slow",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_slow_s2.npz": {
+   "sha256": "da0cddabf7cfc3261f283cb3bc7ad20397a7659970d805d2b72e051f178fb49c",
+   "bytes": 2587011,
+   "kind": "stream",
+   "regime": "phys_slow",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_slow_s3.npz": {
+   "sha256": "68b44fa3e84066c247b25bc86deb0e4532ba5fe3b21bd11ab4e93fdf8e2718d1",
+   "bytes": 2576122,
+   "kind": "stream",
+   "regime": "phys_slow",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_slow_s4.npz": {
+   "sha256": "d2473f7c3f3b0a70091166b5f42a5ca17bfbca757213df97c91597a0b447e7a4",
+   "bytes": 2519631,
+   "kind": "stream",
+   "regime": "phys_slow",
+   "stream_seed": 4,
+   "substeps": 1500
+  },
+  "stream_phys_coupler_s0.npz": {
+   "sha256": "71b7abd8b0c8cc6b35af7648106a310611aef8248423a863cbb1c849e0413806",
+   "bytes": 1444946,
+   "kind": "stream",
+   "regime": "phys_coupler",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_coupler_s1.npz": {
+   "sha256": "21bb2e8aa250f76a7bcb9d85cc6494ddfb0e6a65cc1b25bbd8469b76787b51bf",
+   "bytes": 1459462,
+   "kind": "stream",
+   "regime": "phys_coupler",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_coupler_s2.npz": {
+   "sha256": "0b7bd103dfd0359954548b8cf0e34dd9783c40b32caa870d38c7ff213f05ff2d",
+   "bytes": 1454975,
+   "kind": "stream",
+   "regime": "phys_coupler",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_coupler_s3.npz": {
+   "sha256": "026f420341b11dcabd8ed9ddf1d9dcd6eb992074d1da3ca8308ffb1657fbd081",
+   "bytes": 1461857,
+   "kind": "stream",
+   "regime": "phys_coupler",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_coupler_s4.npz": {
+   "sha256": "be0092c22c3f34d8b10d8a7c47c4ba55112bdaf90a3511580126d358175d36bc",
+   "bytes": 1451166,
+   "kind": "stream",
+   "regime": "phys_coupler",
+   "stream_seed": 4,
+   "substeps": 1500
+  },
+  "stream_phys_mixed_s0.npz": {
+   "sha256": "52a42b2ab81398f793aba47a600d5ec6eae366cfe96c21e17a360ef95e21244e",
+   "bytes": 3516449,
+   "kind": "stream",
+   "regime": "phys_mixed",
+   "stream_seed": 0,
+   "substeps": 1500
+  },
+  "stream_phys_mixed_s1.npz": {
+   "sha256": "daa5bd6296cea6dddf025afff45f8c493a40538c2265eae3d0eede5e0f4a5b74",
+   "bytes": 3254202,
+   "kind": "stream",
+   "regime": "phys_mixed",
+   "stream_seed": 1,
+   "substeps": 1500
+  },
+  "stream_phys_mixed_s2.npz": {
+   "sha256": "c0eacbfe420cdc8e4853410e15548138c356716fe88344c4c238de0d5528aa0a",
+   "bytes": 3213948,
+   "kind": "stream",
+   "regime": "phys_mixed",
+   "stream_seed": 2,
+   "substeps": 1500
+  },
+  "stream_phys_mixed_s3.npz": {
+   "sha256": "a250cfe447c6cc1fd862428bc35ead75525e31fb7bb5691a158da81dc171dfbd",
+   "bytes": 2866324,
+   "kind": "stream",
+   "regime": "phys_mixed",
+   "stream_seed": 3,
+   "substeps": 1500
+  },
+  "stream_phys_mixed_s4.npz": {
+   "sha256": "fdc1dde63bcaecc620bb1c2165c4cc943c938d58ae9d6c1137c472738a0afe44",
+   "bytes": 3070046,
+   "kind": "stream",
+   "regime": "phys_mixed",
+   "stream_seed": 4,
+   "substeps": 1500
+  }
+ }
+}
