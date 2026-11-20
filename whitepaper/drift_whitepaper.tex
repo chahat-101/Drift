@@ -39,10 +39,10 @@
 \DeclareMathOperator{\clip}{clip}
 \newcommand{\R}{\mathbb{R}}
 
-\title{\bfseries Drift: a calibration-free neural decoder that adapts\\to drifting noise from its own syndromes}
+\title{\bfseries Drift: a calibration-free neural decoder that adapts\\to synthetic drifting noise from its own syndromes}
 \author{Chahat Patel\\[2pt]\small Symbiosis Institute of Technology, Pune}
-\date{\small Whitepaper, November 2026\\[2pt]
-\small Preprint DOI: \href{https://doi.org/10.5281/zenodo.24342173}{10.5281/zenodo.24342173}}
+\date{\small Version 2, 20 Nov 2026\\[2pt]
+\small Concept DOI: \href{https://doi.org/10.5281/zenodo.24342172}{10.5281/zenodo.24342172}}
 
 \begin{document}
 \maketitle
@@ -52,12 +52,22 @@
 Error rates on quantum processors drift over time, and a decoder whose weights encode one fixed noise model
 loses accuracy when the noise moves. We study a neural surface-code decoder that receives, next to each shot,
 a \emph{fingerprint}: the firing rate of every detector over the last 2000 shots it has decoded. It receives no
-calibration data. In circuit-level simulation ($p=0.003$) with four drift regimes, a three-seed ensemble of this
-decoder at distance~5 reaches a drift-step logical error rate of 0.0457 on large bursts outside the training
-distribution, against 0.0980 for static matching, 0.0896 for the best sliding-window reweighted matching and 0.0426
+calibration data. Trained once on uniform circuit-level noise ($p=0.003$), the same frozen weights transfer to
+a device-level simulation with SI1000 circuit noise ($p=0.0015$) under per-qubit heterogeneity, slow drift,
+two-level-system fluctuators, accelerated cosmic-ray bursts and coupler faults: without retraining, all four
+trained ensembles beat MWPM calibrated to that device on its static noise (0.0016 to 0.0017 against 0.0022,
+largest paired McNemar $p=\Eb{4}{56}$), and are below or statistically indistinguishable from
+calibrated and oracle MWPM under drift
+(\reg{phys\_mixed}: 0.0463 against 0.0476 and 0.0472). The live fingerprint, however, does not beat its
+frozen version on pooled drift LER in any pre-registered regime, and (post hoc) it is
+significantly worse in the tails of cosmic-ray bursts. In circuit-level simulation ($p=0.003$) with four
+drift regimes, a three-seed ensemble of
+this decoder at distance~5 reaches a drift-step logical error rate of 0.0457 on large bursts outside the
+training distribution, against 0.0980 for static matching, 0.0896 for the best sliding-window reweighted
+matching and 0.0426
 for matching with the true noise. With the same weights and a frozen nominal fingerprint the rate is 0.0576 (paired
 McNemar $p=\Eb{3}{247}$), close to a network trained without a fingerprint (0.0564): the gain over that network
-comes from adaptation, while most of the gain over matching comes from the network itself. An auxiliary head reads
+comes from adaptation on synthetic drift, while most of the gain over matching comes from the network itself. An auxiliary head reads
 hot-qubit locations from the same inputs; it beats a training-free fingerprint score on in-distribution bursts but
 not, at the event level, on out-of-distribution bursts. Four variants judged by pre-set decision rules (multiscale and
 pair-covariance fingerprints, a noise-map head with and without FiLM conditioning) failed those rules. All results
@@ -92,12 +102,15 @@ decoded. It never receives calibration data or the true noise state. We call thi
         On nominal noise the network is already about 36\,\% below MWPM, so part of this margin is decoder quality
         rather than adaptation.
   \item \textbf{A frozen-fingerprint control}: the same weights with a fixed nominal fingerprint show that the gain
-        over a non-adaptive network trained on the same data is adaptation, and that uniform scale drift gets almost
-        none (\cref{sec:res-adapt}).
+        over a non-adaptive network trained on the same data is adaptation on synthetic drift, and that uniform
+        scale drift gets almost none (\cref{sec:res-adapt}).
   \item \textbf{Drift localisation from syndromes}: an auxiliary head maps hot qubits; we compare it with a
         training-free fingerprint score and report where it is and is not better (\cref{sec:res-loc}).
   \item \textbf{Ablations with pre-set decision rules}, including negative results: richer fingerprints, a noise-map
         head with FiLM, a larger network and ensembling (\cref{sec:ablations}).
+  \item \textbf{A physics-based drift evaluation} with pre-registered hypotheses (\cref{sec:physics}): the
+        existing models transfer to SI1000 device noise --- every ensemble beats MWPM calibrated to that
+        device --- but the live fingerprint gives no gain on this drift.
 \end{enumerate}
 
 %=====================================================================
@@ -675,6 +688,165 @@ the static-wide ensemble is worse than its best member on \reg{hot\_qubit} drift
 have not found.
 
 %=====================================================================
+\section{Physics-based drift evaluation}\label{sec:physics}
+%=====================================================================
+
+Version 1 tested drift from the training family: uniform circuit-level noise with a global scale and
+hot-qubit clusters. This section freezes those models --- no retraining, no new training data --- and
+evaluates them on a device-level simulation whose noise processes come from hardware physics. Everything
+about the run was fixed before it started: streams, decoders, the drift classification, event windows and
+the statistics are in a definitions file committed to git before any result existed, and the hypotheses
+were committed at the same time (\cref{sec:phys-prereg}).
+
+\subsection{Device and streams}\label{sec:phys-setup}
+The circuit is the same rotated $d=5$, $r=5$ memory. Its noise follows the SI1000 circuit-noise model of
+Gidney et al.~\cite{gidney2021honeycomb} at strength $p=0.0015$: per-location depolarising, reset and
+measurement errors with SI1000's multipliers, rebuilt at every sub-step from a recorded noise state. The
+strength was chosen before the run: the static device's 200\,000-shot matching LER is 0.002255, the closest
+of the candidate strengths to the 0.0033 nominal LER of the version-1 circuit. On top of the SI1000 base,
+one simulated device (device seed 0) carries a fixed per-qubit heterogeneity --- each qubit a persistent
+multiplier, independent of every stream --- and four drifting processes:
+\begin{description}[leftmargin=1.2em, labelindent=0em, itemsep=1pt]
+\item[\reg{phys\_slow}] an auto-regressive random walk of every qubit's log multiplier;
+\item[\reg{phys\_tls}] two-level-system fluctuators, telegraph switching with a $1/f$-like spectrum;
+\item[\reg{phys\_cosmic}] error bursts from point impacts at rate 0.02 per 2000-shot step, deliberately
+  accelerated relative to physical rates of roughly one per ten seconds; each impact is a broad spot of
+  single-qubit depolarising noise with amplitude $0.2\,e^{-\mathrm{age}/25}$, age in sub-steps;
+\item[\reg{phys\_coupler}] chosen CX pairs switch on and off and carry extra two-qubit noise while on.
+\end{description}
+\reg{phys\_mixed} runs all four together; \reg{phys\_static} runs none. Each of the six regimes runs on five
+stream seeds, 1500 sub-steps of 200 shots each; ten sub-steps are one version-1 step.
+
+\subsection{Decoders and protocol}\label{sec:phys-protocol}
+The MWPM baselines are: \emph{calibrated}, built from the detector error model (DEM) of the static device;
+\emph{nominal}, built from the DEM of the $p=0.003$ circuit (a reference only); \emph{oracle}, rebuilt from
+the true noise state at every sub-step; and \emph{WindowDEM}, reweighted from the last
+$w\in\{500, 1000, 2000, 5000, 10000\}$ shots on the calibrated matching graph, with the best window chosen
+after the fact. The four ensembles of \cref{sec:variants} and their single seeds are evaluated causally in
+200-shot sub-batches on the same code path as the ensemble evaluation, verified beforehand by reproducing a
+saved version-1 ensemble result bit for bit. Adaptive models run live (each member's own 2000-shot window)
+and frozen (the fingerprint of a 2000-shot static-device calibration set, shared by all members). A
+sub-step is \emph{drift} by pre-registered rule: max burst $\ge0.005$ in \reg{phys\_cosmic}, any fluctuator
+on in \reg{phys\_tls}, any coupler on in \reg{phys\_coupler}, all sub-steps in \reg{phys\_slow}, the union
+of the three in \reg{phys\_mixed}. Events for sign tests are one burst (from impact until max burst
+$<0.005$), one fluctuator on-period, one coupler on-period. Statistics as in \cref{sec:setup}: exact
+two-sided McNemar on shared shots, $p<0.001$ significant, $0.001<p<0.05$ weak, no correction; exact
+two-sided sign tests over events, ties dropped.
+
+\subsection{Pre-registered hypotheses}\label{sec:phys-prereg}
+Quoted verbatim from the hypotheses file:
+\begin{quote}\small
+H1: On physics-based drift, the adaptive-stale ensemble (live) beats its frozen-fingerprint version on
+drift steps of \reg{phys\_tls}, \reg{phys\_cosmic} and \reg{phys\_mixed} (McNemar $p<0.001$, and
+event-level sign test $p<0.01$).\\
+H2: The adaptive-stale ensemble beats calibrated static MWPM and the best WindowDEM on drift steps of
+\reg{phys\_cosmic} and \reg{phys\_mixed} ($p<0.001$).\\
+H3 (risk): On the physics base device with no drift, the neural models are worse than calibrated MWPM
+(distribution shift from training). If true, round 11 retrains on physics-informed noise.\\
+No model is retrained in round 10.
+\end{quote}
+\noindent The hypotheses file is git commit 598e116 and the definitions file (notes/10\_definitions.md:
+streams, decoders, drift rule, event windows, statistics, pre-run checks) is git commit d19c5a0, both dated
+20 Nov 2026 and committed before any round-10 result existed; neither file was modified afterwards.
+
+\subsection{Results}\label{sec:phys-results}
+\Cref{tab:phys} shows drift-sub-step LERs pooled over the five streams; \reg{phys\_static} has no drift, so
+its column pools all sub-steps. All three pre-registered hypotheses fail.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Decoder & \reg{phys\_static}$^{\dagger}$ & \reg{phys\_tls} & \reg{phys\_cosmic} & \reg{phys\_slow} & \reg{phys\_coupler} & \reg{phys\_mixed} \\
+\midrule
+MWPM (calibrated) & 0.0022 & 0.0045 & 0.4199 & 0.0022 & 0.0026 & 0.0476 \\
+MWPM (nominal, ref.) & 0.0024 & 0.0050 & 0.4197 & 0.0024 & 0.0029 & 0.0482 \\
+MWPM (oracle) & 0.0022 & 0.0042 & 0.4158 & 0.0022 & 0.0026 & 0.0472 \\
+best WindowDEM (window) & 0.0022 (500) & 0.0045 (500) & 0.4199 (500) & 0.0022 (500) & 0.0026 (10000) & 0.0476 (500) \\
+static-wide ens. & 0.0016 & 0.0035 & 0.4146 & 0.0017 & 0.0020 & 0.0460 \\
+static-nominal ens. & 0.0017 & 0.0038 & 0.4201 & 0.0017 & 0.0020 & 0.0472 \\
+adaptive-wide ens. (live) & 0.0016 & 0.0034 & 0.4173 & 0.0016 & 0.0019 & 0.0461 \\
+adaptive-stale ens. (live) & 0.0016 & 0.0034 & 0.4172 & 0.0016 & 0.0019 & 0.0463 \\
+adaptive-stale ens. (frozen) & 0.0015 & 0.0033 & 0.4141 & 0.0016 & 0.0019 & 0.0462 \\
+\bottomrule
+\end{tabular}
+\caption{Physics-based drift, $d=5$: drift-sub-step LER pooled over 5 streams, existing models, no
+retraining. $^{\dagger}$\reg{phys\_static} has no drift; its column pools all sub-steps. WindowDEM: best
+window per regime chosen after the fact (window in brackets).}
+\label{tab:phys}
+\end{table}
+
+\paragraph{H1 fails: the live fingerprint does not help.}
+Live $-$ frozen on drift sub-steps is $+0.00003$ ($p=0.06$) on \reg{phys\_tls}, $+0.00309$
+($p=0.008$\weak) on \reg{phys\_cosmic} and $+0.00014$ ($p=0.2$) on \reg{phys\_mixed}. The event-level sign
+tests agree in the burst regime: frozen is better in all 10 burst events ($p=0.002$); on \reg{phys\_tls}
+it is a tie (299 against 282 events, $p=0.5$). On \reg{phys\_mixed} the sign test favours live ($384/291$,
+$p=\Eb{4}{4}$) while the pooled comparison does not ($p=0.2$); \cref{sec:phys-explor} traces this to
+composition --- the pooled test is dominated by burst errors --- and on the burst events themselves frozen
+is ahead. With no drift at all the live fingerprint is pure estimation noise: on \reg{phys\_static} live is
+$+0.00003$ above frozen (\E{7}{6}).
+
+\paragraph{H2 fails on power, not direction.}
+On \reg{phys\_mixed} the adaptive-stale ensemble beats calibrated MWPM and the best WindowDEM as
+pre-registered: $-0.00126$, \E{9}{14} against both. On \reg{phys\_cosmic} it is lower than both
+($-0.00269$) but the regime contributes only 747 drift sub-steps pooled over five seeds, and at drift LER
+0.42 nearly every shot fails for every decoder, so the comparison does not reach significance ($p=0.1$; the
+best window is 500, whose weights barely leave the calibrated ones). Oracle MWPM is 0.4158 against
+calibrated 0.4199: under these bursts the matching decoder itself is the bottleneck, not its weights.
+
+\paragraph{H3 fails: the risk did not materialise.}
+On the static device every ensemble is significantly better than calibrated MWPM (0.0022): static-wide
+0.0016 ($-0.00060$, \E{4}{79}), static-nominal 0.0017 ($-0.00051$, \E{4}{56}), adaptive-wide
+0.0016 ($-0.00063$, \E{2}{87}) and adaptive-stale 0.0016 ($-0.00064$, \E{9}{91}). The $p=0.003$-trained
+networks transfer to SI1000 noise without retraining, keeping the margin over matching they had on
+uniform noise.
+
+\paragraph{Beyond the hypotheses.}
+The ensembles sit below calibrated MWPM in every regime's drift steps except \reg{phys\_cosmic}
+(\reg{phys\_static} on all sub-steps; largest $p=\Eb{9}{14}$: \reg{phys\_tls} \E{8}{129}, \reg{phys\_slow}
+\E{7}{69}, \reg{phys\_coupler} \E{4}{24}, \reg{phys\_mixed} \E{9}{14}). They beat oracle MWPM on
+\reg{phys\_tls} ($-0.00085$, \E{5}{78}) and \reg{phys\_mixed} ($-0.00089$, \E{2}{7}) and are not separable
+from it on \reg{phys\_cosmic} ($+0.00139$, $p=0.4$). The best WindowDEM is $w=500$ in every regime but
+\reg{phys\_coupler} ($w=10000$) --- after 500 shots its weights barely leave the calibrated ones --- and
+long windows hurt under bursts: on \reg{phys\_cosmic} $w=10000$ has drift LER 0.4631 against 0.4199 for
+$w=500$.
+
+\subsection{Exploratory (post hoc)}\label{sec:phys-explor}
+The following slices were chosen after seeing the results; they are not hypothesis tests. Grouping the H1
+comparison by burst-amplitude bin (the amplitude $0.2\,e^{-\mathrm{age}/25}$ of the youngest active impact)
+locates the live fingerprint's cost in \reg{phys\_cosmic}: live $-$ frozen is $+0.00050$
+($p=0.8$) in the strongest bin [0.05, 0.2], where both decoders fail about half the shots (0.4919 against
+0.4914) and nothing separates, $+0.00420$ ($p=0.06$) in [0.0125, 0.05) and $+0.00686$ (\E{5}{7})
+in the weakest bin [0.005, 0.0125) --- the one bin where decoding still works (0.2028 against 0.1959) ---
+consistent with the 2000-shot live window lagging the decaying burst. \reg{phys\_mixed} is similar
+but weaker: $-0.00104$ ($p=0.6$), $+0.00349$ ($p=0.1$) and $+0.00339$
+(0.02\weak). On the TLS-only drift sub-steps of \reg{phys\_mixed} (1\,017\,000 shots) live and frozen are
+indistinguishable ($+0.00002$, $p=0.5$), and the apparent conflict on \reg{phys\_mixed} --- pooled McNemar
+slightly favours frozen, the sign test favours live --- is composition: burst sub-steps carry almost all
+the errors (bin 0 LER 0.4928 against 0.0049 on TLS-only sub-steps) and favour frozen, while the sign test
+is dominated by the 992 TLS events, which
+favour live ($366/276$, $p=\Eb{4}{4}$); the 10 burst events slightly favour frozen ($4/6$) and the 27
+coupler events are undecided ($14/9$, $p=0.4$).
+
+\paragraph{Limitations of this evaluation.}
+\begin{itemize}
+  \item Event windows overlap (two fluctuators can be on at once), so events share shots and event-level
+        $p$-values are approximate, most visibly for \reg{phys\_tls} and \reg{phys\_mixed}.
+  \item The cosmic-ray impact rate is accelerated (0.02 per 2000-shot step against roughly one per ten
+        seconds on hardware), so burst behaviour is compressed in time.
+  \item The baselines are MWPM only: no correlated-matching or fusion decoder was run, and at drift LER
+        0.42 in \reg{phys\_cosmic} every decoder is near failure, which hides differences.
+  \item One simulated device: one heterogeneity draw, one set of fluctuator timescales, two chosen coupler
+        pairs; \reg{phys\_cosmic} contributes only 747 drift sub-steps pooled.
+  \item A $\Delta$LER normalisation bug in the analysis script (division by sub-steps instead of shots) was
+        found and fixed before the results were finalised; the verdicts depend only on $p$-values and sign
+        counts, which the bug did not affect, and every $\Delta$LER quoted here comes from the corrected
+        script.
+\end{itemize}
+
+%=====================================================================
 \section{Discussion}\label{sec:discussion}
 %=====================================================================
 
@@ -693,10 +865,12 @@ agree more.
 \begin{itemize}
   \item \textbf{Simulated drift only.} Every result comes from Stim simulations. We have not validated the decoder on
         hardware data. Google's Willow memory data~\cite{google2025below} is the planned next step.
-  \item \textbf{Test regimes from the training family.} All noise is circuit-level depolarising noise with a global
-        scale and hot-qubit clusters, and the test regimes come from the same family as the training data. Only
-        \reg{bursts\_big} extrapolates, and only in cluster size and strength. Unseen drift types, such as correlated
-        two-qubit drift, leakage, crosstalk, biased noise or coherent errors, are untested.
+  \item \textbf{Test regimes from the training family.} The version-1 test regimes are circuit-level
+        depolarising noise with a global scale and hot-qubit clusters, from the same family as the training
+        data; only \reg{bursts\_big} extrapolates, and only in cluster size and strength. \Cref{sec:physics}
+        extends the evaluation to SI1000 device noise under TLS, cosmic-ray, slow and coupler (two-qubit)
+        drift, with the same trained weights and no retraining. Leakage, crosstalk, biased noise and
+        coherent errors remain untested.
   \item \textbf{$d\le5$, absolute cluster sizes.} We have not tested larger codes. Cluster sizes are the same at $d=3$
         and $d=5$, so the regimes are relatively milder at $d=5$ and absolute LERs are not comparable across distances.
   \item \textbf{Latency.} MWPM is the fastest decoder we measured: in a Python benchmark on a cloud VM ($d=5$, batch 4096)
@@ -715,18 +889,29 @@ agree more.
 \section{Conclusion}\label{sec:conclusion}
 %=====================================================================
 
-A neural decoder that sees only the firing rates of its own recent detection events adapts to localised drift in
-simulation. At $d=5$ its ensemble beats static and tuned sliding-window matching on every regime we tested, beats
+A neural decoder that sees only the firing rates of its own recent detection events adapts to localised
+synthetic drift in simulation. At $d=5$ its ensemble beats static and tuned sliding-window matching on every
+regime of that simulation, beats
 matching with the true noise on moderate bursts and a hot-qubit defect, largely through decoder quality, and trails it by $0.0031$ on out-of-distribution large
-bursts. The frozen control shows that the gain over a non-adaptive network trained on the same data is adaptation. Richer fingerprints and noise heads failed their pre-set
-rules. Hardware data, larger distances and latency are the open tests.
+bursts. The frozen control shows that the gain over a non-adaptive network trained on the same data is adaptation
+on synthetic drift. Richer fingerprints and noise heads failed their pre-set
+rules. Version 2 freezes the weights again and moves them to a device-level simulation --- SI1000 noise at
+$p=0.0015$ with per-qubit heterogeneity, slow drift, TLS fluctuators, accelerated cosmic-ray bursts and
+coupler faults. The transfer succeeds where the risk was: without retraining, every ensemble beats MWPM
+calibrated to the static device (0.0016 to 0.0017 against 0.0022) and is below or statistically
+indistinguishable from the calibrated and
+oracle baselines under drift. But the adaptation mechanism does not carry over: on physics-based drift the
+live fingerprint does not beat the frozen fingerprint on pooled drift LER in any pre-registered regime,
+and (post hoc) it is significantly worse in the tails of cosmic-ray bursts. The fingerprint pays when its window can track the noise; on these bursts it lags. Hardware data,
+larger distances and latency remain the open tests.
 
 \section*{Code and data availability}
 Code, experiment notes, result tables and dataset manifests with all generation seeds are at
 \url{https://github.com/chahat-101/drift}. Generated datasets are not in the repository but can be
 regenerated from the manifests (identical samples need the same Stim version and machine). Model checkpoints and
 per-shot error bits are archived on Zenodo (\href{https://doi.org/10.5281/zenodo.24342283}{10.5281/zenodo.24342283}); scripts that recompute the LERs and $p$-values are
-in \code{whitepaper/audit}.
+in \code{whitepaper/audit}. The round-10 streams regenerate from \code{data/phys10/manifest.json}, and the
+scripts that generate and evaluate them are in \code{results/exp10}.
 
 \section*{AI assistance}
 Code, analysis and drafting were assisted by an AI model (Claude); the author designed the study and checked all

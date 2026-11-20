@@ -293,14 +293,10 @@ def main():
                 md.append(f"|   seeds (mean ± std) | " + " | ".join(
                     "–" if any(sm[s2][i] is None for i in range(3)) else
                     f"{np.mean(sm[s2]):.4f} ± {np.std(sm[s2], ddof=1):.4f}" for s2 in SLICES) + " |")
-        for t in TYPES:
-            for kind in ("live", "frozen"):
-                for who in ("ens", "m0", "m1", "m2"):
-                    k = f"{t}_{kind}_{who}"
-                    if k in bits:
-                        for s2 in SLICES:
-                            data.setdefault("lers", {}).setdefault(r, {}).setdefault(k, {})[s2] = \
-                                ler(bits[k], masks, s2)
+        for k in bits:
+            for s2 in SLICES:
+                data.setdefault("lers", {}).setdefault(r, {}).setdefault(k, {})[s2] = \
+                    ler(bits[k], masks, s2)
         md.append("")
 
     # ---- McNemar + sign tests per regime (the comparisons fixed in the definitions)

@@ -10,6 +10,7 @@ non-zero if any check fails.
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 import sys
@@ -33,8 +34,35 @@ F = {
     "PT": "whitepaper/paired_tests.md",
     "EXT": "whitepaper/external_sources.md",
     "R4": "results/report4.md",
+    "N10H": "notes/10_physics_drift_hypotheses.md",
+    "N10D": "notes/10_definitions.md",
+    "PN": "physics_noise.py",
+    "R10J": "results/exp10/report10_data.json",
     **{f"A{i}": f"whitepaper/audit/out/t{i}.txt" for i in range(1, 11)},  # audit recomputations (audit/README.md)
 }
+
+# Round-10 numbers are checked directly against report10_data.json values: each R10J check names the
+# JSON path (and printf format) of every number, or 'argmin:path' for the best WindowDEM window (the
+# arg-min over the window LERs, {w} iterating 500..10000).
+R10 = json.load(open(os.path.join(ROOT, F["R10J"]), encoding="utf-8"))
+
+
+def r10_value(path):
+    v = R10
+    for k in path.split("."):
+        v = v[k]
+    return v
+
+
+def r10_get(spec):
+    """The displayed string for one R10J spec: 'path|fmt' or 'argmin:path'."""
+    if spec.startswith("argmin:"):
+        pat = spec[len("argmin:"):]
+        windows = (500, 1000, 2000, 5000, 10000)
+        vals = {w: r10_value(pat.format(w=w)) for w in windows}
+        return str(min(vals, key=vals.get))
+    path, fmt = spec.rsplit("|", 1)
+    return f"{r10_value(path):{fmt}}"
 
 # (paper fragment, [ (numbers, file, section-or-None, row regex), ... ])
 E = []
@@ -464,6 +492,177 @@ for reg, (n, nf) in VN.items():
       (nf, "R9", rf"^## {reg} \(", r"^\| NF noise-map head \+ FiLM: ensemble \|"))
 
 
+# ------------------------------------------------------------------ round 10 (physics-based drift)
+# Abstract
+e("Trained once on uniform circuit-level noise ($p=0.003$), the same frozen weights transfer",
+  ("0.003", "TD", None, r"strength \$p_0 = 0.003\$"),
+  ("0.0015", "N10D", None, r"SI1000 strength p = CHOSEN_SI1000_P"))
+e("a device-level simulation with SI1000 circuit noise ($p=0.0015$) under per-qubit heterogeneity",
+  ("0.0015", "N10D", None, r"SI1000 strength p = CHOSEN_SI1000_P = 0.0015"))
+e("trained ensembles beat MWPM calibrated to that device on its static noise (0.0016 to 0.0017 against 0.0022,",
+  ("0.0016 0.0017 0.0022", "R10J", None,
+   "lers.phys_static.static_wide_live_ens.all|.4f;lers.phys_static.static_nominal_live_ens.all|.4f;lers.phys_static.mwpm_cal.all|.4f"))
+e("largest paired McNemar $p=\\Eb{4}{56}$), and are below or statistically indistinguishable from",
+  ("4e-56", "R10J", None, "H3.models.static_nominal.mcnemar_p|.1g"))
+e("(\\reg{phys\\_mixed}: 0.0463 against 0.0476 and 0.0472). The live fingerprint, however, does not beat its",
+  ("0.0463 0.0476 0.0472", "R10J", None,
+   "lers.phys_mixed.adaptive_stale_live_ens.drift|.4f;lers.phys_mixed.mwpm_cal.drift|.4f;lers.phys_mixed.mwpm_oracle.drift|.4f"))
+
+# Physics setup
+e("Gidney et al.~\\cite{gidney2021honeycomb} at strength $p=0.0015$",
+  ("0.0015", "N10D", None, r"SI1000 strength p = CHOSEN_SI1000_P = 0.0015"))
+e("strength was chosen before the run: the static device's 200\\,000-shot matching LER is 0.002255, the closest",
+  ("200 0.002255", "PN", None, r"^# 200,000-shot static-MWPM LERs"),
+  ("0.002255 0.0015", "PN", None, r"^CHOSEN_SI1000_P = 0.0015"))
+e("of the candidate strengths to the 0.0033 nominal LER of the version-1 circuit.",
+  ("0.0033", "PN", None, r"^CHOSEN_SI1000_P = 0.0015"))
+e("one simulated device (device seed 0) carries a fixed per-qubit heterogeneity",
+  ("0", "N10D", None, r"^- Streams: 6 regimes x stream seeds 0-4, device_seed 0"))
+e("error bursts from point impacts at rate 0.02 per 2000-shot step, deliberately",
+  ("0.02 2000", "PN", None, r"accelerated \(0\.02 per 2000-shot step\)"))
+e("single-qubit depolarising noise with amplitude $0.2\\,e^{-\\mathrm{age}/25}$, age in sub-steps",
+  ("0.2 25", "N10D", None, r"burst amplitude 0\.2\*exp\(-age/25\)"))
+e("Each of the six regimes runs on five",
+  ("1500 200", "N10D", None, r"1500 sub-steps x 200 shots each"))
+e("$w\\in\\{500, 1000, 2000, 5000, 10000\\}$ shots",
+  ("500 1000 2000 5000 10000", "N10D", None, r"WindowDEM windows 500, 1000, 2000, 5000, 10000"))
+e("after the fact. The four ensembles of \\cref{sec:variants} and their single seeds are evaluated causally in",
+  ("200", "N10D", None, r"^ensemble = mean of the 3 seeds"))
+e("and frozen (the fingerprint of a 2000-shot static-device calibration set, shared by all members). A",
+  ("2000", "N10D", None, r"2000 shots of the static device"))
+e("sub-step is \\emph{drift} by pre-registered rule: max burst $\\ge0.005$ in \\reg{phys\\_cosmic}, any fluctuator",
+  ("0.005", "N10D", None, r"phys_cosmic: max burst >= 0.005"))
+e("two-sided McNemar on shared shots, $p<0.001$ significant, $0.001<p<0.05$ weak, no correction; exact",
+  ("0.001 0.05", "N10D", None, r"p < 0.001 significant, 0.001-0.05 weak"))
+
+# Pre-registered hypotheses (quoted verbatim)
+e("drift steps of \\reg{phys\\_tls}, \\reg{phys\\_cosmic} and \\reg{phys\\_mixed} (McNemar $p<0.001$, and",
+  ("0.001 0.01", "N10H", None, r"^H1:"))
+e("\\reg{phys\\_cosmic} and \\reg{phys\\_mixed} ($p<0.001$).",
+  ("0.001", "N10H", None, r"^H2:"))
+
+# Results table (Table tab:phys)
+def phys_row(label, key):
+    regs = ["phys_static", "phys_tls", "phys_cosmic", "phys_slow", "phys_coupler", "phys_mixed"]
+    vals = [f"{J_LERS[r][key]['all' if r == 'phys_static' else 'drift']:.4f}" for r in regs]
+    specs = ";".join(f"lers.{r}.{key}.{'all' if r == 'phys_static' else 'drift'}|.4f" for r in regs)
+    e(f"{label} & " + " & ".join(vals), (" ".join(vals), "R10J", None, specs))
+
+J_LERS = R10["lers"]
+phys_row("MWPM (calibrated)", "mwpm_cal")
+phys_row("MWPM (nominal, ref.)", "mwpm_nom")
+phys_row("MWPM (oracle)", "mwpm_oracle")
+phys_row("static-wide ens.", "static_wide_live_ens")
+phys_row("static-nominal ens.", "static_nominal_live_ens")
+phys_row("adaptive-wide ens. (live)", "adaptive_wide_live_ens")
+phys_row("adaptive-stale ens. (live)", "adaptive_stale_live_ens")
+phys_row("adaptive-stale ens. (frozen)", "adaptive_stale_frozen_ens")
+BW = {r: min((500, 1000, 2000, 5000, 10000), key=lambda w: J_LERS[r][f"window_{w}"]["all" if r == "phys_static" else "drift"])
+      for r in ("phys_static", "phys_tls", "phys_cosmic", "phys_slow", "phys_coupler", "phys_mixed")}
+BW_NUMS = " ".join(f"{J_LERS[r][f'window_{BW[r]}']['all' if r == 'phys_static' else 'drift']:.4f} {BW[r]}" for r in BW)
+BW_SPECS = ";".join(f"lers.{r}.window_{BW[r]}.{'all' if r == 'phys_static' else 'drift'}|.4f;argmin:lers.{r}.window_{{w}}.{'all' if r == 'phys_static' else 'drift'}" for r in BW)
+e("best WindowDEM (window) & " + " & ".join(f"{J_LERS[r][f'window_{BW[r]}']['all' if r == 'phys_static' else 'drift']:.4f} ({BW[r]})" for r in BW),
+  (BW_NUMS, "R10J", None, BW_SPECS))
+
+# Results text
+e("Live $-$ frozen on drift sub-steps is $+0.00003$ ($p=0.06$) on \\reg{phys\\_tls}, $+0.00309$",
+  ("0.00003 0.06", "R10J", None, "H1.regimes.phys_tls.diff|+.5f;H1.regimes.phys_tls.mcnemar_p|.1g"),
+  ("0.00309 0.008", "R10J", None, "H1.regimes.phys_cosmic.diff|+.5f;H1.regimes.phys_cosmic.mcnemar_p|.1g"))
+e("($p=0.008$\\weak) on \\reg{phys\\_cosmic} and $+0.00014$ ($p=0.2$) on \\reg{phys\\_mixed}. The event-level sign",
+  ("0.00014 0.2", "R10J", None, "H1.regimes.phys_mixed.diff|+.5f;H1.regimes.phys_mixed.mcnemar_p|.1g"))
+e("frozen is better in all 10 burst events ($p=0.002$); on \\reg{phys\\_tls}",
+  ("10 0.002", "R10J", None, "H1.regimes.phys_cosmic.sign_losses|d;H1.regimes.phys_cosmic.sign_p|.1g"))
+e("it is a tie (299 against 282 events, $p=0.5$). On \\reg{phys\\_mixed} the sign test favours live ($384/291$,",
+  ("299 282 0.5 384 291", "R10J", None,
+   "H1.regimes.phys_tls.sign_wins|d;H1.regimes.phys_tls.sign_losses|d;H1.regimes.phys_tls.sign_p|.1g;H1.regimes.phys_mixed.sign_wins|d;H1.regimes.phys_mixed.sign_losses|d"))
+e("$p=\\Eb{4}{4}$) while the pooled comparison does not ($p=0.2$); \\cref{sec:phys-explor} traces this to",
+  ("0.0004 0.2", "R10J", None, "H1.regimes.phys_mixed.sign_p|.1g;H1.regimes.phys_mixed.mcnemar_p|.1g"))
+e("$+0.00003$ above frozen (\\E{7}{6}).",
+  ("0.00003 7e-06", "R10J", None, "paired.phys_static|adaptive-stale live vs frozen.diff|+.5f;paired.phys_static|adaptive-stale live vs frozen.mcnemar_p|.1g"))
+e("pre-registered: $-0.00126$, \\E{9}{14} against both. On \\reg{phys\\_cosmic} it is lower than both",
+  ("0.00126 9e-14 0.00269", "R10J", None,
+   "H2.tests.phys_mixed|calibrated MWPM.diff|+.5f;H2.tests.phys_mixed|calibrated MWPM.mcnemar_p|.1g;H2.tests.phys_cosmic|calibrated MWPM.diff|+.5f"))
+e("($-0.00269$) but the regime contributes only 747 drift sub-steps pooled over five seeds, and at drift LER",
+  ("747", "R10J", None, "census.phys_cosmic.drift|d"))
+e("0.42 nearly every shot fails for every decoder, so the comparison does not reach significance ($p=0.1$; the",
+  ("0.42 0.1", "R10J", None, "lers.phys_cosmic.adaptive_stale_live_ens.drift|.2f;H2.tests.phys_cosmic|calibrated MWPM.mcnemar_p|.1g"))
+e("best window is 500, whose weights barely leave the calibrated ones). Oracle MWPM is 0.4158 against",
+  ("500 0.4158", "R10J", None, "argmin:lers.phys_cosmic.window_{w}.drift;lers.phys_cosmic.mwpm_oracle.drift|.4f"))
+e("calibrated 0.4199: under these bursts the matching decoder itself is the bottleneck, not its weights.",
+  ("0.4199", "R10J", None, "lers.phys_cosmic.mwpm_cal.drift|.4f"))
+e("On the static device every ensemble is significantly better than calibrated MWPM (0.0022): static-wide",
+  ("0.0022", "R10J", None, "lers.phys_static.mwpm_cal.all|.4f"))
+e("0.0016 ($-0.00060$, \\E{4}{79}), static-nominal 0.0017 ($-0.00051$, \\E{4}{56}), adaptive-wide",
+  ("0.0016 0.00060 4e-79 0.0017 0.00051 4e-56", "R10J", None,
+   "lers.phys_static.static_wide_live_ens.all|.4f;H3.models.static_wide.diff|+.5f;H3.models.static_wide.mcnemar_p|.1g;lers.phys_static.static_nominal_live_ens.all|.4f;H3.models.static_nominal.diff|+.5f;H3.models.static_nominal.mcnemar_p|.1g"))
+e("0.0016 ($-0.00063$, \\E{2}{87}) and adaptive-stale 0.0016 ($-0.00064$, \\E{9}{91}). The $p=0.003$-trained",
+  ("0.0016 0.00063 2e-87 0.0016 0.00064 9e-91", "R10J", None,
+   "lers.phys_static.adaptive_wide_live_ens.all|.4f;H3.models.adaptive_wide.diff|+.5f;H3.models.adaptive_wide.mcnemar_p|.1g;lers.phys_static.adaptive_stale_live_ens.all|.4f;H3.models.adaptive_stale.diff|+.5f;H3.models.adaptive_stale.mcnemar_p|.1g"))
+e("(\\reg{phys\\_static} on all sub-steps; largest $p=\\Eb{9}{14}$: \\reg{phys\\_tls} \\E{8}{129}, \\reg{phys\\_slow}",
+  ("8e-129 7e-69", "R10J", None,
+   "paired.phys_tls|adaptive-stale live vs calibrated MWPM.mcnemar_p|.1g;paired.phys_slow|adaptive-stale live vs calibrated MWPM.mcnemar_p|.1g"))
+e("\\E{7}{69}, \\reg{phys\\_coupler} \\E{4}{24}, \\reg{phys\\_mixed} \\E{9}{14}). They beat oracle MWPM on",
+  ("4e-24 9e-14", "R10J", None,
+   "paired.phys_coupler|adaptive-stale live vs calibrated MWPM.mcnemar_p|.1g;paired.phys_mixed|adaptive-stale live vs calibrated MWPM.mcnemar_p|.1g"))
+e("\\reg{phys\\_tls} ($-0.00085$, \\E{5}{78}) and \\reg{phys\\_mixed} ($-0.00089$, \\E{2}{7}) and are not separable",
+  ("0.00085 5e-78 0.00089 2e-07", "R10J", None,
+   "paired.phys_tls|adaptive-stale live vs oracle MWPM.diff|+.5f;paired.phys_tls|adaptive-stale live vs oracle MWPM.mcnemar_p|.1g;paired.phys_mixed|adaptive-stale live vs oracle MWPM.diff|+.5f;paired.phys_mixed|adaptive-stale live vs oracle MWPM.mcnemar_p|.1g"))
+e("from it on \\reg{phys\\_cosmic} ($+0.00139$, $p=0.4$). The best WindowDEM is $w=500$ in every regime but",
+  ("0.00139 0.4 500", "R10J", None,
+   "paired.phys_cosmic|adaptive-stale live vs oracle MWPM.diff|+.5f;paired.phys_cosmic|adaptive-stale live vs oracle MWPM.mcnemar_p|.1g;argmin:lers.phys_tls.window_{w}.drift"))
+e("\\reg{phys\\_coupler} ($w=10000$) --- after 500 shots its weights barely leave the calibrated ones --- and",
+  ("10000", "R10J", None, "argmin:lers.phys_coupler.window_{w}.drift"))
+e("long windows hurt under bursts: on \\reg{phys\\_cosmic} $w=10000$ has drift LER 0.4631 against 0.4199 for",
+  ("0.4631 0.4199", "R10J", None, "lers.phys_cosmic.window_10000.drift|.4f;lers.phys_cosmic.window_500.drift|.4f"))
+
+# Exploratory (post hoc)
+e("locates the live fingerprint's cost in \\reg{phys\\_cosmic}: live $-$ frozen is $+0.00050$",
+  ("0.00050", "R10J", None, "exploratory.phys_cosmic|bin0.diff|+.5f"))
+e("($p=0.8$) in the strongest bin [0.05, 0.2], where both decoders fail about half the shots (0.4919 against",
+  ("0.8 0.4919", "R10J", None, "exploratory.phys_cosmic|bin0.mcnemar_p|.1g;exploratory.phys_cosmic|bin0.ler_live|.4f"),
+  ("0.05 0.2", "N10D", None, r"youngest active burst: \[0.05, 0.2\]"))
+e("0.4914) and nothing separates, $+0.00420$ ($p=0.06$) in [0.0125, 0.05) and $+0.00686$ (\\E{5}{7})",
+  ("0.4914 0.00420 0.06 0.00686 5e-07", "R10J", None,
+   "exploratory.phys_cosmic|bin0.ler_frozen|.4f;exploratory.phys_cosmic|bin1.diff|+.5f;exploratory.phys_cosmic|bin1.mcnemar_p|.1g;exploratory.phys_cosmic|bin2.diff|+.5f;exploratory.phys_cosmic|bin2.mcnemar_p|.1g"),
+  ("0.0125 0.05", "N10D", None, r"youngest active burst"))
+e("in the weakest bin [0.005, 0.0125) --- the one bin where decoding still works (0.2028 against 0.1959) ---",
+  ("0.005 0.0125", "N10D", None, r"youngest active burst"),
+  ("0.2028 0.1959", "R10J", None, "exploratory.phys_cosmic|bin2.ler_live|.4f;exploratory.phys_cosmic|bin2.ler_frozen|.4f"))
+e("but weaker: $-0.00104$ ($p=0.6$), $+0.00349$ ($p=0.1$) and $+0.00339$",
+  ("0.00104 0.6 0.00349 0.1 0.00339", "R10J", None,
+   "exploratory.phys_mixed|bin0.diff|+.5f;exploratory.phys_mixed|bin0.mcnemar_p|.1g;exploratory.phys_mixed|bin1.diff|+.5f;exploratory.phys_mixed|bin1.mcnemar_p|.1g;exploratory.phys_mixed|bin2.diff|+.5f"))
+e("(0.02\\weak). On the TLS-only drift sub-steps of \\reg{phys\\_mixed} (1\\,017\\,000 shots) live and frozen are",
+  ("0.02 1017000", "R10J", None, "exploratory.phys_mixed|bin2.mcnemar_p|.1g;exploratory.phys_mixed|tls_only.shots|d"))
+e("indistinguishable ($+0.00002$, $p=0.5$), and the apparent conflict on \\reg{phys\\_mixed} --- pooled McNemar",
+  ("0.00002 0.5", "R10J", None, "exploratory.phys_mixed|tls_only.diff|+.5f;exploratory.phys_mixed|tls_only.mcnemar_p|.1g"))
+e("the errors (bin 0 LER 0.4928 against 0.0049 on TLS-only sub-steps) and favour frozen, while the sign test",
+  ("0.4928 0.0049", "R10J", None, "exploratory.phys_mixed|bin0.ler_live|.4f;exploratory.phys_mixed|tls_only.ler_live|.4f"))
+e("is dominated by the 992 TLS events, which",
+  ("992", "R10J", None, "census.phys_mixed.events.tls|d"))
+e("favour live ($366/276$, $p=\\Eb{4}{4}$); the 10 burst events slightly favour frozen ($4/6$) and the 27",
+  ("366 276 0.0004 10 4 6 27", "R10J", None,
+   "exploratory.phys_mixed|sign_by_kind.tls.live_better|d;exploratory.phys_mixed|sign_by_kind.tls.frozen_better|d;exploratory.phys_mixed|sign_by_kind.tls.p|.1g;exploratory.phys_mixed|sign_by_kind.burst.n|d;exploratory.phys_mixed|sign_by_kind.burst.live_better|d;exploratory.phys_mixed|sign_by_kind.burst.frozen_better|d;exploratory.phys_mixed|sign_by_kind.coupler.n|d"))
+e("coupler events are undecided ($14/9$, $p=0.4$).",
+  ("14 9 0.4", "R10J", None, "exploratory.phys_mixed|sign_by_kind.coupler.live_better|d;exploratory.phys_mixed|sign_by_kind.coupler.frozen_better|d;exploratory.phys_mixed|sign_by_kind.coupler.p|.1g"))
+
+e("consistent with the 2000-shot live window lagging the decaying burst",
+  ("2000", "TD", None, r"seen \(\$W=2000\$\)"))
+
+# Limitations of the physics evaluation
+e("The cosmic-ray impact rate is accelerated (0.02 per 2000-shot step against roughly one per ten",
+  ("0.02 2000", "PN", None, r"accelerated \(0\.02 per 2000-shot step\)"))
+e("0.42 in \\reg{phys\\_cosmic} every decoder is near failure, which hides differences.",
+  ("0.42", "R10J", None, "lers.phys_cosmic.adaptive_stale_live_ens.drift|.2f"))
+e("pairs; \\reg{phys\\_cosmic} contributes only 747 drift sub-steps pooled.",
+  ("747", "R10J", None, "census.phys_cosmic.drift|d"))
+
+# Conclusion
+e("$p=0.0015$ with per-qubit heterogeneity, slow drift, TLS fluctuators, accelerated cosmic-ray bursts and",
+  ("0.0015", "N10D", None, r"SI1000 strength p = CHOSEN_SI1000_P = 0.0015"))
+e("calibrated to the static device (0.0016 to 0.0017 against 0.0022) and is below or statistically",
+  ("0.0016 0.0017 0.0022", "R10J", None,
+   "lers.phys_static.static_wide_live_ens.all|.4f;lers.phys_static.static_nominal_live_ens.all|.4f;lers.phys_static.mwpm_cal.all|.4f"))
+
 # ------------------------------------------------------------------ engine
 def norm(line):
     line = line.replace("−", "-").replace("**", "").replace("\\,", "").replace("{,}", "")
@@ -517,7 +716,10 @@ def main():
            "from `report6_data.json` and equal the corresponding cells of `notes/07_ensembles.md` section 3. "
            "The regimes, example-shot and fingerprint figures are illustrations drawn from the simulator "
            "(`drift.py`, `circuits.py`; Stim 1.16.0, PyMatching 2.4.0) with the seeds of "
-           "`tech_doc_src/figs.py`; they show no results.", "",
+           "`tech_doc_src/figs.py`; they show no results. Round-10 numbers (the physics-based drift "
+           "evaluation) are checked directly against `results/exp10/report10_data.json`: the source cell "
+           "names the JSON path and printf format each number was read from, and `argmin:` cells verify the "
+           "best WindowDEM window as the arg-min over the JSON window LERs.", "",
            "| # | paper | numbers | source (file:line) | check |", "|---|---|---|---|---|"]
     bad = 0
     for k, (frag, checks) in enumerate(E, 1):
@@ -527,6 +729,21 @@ def main():
         if pl == -1:
             bad += 1
         for nums, f, sec, row in checks:
+            if f == "R10J":
+                toks, specs = nums.split(), row.split(";")
+                try:
+                    missing = [t for t, sp in zip(toks, specs) if r10_get(sp).lstrip("+-") != t.lstrip("+-")]
+                    if len(toks) != len(specs):
+                        missing = toks
+                except (KeyError, ValueError, IndexError):
+                    missing = toks
+                ok = "ok" if not missing else "FAIL: " + ", ".join(missing)
+                if ok != "ok":
+                    bad += 1
+                shown = nums.replace("\\", "").replace("^", "")
+                out.append(f"| {k} | {where} | {shown} | `{F[f]}:{row}` | {ok} |")
+                where = "″"
+                continue
             ln, text, err = find_row(F[f], sec, row)
             if err:
                 ok = "FAIL (" + err + ")"
